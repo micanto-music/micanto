@@ -1,0 +1,210 @@
+{
+    "menu": {
+        "search": "Search",
+        "start": "Start",
+        "tracks": "Tracks",
+        "artists": "Artists",
+        "albums": "Albums",
+        "queue": "Queue"
+    },
+    "sidebar": {
+        "player": {
+            "headline": "Now Playing"
+        },
+        "queue": {
+            "headline": "Up Next"
+        },
+        "playlists": {
+            "headline": "Playlists"
+        }
+    },
+    "table":{
+        "headers": {
+            "title": "Title",
+            "album": "Album",
+            "duration": "Duration",
+            "added_at": "Added at",
+            "#": "#"
+        }
+    },
+    "edit": {
+        "title": "Title",
+        "name": "Name",
+        "album": "Album",
+        "artists": "artists",
+        "required": "This field cannot be empty",
+        "compilation": "Album is a compilation",
+        "single": "Album is a single",
+        "track": "Track No.",
+        "disc": "Disc No.",
+        "genre": "Genre",
+        "year": "Year",
+        "leave": "Leave unchanged"
+    },
+    "select": {
+        "noOptionsMessage": "No options",
+        "create": "Create",
+        "loadingMessage": "Loading..."
+    },
+    "start": {
+        "last_played": "Recently Played",
+        "most_played": "Most Played",
+        "latest_tracks": "Latest Tracks",
+        "latest_albums": "Latest Albums",
+        "your_playlists": "Your playlists"
+    },
+    "artist": {
+        "top_tracks": "Most played",
+        "discography": "Discography",
+        "compilation": "Different artists",
+        "features": "Features"
+    },
+    "subline": {
+        "tracks": "Lieder"
+    },
+    "by": "by",
+    "track": "Track",
+    "tracks": "Tracks",
+    "albums": "Albums",
+    "artists": "Artists",
+    "queue": "Current Queue",
+    "login": {
+        "sign_in": "Sign in to your account",
+        "sign_in_btn": "Sign in",
+        "email": "Your email",
+        "password": "Password",
+        "invalid": "Email or password is incorrect!"
+    },
+    "disc": "Disc",
+    "close": "close",
+    "cancel": "cancel",
+    "save": "save",
+    "delete": "delete",
+    "pleasewait": "Loading...",
+    "playall": "Play all",
+    "shuffleall": "Shuffle all",
+    "search": {
+        "title": "Search",
+        "placeholder": "Enter search word",
+        "top_results": "Last top results",
+        "top_result": "Top Result",
+        "artists": "Artists",
+        "albums": "Albums",
+        "tracks": "Tracks"
+    },
+    "playlist": {
+        "name": "Name",
+        "delete_text": "Do you really want to delete the playlist?",
+        "empty": {
+            "title": "Playlist es empty",
+            "body": "The playlist is currently empty. Add some via drag&drop or rightclick."
+        }
+    },
+    "lastsearches": {
+        "empty": {
+            "title": "No last searches",
+            "body": "Begin a new search now!"
+        }
+    },
+    "format": {
+        "hr": "hr.",
+        "min": "min.",
+        "sec": "sec."
+    },
+    "context": {
+        "play_album": "Play album",
+        "shuffle_album": "Shuffle all",
+        "edit_album": "Edit album",
+        "play_track": "Play track",
+        "edit_tracks": "Edit Song(s)",
+        "play": "Play",
+        "shuffle": "Shuffle all",
+        "edit": "Edit",
+        "delete": "Delete",
+        "remove": "Remove",
+        "edit_track": "Edit",
+        "goto_album": "Go to Album",
+        "add_to": "Add to",
+        "remove_from_playlist": "Remove from playlist",
+        "play_artist": "Play all",
+        "shuffle_artist": "Shuffle all",
+        "edit_artist": "Edit artist",
+        "goto_artist": "Go to artist",
+        "edit_profile": "Edit profile",
+        "combine_albums": "Combine albums",
+        "logout": "Logout"
+    },
+    "toast": {
+        "album_added_to_playlist": "Album added to playlist",
+        "artist_added_to_playlist": "Artist added to playlist",
+        "added_to_playlist": "Added to playlist",
+        "tracks_added_to_playlist": "Track(s) added to playlist",
+        "double_on_playlist": "Track is already on this playlist",
+        "synced": "new or updated tracks"
+    },
+    "fourohfour":{
+        "title": "Page not found",
+        "text": "You have found a unknown page."
+    },
+    "dnd" : {
+        "choose": "Choose file",
+        "text": "Drop picture here or",
+        "album": "All tracks of",
+        "artist": "All tracks by",
+        "tracks": "Tracks"
+    },
+    "profile": {
+        "title": "Edit Profile",
+        "email": "Email",
+        "name": "Name",
+        "current_password": "Current password",
+        "password_hint": "Needed for changing profile data",
+        "new_password": "New password"
+    },
+    "settings": {
+        "title": "Settings",
+        "musicPath": "Media Path",
+        "musicPathHint": "Absoluter Ordner-Pfad auf dem Server in dem deine Musik liegt."
+    },
+    "userList": {
+        "title": "Manage users",
+        "admin": "Admin",
+        "user": "User"
+    },
+    "header": {
+        "reloadLibrary": "Synchronize Tracks"
+    },
+    "setup": {
+        "title": "Setup",
+        "continue": "Continue",
+        "back": "Back",
+        "page1": {
+            "title": "Setup Database",
+            "host": "Host",
+            "user": "Username",
+            "password": "Password",
+            "dbname": "Database Name",
+            "port": "Port",
+            "invalid": "No database connection. Please correct the data."
+        },
+        "page2": {
+            "title": "Add media path",
+            "music_folder": "Media Path"
+        },
+        "page3": {
+            "title": "Add admin user",
+            "invalid": "Could not create admin",
+            "name": "Name",
+            "email": "Email",
+            "password": "Password"
+        },
+        "page4": {
+            "title": "Setup complete!",
+            "text": "The setup of micanto is complete. You can login now. If you want to import you music library please use the console. ( php artisan micanto:sync )"
+        }
+    },
+    "error": {
+        "email": "This is a correct email",
+        "minLength": "Too less letters"
+    }
+}

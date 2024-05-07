@@ -1,0 +1,211 @@
+{
+    "menu": {
+        "search": "Suche",
+        "start": "Start",
+        "tracks": "Lieder",
+        "artists": "Künstler/in",
+        "albums": "Alben",
+        "queue": "Wiedergabeliste"
+    },
+    "sidebar": {
+        "player": {
+            "headline": "Spielt gerade"
+        },
+        "queue": {
+            "headline": "Als Nächstes"
+        },
+        "playlists": {
+            "headline": "Playlists"
+        }
+    },
+    "table":{
+        "headers": {
+            "title": "Titel",
+            "album": "Album",
+            "duration": "Länge",
+            "added_at": "Hinzugefügt am",
+            "#": "#"
+        }
+    },
+    "edit": {
+        "title": "Titel",
+        "name": "Name",
+        "album": "Album",
+        "artists": "Künstler/in",
+        "compilation": "Album ist eine Kompilation",
+        "single": "Album ist eine EP",
+        "required": "Dieses Feld muss gefüllt sein.",
+        "track": "Track Nummer",
+        "disc": "Disk Nummer",
+        "genre": "Genre",
+        "year": "Jahr",
+        "leave": "unverändert lassen"
+    },
+    "select": {
+        "noOptionsMessage": "Keine Optionen",
+        "create": "Erstelle",
+        "loadingMessage": "Lädt..."
+    },
+    "start": {
+        "last_played": "Zuletzt gehört",
+        "most_played": "Am meisten gehört",
+        "latest_tracks": "Neueste Lieder",
+        "latest_albums": "Neueste Alben",
+        "your_playlists": "Deine Playlists"
+    },
+    "artist": {
+        "top_tracks": "Am meisten gehört",
+        "discography": "Discographie",
+        "compilation": "Verschiedene Künstler/innen",
+        "features": "Features"
+    },
+    "subline": {
+        "tracks": "Lieder"
+    },
+    "by": "von",
+    "track": "Lied",
+    "tracks": "Alle Lieder",
+    "albums": "Alben",
+    "artists": "Künstler/in",
+    "queue": "Aktuelle Wiedergabeliste",
+    "login": {
+        "sign_in": "Bei micanto anmelden",
+        "sign_in_btn": "Anmelden",
+        "email": "Deine E-Mail",
+        "password": "Passwort",
+        "invalid": "E-Mail oder Passwort sind falsch!"
+    },
+    "disc": "CD",
+    "close": "Schließen",
+    "cancel": "Abbrechen",
+    "save": "Speichern",
+    "delete": "Löschen",
+    "pleasewait": "Lädt...",
+    "playall": "Alle abspielen",
+    "shuffleall": "Geshuffelt abspielen",
+    "search": {
+        "title": "Suche",
+        "placeholder": "Suchwort eingeben",
+        "top_results": "Letzte Toptreffer",
+        "top_result": "Top-Ergebnis",
+        "artists": "Künstler/in",
+        "albums": "Alben",
+        "tracks": "Lieder"
+    },
+    "playlist": {
+        "name": "Name",
+        "delete_text": "Willst du die Playlist wirklich löschen?",
+        "empty": {
+            "title": "Playlist ist leer",
+            "body": "Die Playlist hat zur Zeit keine Lieder. Füge welche via Drag&Drop oder Rechtsclick hinzu."
+        }
+    },
+    "lastsearches": {
+        "empty": {
+            "title": "Keine letzten Suchen",
+            "body": "Beginne jetzt eine neue Suche!"
+        }
+    },
+    "format": {
+        "hr": "Std.",
+        "min": "Min.",
+        "sec": "Sek."
+    },
+    "context": {
+        "play_album": "Album abspielen",
+        "shuffle_album": "Zufällig abspielen",
+        "edit_album": "Album bearbeiten",
+        "edit_tracks": "Lied(er) bearbeiten",
+        "play_track": "Lied abspielen",
+        "play": "Abspielen",
+        "shuffle": "Zufällig abspielen",
+        "edit": "Bearbeiten",
+        "delete": "Löschen",
+        "remove": "Entfernen",
+        "edit_track": "Bearbeiten",
+        "goto_album": "Zum Album",
+        "add_to": "Hinzufügen zu",
+        "remove_from_playlist": "Von Playlist entfernen",
+        "play_artist": "Alle abspielen",
+        "shuffle_artist": "Zufällig abspielen",
+        "edit_artist": "Künstler/in bearbeiten",
+        "goto_artist": "Zum/r Künstler/in",
+        "edit_profile": "Profil bearbeiten",
+        "combine_albums": "Alben kombinieren",
+        "logout": "Abmelden"
+    },
+    "toast": {
+        "artist_added_to_playlist": "Künstler/in zur Playlist hinzugefügt",
+        "album_added_to_playlist": "Album zur Playlist hinzugefügt",
+        "added_to_playlist": "Lied(er) zur Playlist hinzugefügt",
+        "tracks_added_to_playlist": "Lied(er) zur Playlist hinzugefügt",
+        "added_to_playlist": "Zur Playlist hinzugefügt",
+        "double_on_playlist": "Lied ist schon auf der Playlist",
+        "synced": "neue oder aktualisierte Lieder"
+    },
+    "fourohfour":{
+        "title": "Inhalt nicht gefunden",
+        "text": "Du bist leider auf eine nicht verfügbare Seite gestoßen."
+    },
+    "dnd" : {
+        "choose": "Datei auswählen",
+        "text": "Bilder hier hineinziehen oder",
+        "album": "Alle Lieder des Albums",
+        "artist": "Alle lieder von",
+        "tracks": "Lieder"
+    },
+    "profile": {
+        "title": "Profil bearbeiten",
+        "email": "E-Mail",
+        "name": "Name",
+        "current_password": "Derzeitiges Password",
+        "password_hint": "Wird benötigt um das Profil zu ändern",
+        "new_password": "Neues Password"
+    },
+    "settings": {
+        "title": "Einstellungen",
+        "musicPath": "Medien-Pfad",
+        "musicPathHint": "Absoluter Ordner-Pfad auf dem Server in dem deine Musik liegt."
+    },
+    "userList": {
+        "title": "Benutzer verwalten",
+        "admin": "Administrator",
+        "user": "Benutzer"
+    },
+    "header": {
+        "reloadLibrary": "Lieder syncronisieren"
+    },
+    "setup": {
+        "title": "Einrichtung",
+        "continue": "Weiter",
+        "back": "Zurück",
+        "page1": {
+            "title": "Datenbank einrichten",
+            "host": "Host",
+            "user": "Benutzername",
+            "password": "Passwort",
+            "dbname": "Datenbankname",
+            "port": "Port",
+            "invalid": "Die Datenbank-Daten sind falsch. Keine Verbindung möglich."
+        },
+        "page2": {
+            "title": "Medienpfad einrichten",
+            "music_folder": "Medien-Pfad"
+        },
+        "page3": {
+            "title": "Admin-User einrichten",
+            "invalid": "Admin konnte nicht angelegt werden",
+            "name": "Name",
+            "email": "E-Mail",
+            "password": "Passwort"
+        },
+        "page4": {
+            "title": "Einrichtung abgeschlossen!",
+            "text": "Die Einrichtung von Micanto ist abgeschlossen. Du kannst dich jetzt einloggen. Zum einlesen deiner Mediendaten wird empfohlen die Konsole zu verwenden ( php artisan micanto:sync ), da es sonst zu Abbrüchen kommen kann."
+        }
+    },
+    "error": {
+        "email": "Dies ist keine korrekte E-Mail",
+        "minLength": "Der Wert ist nicht lang genug"
+    }
+}

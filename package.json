@@ -1,0 +1,56 @@
+{
+    "name": "micanto",
+    "author": "André Rinas <info@andrerinas.de>",
+    "homepage": "https://www.andrerinas.de",
+    "license": "MIT",
+    "description": "Personal music streaming server based on laravel and react.",
+    "keywords": [
+        "music",
+        "audio",
+        "stream",
+        "mp3"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/micanto-music/micanto"
+    },
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build"
+    },
+    "devDependencies": {
+        "laravel-vite-plugin": "^0.8.0",
+        "vite": "^4.0.0"
+    },
+    "dependencies": {
+        "@preact/signals-react": "^2.0.0",
+        "@reduxjs/toolkit": "^2.0.1",
+        "@tailwindcss/forms": "^0.5.7",
+        "@vitejs/plugin-react": "^4.2.1",
+        "autoprefixer": "^10.4.16",
+        "axios": "^1.6.2",
+        "classnames": "^2.5.1",
+        "dayjs": "^1.11.10",
+        "i18next": "^23.8.2",
+        "i18next-browser-languagedetector": "^7.2.0",
+        "i18next-http-backend": "^2.4.3",
+        "ismobilejs": "^1.1.1",
+        "lodash": "^4.17.21",
+        "react": "^18.2.0",
+        "react-contexify": "^6.0.0",
+        "react-dom": "^18.2.0",
+        "react-hook-form": "^7.50.1",
+        "react-i18next": "^14.0.1",
+        "react-icons": "^4.12.0",
+        "react-infinite-scroll-component": "^6.1.0",
+        "react-query": "^3.39.3",
+        "react-router-dom": "^6.21.0",
+        "react-select": "^5.8.0",
+        "react-toastify": "^10.0.4",
+        "react-top-loading-bar": "^2.3.1",
+        "react-window": "^1.8.10",
+        "react-window-infinite-loader": "^1.0.9",
+        "tailwindcss": "^3.4.0",
+        "zustand": "^4.4.7"
+    }
+}
