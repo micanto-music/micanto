@@ -21,7 +21,7 @@ class MicantoPlayer {
 
         this.element = document.createElement('audio');
         this.element.setAttribute('id', 'micanto-web-track-player');
-
+        this.element.volume = 0.3;
         this.element.addEventListener('ended', this.onStateUpdate.bind(this, State.Ended));
         this.element.addEventListener('playing', this.onStateUpdate.bind(this, State.Playing));
         this.element.addEventListener('pause', this.onStateUpdate.bind(this, State.Paused));
@@ -166,6 +166,10 @@ class MicantoPlayer {
             duration: this.element.duration || 0,
             buffered: 0,
         }
+    }
+
+    setVolume(volume) {
+        this.element.volume = volume;
     }
 
     setupProgressUpdates(interval) {

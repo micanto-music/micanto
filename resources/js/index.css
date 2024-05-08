@@ -449,39 +449,8 @@ input[type="range"]::-ms-track {
     @apply text-sm;
 }
 
-/*.context-menu {*/
-/*    @apply fixed bg-music-light text-sm;*/
-/*    width: 200px;*/
-/*    filter: drop-shadow(0 5px 15px rgba(0,0,0,.5));*/
-/*    z-index: 1020;*/
-/*}*/
-
-/*.context-menu li {*/
-/*    padding: 4px 11px;*/
-/*    cursor: pointer;*/
-/*}*/
-
-/*.context-menu li:hover {*/
-/*    background: var(--secondary-color);*/
-/*}*/
 
 .modal {
-/*    display: flex;
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-
-    transition-property: all;
-    transition-duration: 300ms;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    justify-content: center;
-    align-items: center;
-    pointer-events: none;
-    background-color: rgba(0, 0, 0, 0.2);
-    opacity: 1;
-*/
     position: fixed;
     top: 0;
     left: 0;
@@ -920,6 +889,43 @@ input {
 .progress-finished {
     background: var(--secondary-color);
     width: 0;
+}
+
+.volume-dropdown {
+    padding: 10px;
+    top: 40px;
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,.5));
+    background: var(--main-bg-color-light);
+    z-index: 100;
+    @apply text-sm;
+}
+
+.volume-dropdown:before {
+    position: absolute;
+    content: '';
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 0 4px 6px 4px;
+    border-color: transparent transparent var(--main-bg-color-light) transparent;
+    top: -6px;
+    left: 50%;
+    margin-left: -4px;
+}
+
+.input-range-wrapper {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:7px; /* fixed width */
+    height: 150px;
+    padding: 0 5px;
+}
+
+.input-range-wrapper input {
+    transform:rotate(-90deg);
+    width: 150px;
+    height: 7px;
 }
 
 @keyframes rotate {
