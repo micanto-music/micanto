@@ -1,8 +1,42 @@
 <html>
 <head>
     <title>Micanto - Documentation</title>
+    <link rel="stylesheet" href="assets/index.css" />
+    <link rel="icon" href="assets/img/favicon.png">
 </head>
 <body>
-    Github Page
+<article class="container" itemprop="text"><p align="center" dir="auto">
+    <a target="_blank" rel="noopener noreferrer nofollow" href="https://avatars.githubusercontent.com/u/164861142?s=200&amp;v=4"><img src="https://avatars.githubusercontent.com/u/164861142?s=200&amp;v=4" alt="Micanto Logo" height="200" style="max-width: 100%;"></a>
+</p>
+    <div class="markdown-heading" dir="auto"><h1 tabindex="-1" class="heading-element" dir="auto">Micanto Server</h1></div>
+    <p dir="auto">Micanto is a personal music player based on laravel as an api backend and react as a frontend.
+        With the  <a href="https://github.com/micanto-music/app">micanto mobile app</a> you can listen to your personal tracks everwhere.</p>
+    <div class="markdown-heading" dir="auto"><h2 tabindex="-1" class="heading-element" dir="auto">Installation</h2></div>
+    <div class="markdown-heading" dir="auto"><h3 tabindex="-1" class="heading-element" dir="auto">Docker</h3></div>
+    <p dir="auto">The simplest way is to clone the docker repository of micanto and use docker compose. See <a href="https://github.com/micanto-music/docker">Micanto Docker</a> for more information.</p>
+    <div class="markdown-heading" dir="auto"><h3 tabindex="-1" class="heading-element" dir="auto">Setup without docker</h3></div>
+    <p dir="auto"><strong>Prerequisites</strong></p>
+    <ul dir="auto">
+        <li>composer</li>
+        <li>yarn</li>
+        <li>php 8.2</li>
+    </ul>
+    <p dir="auto"><strong>Steps</strong></p>
+    <ul dir="auto">
+        <li>Clone this repository to your server <code>git clone https://github.com/micanto-music/micanto.git</code></li>
+        <li><code>composer install</code></li>
+        <li><code>yarn install</code></li>
+    </ul>
+    <div class="markdown-heading" dir="auto"><h2 tabindex="-1" class="heading-element" dir="auto">Initial Setup</h2></div>
+    <ul dir="auto">
+        <li>ssh to your servers app root directory where you cloned this repo. Mostly (/var/www/html)</li>
+        <li><code>php artistian micanto:init</code></li>
+        <li>Edit your .env file for your needs and set the absolute path to your music library. E.g. /var/www/html/music/</li>
+        <li>Sync your music with <code>php artisan micanto:sync</code> and wait. This can take some time</li>
+        <li>Login with your created admin user and listen to your music!</li>
+    </ul>
+    <div class="markdown-heading" dir="auto"><h2 tabindex="-1" class="heading-element" dir="auto">Changelog</h2></div>
+    <p dir="auto"><strong>1.0.0</strong> - Initial Release</p>
+</article>
 </body>
 </html>
