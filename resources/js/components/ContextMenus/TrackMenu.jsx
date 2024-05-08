@@ -7,12 +7,14 @@ import {useShallow} from "zustand/react/shallow";
 import {ItemsShareSameValue} from "../../helper/helper";
 import {PlayerAPI} from "../../api/PlayerAPI";
 import {toast} from "react-toastify";
+import {useAuth} from "../../contexts/AuthContext";
 
 export default function TrackMenu({id}) {
     const { onOpen: openEditTrack } = useModal('Track-Edit');
     const [t] = useTranslation();
     const navigate = useNavigate();
     const [playlists] = usePlayer(useShallow(state => [state.playlists]));
+    const { user} = useAuth();
     const { pathname } = useLocation();
     const notify = (text, type) => toast(text, {type:'success'});
     let params = useParams();
@@ -59,10 +61,12 @@ export default function TrackMenu({id}) {
         return pathname.indexOf('playlist') !== 1;
     }
 
+    const nonAdmin = user.is_admin == 0;
+
     return (
         <Menu id={id}>
             <Item id="play" onClick={handleItemClick}>{t('context.play_track')}</Item>
-            <Item id="edit" onClick={handleItemClick}>{t('context.edit_track')}</Item>
+            <Item hidden={nonAdmin} id="edit" onClick={handleItemClick}>{t('context.edit_track')}</Item>
 
             <Separator hidden={sameAlbum} />
             <Item hidden={sameAlbum} id="linkalbum" onClick={handleItemClick}>{t('context.goto_album')}</Item>

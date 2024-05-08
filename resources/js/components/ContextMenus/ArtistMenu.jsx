@@ -6,13 +6,14 @@ import usePlayer from "../../store/playerStore";
 import {useShallow} from "zustand/react/shallow";
 import {PlayerAPI} from "../../api/PlayerAPI";
 import {toast} from "react-toastify";
+import {useAuth} from "../../contexts/AuthContext";
 
 export default function ArtistMenu({id}) {
     const { onOpen: openEditArtist } = useModal('Artist-Edit');
     const [t] = useTranslation();
     const navigate = useNavigate();
     const [playlists, setShuffle, playContext] = usePlayer(useShallow(state => [state.playlists,  state.setShuffle, state.playContext]));
-
+    const { user} = useAuth();
 
     const playAll = async(artist_id, shuffled = false) => {
         let context = {
@@ -54,11 +55,13 @@ export default function ArtistMenu({id}) {
         }
     }
 
+    const nonAdmin = user.is_admin == 0;
+
     return (
         <Menu id={id}>
             <Item id="play" onClick={handleItemClick}>{t('context.play_artist')}</Item>
             <Item id="shuffle" onClick={handleItemClick}>{t('context.shuffle_artist')}</Item>
-            <Item id="edit" onClick={handleItemClick}>{t('context.edit_artist')}</Item>
+            <Item hidden={nonAdmin} id="edit" onClick={handleItemClick}>{t('context.edit_artist')}</Item>
             <Item id="linkartist" onClick={handleItemClick}>{t('context.goto_artist')}</Item>
             <Separator />
             <Submenu label={t('context.add_to')}>

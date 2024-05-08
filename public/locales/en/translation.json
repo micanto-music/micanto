@@ -9,7 +9,8 @@
     },
     "sidebar": {
         "player": {
-            "headline": "Now Playing"
+            "headline": "Now Playing",
+            "noSong": "No active track"
         },
         "queue": {
             "headline": "Up Next"
@@ -93,6 +94,7 @@
         "tracks": "Tracks"
     },
     "playlist": {
+        "add": "First playlist",
         "name": "Name",
         "delete_text": "Do you really want to delete the playlist?",
         "empty": {

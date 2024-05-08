@@ -6,21 +6,22 @@ import {useTranslation} from "react-i18next";
 import Scroll from "../components/Scroll";
 import Card from "../components/Album/Card";
 import HeaderTitle from "../components/Header/HeaderTitle";
-import {Link} from "react-router-dom";
 import Tile from "../components/Playlist/Tile";
 import {useContextMenu} from "react-contexify";
 import TrackMenu from "../components/ContextMenus/TrackMenu";
 import ActivityIndicator from "../components/ActivityIndicator";
+import {FiPlusSquare} from "react-icons/fi";
+import {useModal} from "../hooks/useModal";
 
 const Start = () => {
     const [isLoading, setIsLoading] = useState(true);
-    const [tracks, setTracks] = useState([])
     const [mostPlayed, setMostPlayed] = useState([])
     const [lastPlayed, setLastPlayed] = useState([])
     const [latestTracks, setLatestTracks] = useState([])
     const [latestAlbums, setLatestAlbums] = useState([])
     const [yourPlaylists, setYourPlaylists] = useState([])
     const [t] = useTranslation();
+    const { onOpen: openAddPlaylist } = useModal('Playlist-Add');
 
     const TRACK_MENU_ID = 'track-menu';
     const { show } = useContextMenu({
@@ -74,21 +75,23 @@ const Start = () => {
                                 ))}
                             </div>
                         </div>
-                        <div>
-                            <h3 className="text-white">{t('start.most_played')}</h3>
-                            <div className="flex flex-wrap sm:justify-start justify-center gap-2">
-                                {mostPlayed?.map((track, i) => (
-                                    <Bar
-                                        key={track.id}
-                                        track={track}
-                                        context={{
-                                            'type': 'mostPlayed'
-                                        }}
-                                        displayMenu={displayMenu}
-                                    />
-                                ))}
+                        {mostPlayed?.length > 0 &&
+                            <div>
+                                <h3 className="text-white">{t('start.most_played')}</h3>
+                                <div className="flex flex-wrap sm:justify-start justify-center gap-2">
+                                    {mostPlayed?.map((track, i) => (
+                                        <Bar
+                                            key={track.id}
+                                            track={track}
+                                            context={{
+                                                'type': 'mostPlayed'
+                                            }}
+                                            displayMenu={displayMenu}
+                                        />
+                                    ))}
+                                </div>
                             </div>
-                        </div>
+                        }
                     </div>
                 </div>
 
@@ -116,6 +119,13 @@ const Start = () => {
                                 {yourPlaylists?.map((playlist, i) => (
                                     <Tile playlist={playlist} key={playlist.id}/>
                                 ))}
+                                {yourPlaylists.length === 0 &&
+                                    <a onClick={openAddPlaylist} className="playlist-tile cursor-pointer">
+                                        <div className="tiles flex gap-2 mb-6">
+                                            <div className="tile"><FiPlusSquare size={24}/></div>
+                                        </div>
+                                        <h4 className="truncate">{t('playlist.add')}</h4>
+                                </a>}
                             </div>
                         </div>
 

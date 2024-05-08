@@ -2,6 +2,7 @@ import { create } from 'zustand'
 import MicantoPlayer from "../services/MicantoPlayer";
 import {isEqual} from "lodash";
 import {PlayerAPI} from "../api/PlayerAPI";
+import { t } from "i18next";
 
 function shuffleArr (array, currentTrack = null) {
     const copy = array.slice();
@@ -82,8 +83,20 @@ const usePlayer = create((set, get) => ({
                 musicContext: JSON.parse(data.session.session?.context)
             })
         } else {
+            let currentTrack = {
+                title: t('sidebar.player.noSong'),
+                artists: null
+            }
+            if(data.queue.length !== 0) {
+                currentTrack = data.queue[0];
+                data.queue = reorderArr(1,data.queue);
+            }
+
             set({
                 playlists: data.playlists,
+                currentTrack: currentTrack,
+                queue: data.queue,
+                untouchedQueue: data.queue,
             })
         }
     },

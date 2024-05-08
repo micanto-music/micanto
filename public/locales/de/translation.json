@@ -9,7 +9,8 @@
     },
     "sidebar": {
         "player": {
-            "headline": "Spielt gerade"
+            "headline": "Spielt gerade",
+            "noSong": "Kein aktives Lied"
         },
         "queue": {
             "headline": "Als Nächstes"
@@ -93,6 +94,7 @@
         "tracks": "Lieder"
     },
     "playlist": {
+        "add": "Neue Playlist!",
         "name": "Name",
         "delete_text": "Willst du die Playlist wirklich löschen?",
         "empty": {
