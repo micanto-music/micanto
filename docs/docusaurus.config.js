@@ -81,37 +81,19 @@ const config = {
       footer: {
         style: 'dark',
         links: [
-          {
-            title: 'Docs',
-            items: [
-              {
-                label: 'Tutorial',
-                to: '/docs/intro',
-              },
-            ],
-          },
-          {
-            title: 'Community',
-            items: [
-              {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-              },
-            ],
-          },
-          {
-            title: 'More',
-            items: [
-              {
-                label: 'Author Website',
-                to: 'https://www.andrerinas.de/',
-              },
-              {
-                label: 'GitHub',
-                href: 'https://github.com/micanto-music/micanto',
-              },
-            ],
-          },
+          // {
+          //   title: 'More',
+          //   items: [
+          //     {
+          //       label: 'Author Website',
+          //       to: 'https://www.andrerinas.de/',
+          //     },
+          //     {
+          //       label: 'GitHub',
+          //       href: 'https://github.com/micanto-music/micanto',
+          //     },
+          //   ],
+          // },
         ],
         copyright: `Copyright © ${new Date().getFullYear()} Micanto. Built with Docusaurus.`,
       },
