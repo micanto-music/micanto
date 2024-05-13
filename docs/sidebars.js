@@ -13,18 +13,20 @@
 
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 const sidebars = {
-  // But you can create a sidebar manually
-  tutorialSidebar: [
-    {
-      type: 'category',
-      label: 'Getting Started',
-      items: [
-          'getting-started/introduction',
-          'getting-started/installation',
-      ],
-    },
-    'changelog'
-  ],
+    // But you can create a sidebar manually
+    tutorialSidebar: [
+        {
+            type: 'category',
+            label: 'Getting Started',
+            items: [
+                'getting-started/introduction',
+                'getting-started/installation',
+            ],
+        },
+        'localization',
+        'api',
+        'changelog'
+    ],
 };
 
 export default sidebars;

@@ -1,21 +1,7 @@
-<?php
-
-use App\Http\Controllers\API\AlbumController;
-use App\Http\Controllers\API\AlbumsController;
-use App\Http\Controllers\API\ArtistController;
-use App\Http\Controllers\API\ArtistsController;
-use App\Http\Controllers\API\AuthController;
-use App\Http\Controllers\API\PlayerController;
-use App\Http\Controllers\API\PlaylistController;
-use App\Http\Controllers\API\SearchController;
-use App\Http\Controllers\PlayController;
-use App\Http\Controllers\API\TrackController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\API\StartController;
-use App\Http\Controllers\API\ProfileController;
-use App\Http\Controllers\API\UserController;
-use App\Http\Controllers\API\SetupController;
-use App\Http\Controllers\API\SettingsController;
+---
+sidebar_position: 3
+---
+# API
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -76,15 +62,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('playlist/{playlist}', [PlaylistController::class, 'edit']);
     Route::delete('playlist/{playlist}', [PlaylistController::class, 'delete']);
 
-
-//    Route::apiResource('playlists', PlaylistController::class);
-
     Route::get('search', [SearchController::class, 'search']);
     Route::post('searchArtists', [SearchController::class, 'searchArtists']);
     Route::post('searchAlbum', [SearchController::class, 'searchAlbum']);
 
     Route::get('settings', [SettingsController::class, 'getSettings']);
 
-});
+
 
 
