@@ -2,14 +2,12 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\API\UserAddRequest;
-use App\Http\Resources\UserResource;
 use App\Models\Artist;
 use App\Models\User;
-use Illuminate\Contracts\Hashing\Hasher;
 use Illuminate\Contracts\Hashing\Hasher as Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 
 class SetupController extends Controller
@@ -21,6 +19,14 @@ class SetupController extends Controller
 
     public function checkSetup()
     {
+        try {
+            DB::connection()->getPDO();
+            DB::connection()->getDatabaseName();
+            return 200;
+        } catch (\Exception $e) {
+            // no db, thats great, as we want to setup it right now!
+        }
+
         return file_exists(public_path('FIRST_INSTALL')) ? 200 : 404;
     }
 
