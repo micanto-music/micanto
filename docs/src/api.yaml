@@ -224,12 +224,201 @@ paths:
                 - track
                 - time
                 - context
+  /api/player/played:
+    post:
+      summary: Mark a track as played
+      description: Increment the play count of the given track
+      security:
+        - Bearer Token: [ ]
+      tags:
+        - player
+      responses: { }
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                track:
+                  type: integer
+  /api/player/getQueue:
+    post:
+      summary: Get queue
+      description: Get the queue based on the listening context
+      security:
+        - Bearer Token: [ ]
+      tags:
+        - player
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Queue'
+
+  /api/playlists:
+    get:
+      summary: Get playlists
+      description: Get all playlists of current user
+      security:
+        - Bearer Token: [ ]
+      tags:
+        - playlist
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Playlists'
+  /api/playlist:
+    put:
+      summary: Add playlist
+      description: Add a playlist
+      security:
+        - Bearer Token: [ ]
+      tags:
+        - playlist
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Playlist'
+  /api/playlist/{playlistId}:
+    parameters:
+      - schema:
+          type: string
+        name: playlistId
+        in: path
+        required: true
+        description: ID of the playlist
+    get:
+      summary: Get playlist
+      description: Get playlist by id
+      security:
+        - Bearer Token: [ ]
+      tags:
+        - playlist
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Playlist'
+    post:
+      summary: Update playlist
+      description: Update a playlist
+      security:
+        - Bearer Token: [ ]
+      tags:
+        - playlist
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Playlist'
+    delete:
+      summary: Delete playlist
+      description: Delete a playlist
+      security:
+        - Bearer Token: [ ]
+      tags:
+        - playlist
+      responses: { }
+  /api/playlist/{playlistId}/addItems:
+    parameters:
+      - schema:
+          type: string
+        name: playlistId
+        in: path
+        required: true
+        description: ID of the playlist where to add items
+    post:
+      summary: Add items to playlist
+      description: Add items to playlist
+      security:
+        - Bearer Token: [ ]
+      tags:
+        - playlist
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type:
+                  type: string
+                ids:
+                  type: array
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Playlist'
+  /api/playlist/{playlistId}/deleteItems:
+    parameters:
+      - schema:
+          type: string
+        name: playlistId
+        in: path
+        required: true
+        description: ID of the playlist where to delete items
+    post:
+      summary: Remove items from playlist
+      description: Remove items from playlist
+      security:
+        - Bearer Token: [ ]
+      tags:
+        - playlist
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type:
+                  type: string
+                ids:
+                  type: array
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Playlist'
+
 
 tags:
   - name: authentication
   - name: user
   - name: search
   - name: player
+  - name: playlist
 
 components:
   schemas:
@@ -246,6 +435,82 @@ components:
           type: string
         is_admin:
           type: boolean
+    Track:
+      title: Track
+      description: A Track model
+      properties:
+          type:
+            type: string
+          url:
+            type: string
+          id:
+            type: integer
+          title:
+            type: string
+          cover:
+            type: string
+          album:
+            type: string
+          album_id:
+            type: integer
+          duration:
+            type: integer
+          track:
+            type: integer
+          disc:
+            type: integer
+          year:
+            type: integer
+          genre:
+            type: string
+          lyrics:
+            type: string
+          artists:
+            type: array
+            items:
+              $ref: '#/components/schemas/Artist'
+          added_at:
+            type: string
+    Artist:
+      title: Artist
+      description: An Artist model
+      properties:
+          type:
+            type: string
+          id:
+            type: integer
+          name:
+            type: string
+          image:
+            type: string
+          created_at:
+            type: string
+    Queue:
+      title: Queue
+      type: array
+      description: An array of Tracks to play next
+      items:
+        $ref: '#/components/schemas/Track'
+    Playlist:
+      title: Playlist
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        tracks_count:
+          type: integer
+        cover:
+          type: string
+        updated_at:
+          type: string
+    Playlists:
+      title: Playlists
+      type: array
+      description: An array of Playlists
+      items:
+        $ref: '#/components/schemas/Playlist'
   securitySchemes:
     Bearer Token:
       type: http

@@ -1,0 +1,184 @@
+---
+id: get-playlist
+title: "Get playlist"
+description: "Get playlist by id"
+sidebar_label: "Get playlist"
+hide_title: true
+hide_table_of_contents: true
+api: eJx1VNtu2zAM/RVDTy2Q2dkeg2FYtgVFsHYr2u4pCApZZmKltqVKdLvA8AftO/ZjI31J7STLSySR1DniOXQlEvDKaYvaFGImrgADm8l9pj0G8T7QiZgID6p0GvditqrEF5AOXPBgnoAKVut6PREot57Woq8UdObAW1N4oEAlPkyn/DfG+vmd7lamQCiQo9LaTCvJ0WjnOaUSXqWQS16hxgyo6rbHINi95RMT70Dx3jpjwaFuMYk6l7U5mlC24EQ9EYXMYRDx6HSx5QA6qZ78ozJly+e0VJkXWpyrLW0iEZJHiWfC7Y/4SUfYCM43nRy87fi6luOhn0tWQXPPrMRUcHOfS+2AXoiuhMlRY5ffArMJMIWDlIJVIujUUInYQtMtvmomIml11OdF1Rtk3SjvXnq6pcsoPUW0fhZFOSlVoAkRGinGBK6NklmD2Vvnnt/a6jI20OHxfDEjNom0j5s0wX3TxcYMLXDTYgdzq6mCCbaw78NpOD0h80B9mN8ug41xwaorXV8cv2PnQ+O2l50jpWp07GSYF4n7+ye404X0lDBuxOvraygpARyHwwQiSiFdddZ4Z2M+j6KsLrkcaDIGCDfLh5OLtxrTMg6VyXuS7/LSa9XvojgzcURARXS9/Lr4cb8I86TplzUec1kM7h+O9XGDqrcZPD/+nUAIv5GNQj6sO65VZ6IVzS5LMYCYDbxLPkiJEudVVSw9/HJZXfPxcwmOPyu0fJFOy5j1Ja8l2vOazLqRmT82+JDxxV03CpfBGdv/h3x3KIs9+0dmJe9o+QT78dTVa8pOQSY89sSrTZgrBRYHpSdfrtG4XS1YXFlypw527+w96Rd8+1laH4fz8ulAEpvxIX51/Q+7V/cJ
+sidebar_class_name: "get api-method"
+info_path: docs/api/micanto-api
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+
+<h1
+  className={"openapi__heading"}
+>
+  Get playlist
+</h1>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/api/playlist/{playlistId}"}
+>
+  
+</MethodEndpoint>
+
+
+
+Get playlist by id
+
+## Request
+
+<details
+  style={{"marginBottom":"1rem"}}
+  className={"openapi-markdown__details"}
+  data-collapsed={false}
+  open={true}
+>
+  <summary
+    style={{}}
+  >
+    <h3
+      className={"openapi-markdown__details-summary-header-params"}
+    >
+      Path Parameters
+    </h3>
+  </summary><div>
+    <ul>
+      <ParamsItem
+        className={"paramsItem"}
+        param={{"schema":{"type":"string"},"name":"playlistId","in":"path","required":true,"description":"ID of the playlist"}}
+      >
+        
+      </ParamsItem>
+    </ul>
+  </div>
+</details><div>
+  <div>
+    <ApiTabs>
+      <TabItem
+        label={"200"}
+        value={"200"}
+      >
+        <div>
+          
+          
+          OK
+          
+          
+        </div><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={false}
+                        name={"id"}
+                        required={false}
+                        schemaName={"integer"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"integer"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"name"}
+                        required={false}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"tracks_count"}
+                        required={false}
+                        schemaName={"integer"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"integer"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"cover"}
+                        required={false}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"updated_at"}
+                        required={false}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string"}}
+                      >
+                        
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"id\": 0,\n  \"name\": \"string\",\n  \"tracks_count\": 0,\n  \"cover\": \"string\",\n  \"updated_at\": \"string\"\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem>
+    </ApiTabs>
+  </div>
+</div>
+      
