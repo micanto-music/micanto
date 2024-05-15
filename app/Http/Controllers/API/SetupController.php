@@ -22,7 +22,7 @@ class SetupController extends Controller
         try {
             DB::connection()->getPDO();
             DB::connection()->getDatabaseName();
-            return 200;
+            return 404;
         } catch (\Exception $e) {
             // no db, thats great, as we want to setup it right now!
         }
