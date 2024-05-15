@@ -1,0 +1,151 @@
+---
+id: get-a-current-loggedin-user
+title: "Get a current loggedin user"
+description: "Get a current loggedin user"
+sidebar_label: "Get a current loggedin user"
+hide_title: true
+hide_table_of_contents: true
+api: eJx9U9uO0zAQ/ZXITyCFpPBYIURB1apiFxDbfaoi5DizibuJbexJSxXlg/gOfoyZpC3pFtGH1Pbczpw50wmUZRDzjWgDeJHFwkNw1gSgx068mc34r4CgvHaorRFz8eWTiIWyBsEgW6VztVaSrek2sEsngqqgkXxCjTVQ1APnjwUeHN9svgWFdL9MvYjYLWpsATUZnbcOPOoRjC6GfGMCTeVLytjHwsgGJpaAXpuSDYRA1/+06PBdFo02E2NubQ3SiH78xSKAar3GA5HTiQ8gPQFb2yegoE3WZ8+h3wBGMqIQT7REtS1LKLSJ2rHtBrCyhF+UwF07iRVdUul0evSg7w58GKq1nmCLCtGFeZo2RK5BmyCEa8ZurZK1YDgnvPdM/cjYJepzq5yYKw6O3PrgJrhpbR7tdGp3Y+1o4TRFMMCx7OtklsyuwKwriBZfV9Gj9dHmGJq9eN7HNiTWly+PIpJqENE4RLEwhf/9K/qmjQzkcEnEfr9PJDmAZ3NSQCrOQx6Qv7+w8qBJmEBinlS4W62vEpcaqzZPlG1OIF81bdDqdEvz2uYpFTLp7erj8vP9MmmKgS9nAzbSTPL/XwcXfJ0HgvATU1dTfsY8YOuOGtnQejH1p/WsqCC/dl0uAzz4uu/5+UcLnpVKx530WuY8PZIpBYAsKJRl9QQHplgpcCyknaxbrn61v6yms2BvlsyXbBnM32UZFROfDpz9aJLmMMn9dirBd2QYMeCgyD6jRfsDV92G+w==
+sidebar_class_name: "get api-method"
+info_path: api/micanto-api
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+
+<h1
+  className={"openapi__heading"}
+>
+  Get a current loggedin user
+</h1>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/api/user"}
+>
+  
+</MethodEndpoint>
+
+
+
+Get a current loggedin user
+
+## Request
+
+<div>
+  <div>
+    <ApiTabs>
+      <TabItem
+        label={"200"}
+        value={"200"}
+      >
+        <div>
+          
+          
+          OK
+          
+          
+        </div><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={false}
+                        name={"id"}
+                        required={false}
+                        schemaName={"integer"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"integer"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"name"}
+                        required={false}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"email"}
+                        required={false}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"is_admin"}
+                        required={false}
+                        schemaName={"boolean"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"boolean"}}
+                      >
+                        
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"id\": 0,\n  \"name\": \"string\",\n  \"email\": \"string\",\n  \"is_admin\": true\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem>
+    </ApiTabs>
+  </div>
+</div>
+      

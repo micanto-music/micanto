@@ -1,0 +1,252 @@
+openapi: 3.0.3
+info:
+  title: Micanto Api
+  version: 1.0.0
+  description: 'The API for [Micanto](https://micanto.js.org)'
+  contact:
+    name: André Rinas
+    url: 'https://www.andrerinas.de/'
+    email: info@andrerinas.de
+  license:
+    name: MIT
+    url: 'https://github.com/micanto-music/micanto/blob/main/LICENSE.md'
+servers:
+  - url: 'https://micanto.test'
+    description: Local
+paths:
+  /api/login:
+    post:
+      summary: 'Login user'
+      description: 'Login a user. Will return a token for future requests.'
+      tags:
+        - authentication
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+                  format: password
+              required:
+                - email
+                - password
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                required:
+                  - token
+  /api/user:
+    get:
+      summary: Get a current loggedin user
+      tags:
+        - user
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+      security:
+        - Bearer Token: [ ]
+    post:
+      summary: Add a user
+      description: Add a new user
+      tags:
+        - user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+                  format: password
+                is_admin:
+                  type: boolean
+              required:
+                - name
+                - email
+                - password
+                - is_admin
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+  /api/profile/{userId}:
+    parameters:
+      - schema:
+          type: integer
+        name: userId
+        in: path
+        required: true
+        description: ID of the user
+    post:
+      summary: Update a user
+      description: Update a user via user id
+      security:
+        - Bearer Token: [ ]
+      tags:
+        - user
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+  /api/users:
+    get:
+      summary: Get users
+      description: Get a list of all users
+      security:
+        - Bearer Token: [ ]
+      tags:
+        - user
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: object
+  /api/search:
+    get:
+      summary: Search
+      description: Search for albums, artists and tracks
+      tags:
+        - search
+      security:
+        - Bearer Token: [ ]
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: object
+                    required:
+                      - tracks
+                      - artists
+                      - albums
+                    properties:
+                      tracks:
+                        type: array
+                        description: An array of max 5 best-matching tracks
+                        items:
+                          type: string
+                      artists:
+                        type: array
+                        description: An array of max 5 best-matching artists
+                        items:
+                          type: integer
+                      albums:
+                        type: array
+                        description: An array of max 5 best-matching albums
+                        items:
+                          type: number
+                      top:
+                        type: object
+                        description: The top result for the search term. Can be, track, artist or album
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: term
+          description: The keywords to search
+          required: true
+
+  /api/player/play/{trackId}:
+    parameters:
+      - schema:
+          type: string
+        name: trackId
+        in: path
+        required: true
+        description: ID of the song
+    get:
+      summary: Play a track
+      tags:
+        - player
+      responses: { }
+      description: 'The GET request to play/stream a track.'
+      security:
+        - Bearer Token: [ ]
+  /api/player/updateSession:
+    post:
+      summary: Update the listening session
+      description: Update the listening session for resume where you leaved
+      security:
+        - Bearer Token: [ ]
+      tags:
+        - player
+      responses: { }
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                track:
+                  type: integer
+                time:
+                  type: integer
+                context:
+                  type: object
+              required:
+                - track
+                - time
+                - context
+
+tags:
+  - name: authentication
+  - name: user
+  - name: search
+  - name: player
+
+components:
+  schemas:
+    User:
+      title: User
+      type: object
+      description: A User model
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        email:
+          type: string
+        is_admin:
+          type: boolean
+  securitySchemes:
+    Bearer Token:
+      type: http
+      scheme: bearer

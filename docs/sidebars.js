@@ -11,6 +11,8 @@
 
 // @ts-check
 
+import sidebar from "./docs/api/sidebar";
+
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 const sidebars = {
     // But you can create a sidebar manually
@@ -24,7 +26,11 @@ const sidebars = {
             ],
         },
         'localization',
-        'api',
+        {
+            type: 'category',
+            label: 'Api',
+            items: sidebar
+        },
         'changelog'
     ],
 };

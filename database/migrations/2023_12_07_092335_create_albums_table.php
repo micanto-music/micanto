@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('artist_id')->nullable()->unsigned();
             $table->year('year')->nullable();
             $table->string('album_type')->default('album');
+            $table->boolean('is_compilation')->nullable()->default(false);
             $table->timestamps();
         });
     }
