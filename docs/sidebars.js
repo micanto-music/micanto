@@ -25,6 +25,20 @@ const sidebars = {
                 'getting-started/installation',
             ],
         },
+        {
+            type: 'category',
+            label: 'CLI Commands',
+            items: [
+                'commands/sync',
+            ],
+        },
+        {
+            type: 'category',
+            label: 'Integrations',
+            items: [
+                'integrations/spotify',
+            ],
+        },
         'localization',
         {
             type: 'category',
