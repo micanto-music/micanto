@@ -9,6 +9,7 @@ import dayjs from 'dayjs';
 import {useDraggable} from "../../hooks/useDragAndDrop";
 import {useModal} from "../../hooks/useModal";
 import {useShallow} from "zustand/react/shallow";
+import {TbExplicit} from "react-icons/tb";
 
 const TableItem = ({ index, track, cols, context, rowClicked, selectedRows, clearSelection, setSelectedRows, displayMenu })  => {
     const [currentTrack, playContext] = usePlayer(useShallow(state => [state.currentTrack, state.playContext]));
@@ -66,7 +67,12 @@ const TableItem = ({ index, track, cols, context, rowClicked, selectedRows, clea
                     <div className="track-title">
                         {track.title}
                     </div>
-                    <div className="artists">
+                    <div className="artists flex items-center">
+                        {track?.explicit === 1 &&
+                            <div className="explicit mr-1 inline-block">
+                                <TbExplicit size={16} />
+                            </div>
+                        }
                         <ArtistList artists={track?.artists}/>
                     </div>
                 </div>

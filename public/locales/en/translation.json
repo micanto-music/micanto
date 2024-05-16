@@ -40,7 +40,8 @@
         "disc": "Disc No.",
         "genre": "Genre",
         "year": "Year",
-        "leave": "Leave unchanged"
+        "leave": "Leave unchanged",
+        "explicit": "Track is explicit"
     },
     "select": {
         "noOptionsMessage": "No options",

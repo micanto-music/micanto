@@ -40,7 +40,8 @@
         "disc": "Disk Nummer",
         "genre": "Genre",
         "year": "Jahr",
-        "leave": "unverändert lassen"
+        "leave": "unverändert lassen",
+        "explicit": "Lied ist unangemessen"
     },
     "select": {
         "noOptionsMessage": "Keine Optionen",

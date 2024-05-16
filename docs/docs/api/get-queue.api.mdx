@@ -5,7 +5,7 @@ description: "Get the queue based on the listening context"
 sidebar_label: "Get queue"
 hide_title: true
 hide_table_of_contents: true
-api: eJyVVV9v0zAQ/yqWn0AqSeFxQoiCJjSxscHKU1VNjnNNvCW2ZzsbUdUPxOfgi3HnJCNdU6T1pbbv3+/ufnfZ8hy8dMoGZTQ/4V8gsFACu2+gAZYJDzkzOj5VygfQShdMGh3gV+Az7kE2ToWWn6y2/BMIB44tzR2gq9V6t57xIAqPZ24r0YLj+OLAW6M94POWv5vP6W8fw+VX9Bxj6EBSYW2lpCBpeutJZcu9LKEWdAoqVIBW3wkxGobW0lU4J1q87rteaBYFzGzY0gl551kwjMAx3WWkAtR+7DeqHTrqzFltcqhQap2x4ILq0uowDP/cB4dl47sZb1w1+a7y0bPCzAssFr73ICYspHlAlSmJqLKmPi65ORYrb5zosptEEsswbai8nJa0yIhpSQHaTSdWtU5JP40fC+zDWDZ0+aBri6g61f9O8tLGHSuaFvURg1oURzrnQATIb0SYEOMP88zz/8g7nRpCaRAUtybmaUUo8ZYKq9Ju2NICwjAUHhzSxccxjRzkZQjWn6RpjZOlg0kCTJTr3EhRcZrjYdCvae66Wu2P+xNSckwRoyLes6jGCbPSGzNu0kUXmy2sQgsC2IV9m8yT+QGYJe6gxdUZ2xjHVr3p+tXzPG59Ylzxut8gQsYidl3C7ufuz2/2Q2nh+exZIR4fHxOBCuBInOSQogruGFXFjm/Mxz1ppKqSgJtsFOHibHnguFChbLJEmnoA+aZuvJLDLc0qk6UYSKfnZ59Pv12fJnUe60WtrYUe+af1fN/3dK86238L86U7vO8b3Yg5So8WVceqFa5g6lC/xGl6e2YhM0riH6pstxTpp6t2O3rG4I4+C3h8EE6JjDqO3wQ0AJHT6kIq3kFLbZESLCF5EFUTp/r5wicGPhH+6vKaiiwagvZEu55ms+FA7ocloduR8/dj3n5AQQciRBrv1jhcfwHQrmm/
+api: eJyVVd1u0zAUfhXLVyCVpHA5IURBE5rY2GDlqqom1zlNvCV2ZjvboqgPxHPwYpxjN1vapkjrTW1/5/9856TjGThpVe2V0fyEfwPPfAHsvoEG2Eo4yJjR4alUzoNWOmfSaA9Pnk+4A9lY5Vt+suj4FxAWLJubO0BTi+VmOeFe5A7PvC5FC5bjiwVXG+0Anzv+YTqlv90YLr+j5eBDe0JFXZdKCkLTW0ciHXeygErQyStfAmr9pIhR0bc1XYW1osXrrumZZgFgZs3mVsg7x7xhFBzTMSPloXJDu0Hs0FBUZ5XJoES0tqYG61VMK8bQ/3PnLZaNbya8seXou8oGzwozz7FY+L4NYkRDmgcUGUNEuWqq48jNMV9ZY0XMbjSSUIZxReXkONIiI8YReKKeKj9AV8aUIDShOWg7nnbZWiXdeHZYfueHWM+Bg57OgugYOyLy2rYeK6kW1RGFSuRH+mpBeMhuhB+B8Yd5Ztl/8ChTgS8MBsVrE/KshS/wlopapXEU0xx8PzIOLJLJhSEODOWF97U7SdMK5057k3gYKde5kaLkNOX9GrimqYy12l0Gz5GSYfIYBKnpQYxTzEqvzbBJF9E3m9UKNSjA6PZ9Mk2mB8HMcUPNrs7Y2li22Kou3+zncesSY/O32/0iZChi7BJ2P7N//7BfSgvHJ3uFeHx8TAQKgCU4ySBFEdxAqgwdX5vPO2igqpKAe27g4eJsfmA4V75oVok0VR/ku6pxSva3dFWaVYqOdHp+9vX0x/VpUmWhXtTaSuiBfVre99ue7lSne1mnr93w277RjZij9GCNRVYtcEFTh7YrnqZ3yyxkRkH8Q5GuI0+/bbnZ0DM6t/TRwOODsEqsqOP4xUAFEBktNqTiHbTUFimhpkgeRNmEqd7/HBADnwl/dXlNRRYNhfayWyLNJv2BzPdLQrcD4x+HvP2EQAzCBxpvljhc/wDATHQn
 sidebar_class_name: "post api-method"
 info_path: docs/api/micanto-api
 custom_edit_url: null
@@ -197,6 +197,15 @@ Get the queue based on the listening context
                         
                       </SchemaItem><SchemaItem
                         collapsible={false}
+                        name={"explicit"}
+                        required={false}
+                        schemaName={"boolean"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"boolean"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
                         name={"genre"}
                         required={false}
                         schemaName={"string"}
@@ -323,7 +332,7 @@ Get the queue based on the listening context
                   value={"Example (from schema)"}
                 >
                   <ResponseSamples
-                    responseExample={"[\n  {\n    \"type\": \"string\",\n    \"url\": \"string\",\n    \"id\": 0,\n    \"title\": \"string\",\n    \"cover\": \"string\",\n    \"album\": \"string\",\n    \"album_id\": 0,\n    \"duration\": 0,\n    \"track\": 0,\n    \"disc\": 0,\n    \"year\": 0,\n    \"genre\": \"string\",\n    \"lyrics\": \"string\",\n    \"artists\": [\n      {\n        \"type\": \"string\",\n        \"id\": 0,\n        \"name\": \"string\",\n        \"image\": \"string\",\n        \"created_at\": \"string\"\n      }\n    ],\n    \"added_at\": \"string\"\n  }\n]"}
+                    responseExample={"[\n  {\n    \"type\": \"string\",\n    \"url\": \"string\",\n    \"id\": 0,\n    \"title\": \"string\",\n    \"cover\": \"string\",\n    \"album\": \"string\",\n    \"album_id\": 0,\n    \"duration\": 0,\n    \"track\": 0,\n    \"disc\": 0,\n    \"year\": 0,\n    \"explicit\": true,\n    \"genre\": \"string\",\n    \"lyrics\": \"string\",\n    \"artists\": [\n      {\n        \"type\": \"string\",\n        \"id\": 0,\n        \"name\": \"string\",\n        \"image\": \"string\",\n        \"created_at\": \"string\"\n      }\n    ],\n    \"added_at\": \"string\"\n  }\n]"}
                     language={"json"}
                   >
                     

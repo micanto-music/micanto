@@ -5,7 +5,7 @@ description: "Update one or more tracks"
 sidebar_label: "Update tracks"
 hide_title: true
 hide_table_of_contents: true
-api: eJy1Vc1S2zAQfhWPTu1MsNMec2pgODCFwkA4pRlGlhdbIEuqJBMymTxQn6Mv1l3ZAYc4DD3UmSTW/u+3P1qzArxw0gZpNJuwW1vwAInR+HVJbRwkwXHx6NmIBV56NpmzSGCLEXPwqwEfjk2xYpM1E0YH0IFeubVKCk5GswdPltfMiwpqTm9hZQF9mfwBREDD1hkLLkjwkdv6e5XjzvEV28SHnHprtG9lv47H9Lebw+V3tPl/gxkxGaBu6TIoYswiKqM3sUyTSEckC1D71qPNF9s+OKlLhkk2Tg3SZdEjS8ywBEf0LogBDWGeUGSIw1Xe1Ic5d4d8FY3jbXaDkUQYhhWlF8OcFXA3zClBu+HE1MpJ4YfjR4B9+FDVplF0v2w6aTn/WrhDoGleH1CoeXmgcg5wFIs7HgbYcRR4UbzD3w5MDaEyGBazJmZqeajwlHErs5fZ9uCwT2i8123zsSoE6ydZVuPo6GDSAAM4nRvBFdssyIBonAyrGxqsFqRjrCq4ZGYeod8sZJg8RkE851GMUag0ndevS+X0mde26+tuDue6UWpBuOl70y/kRRtmMrUSjVMubYRf0nE63ot7VkEyvTpL7nHJzTvVxae3KT/41Ljyc7dNuIhAt5XEDincn9/JtdSc8NvFbLlcphwFwBE7LSBDEdw3UsWuuDffdrixnaUA3Go9Dxdnsz3DpQxVk6fC1Nsgj+rGS7E9ZbkyeYaOdHZ+dnL64+Y0rYsILRW/5rpnv1v1Ly2wg1Bvm79/J7Q1DfAcMqvQb297tY02x/1LJelUsFUq6kOkr9c593Dr1GZDZCy7w3tkjq9P3EmeU13nVOsKeEFLDHvzEVCEnbSxHc3IO4mrJk7520W/GW01pkKADe/KLnqjcnV5Q+Dn3c1GSwCpji+RSL8T9hM/eDARr9jukb5miuuyiTPNWrv0/AUy94jy
+api: eJy1Vc1S2zAQfhWPTu1MsNMec2pgODCFwkA4pRlGlhdbIEuqJBMymTxQn6Mv1l3ZAYc4DD00mYC9u9qf79tdrVkBXjhpgzSaTditLXiAxGj8uaQ2DpLguHj0bMQCLz2bzFkUsMWIOfjVgA/HplixyZoJowPoQI/cWiUFJ6fZgyfPa+ZFBTWnp7CygLFM/gAioGPrjAUXJPiobeO92nHn+Ipt4oeCemu0b22/jsf0b7eGy+/o8/8mM2IyQN3KZVCkmEVURm9ymSZRjkgWoPa9R58vvn1wUpcMi2ycGpTLoieWWGEJjuRdEgMnhHlCkyENV3lTH9bcHYpVNI631Q1mEmEYPii9GNasgLthDTwTdzL0tLkxCrgmbQnaDZetVk4KP1wdwu/DhzidRtN9UnXSav6V1kOQal4fOFDz8gCvDnBQizseBtRxUHhRvKPfjlMNoTKYFrMmVmp5qPAt41ZmL5PvwWEX0fCv29ZkVQjWT7KsxsHSwaQBBnA6N4IrtlmQA9E4GVY3NHYtSMfIObhkZh6h30rkmCJGQ2I7mjFKlWb3+nXlnD7z2nZd303pXDdKLQg3fW/6RF60aSZTK9E51dJm+CUdp+O9vGcVJNOrs+QeV+C8O7r49LbkB58aV37udg0XEeiWSeyQwv35nVxLzQm/XcyWy2XK0QAcqdMCMjTBbSRV7Ip7821HG9tZCsCd14twcTbbc1zKUDV5Kky9TfKobrwU27csVybPMJDOzs9OTn/cnKZ1EaEl8muue/67i+ClBXYQ6u3692+MltMAzyGzCuP2dlvbaHPczkRJdwRbpaI+RPl6nXMPt05tNiRG2h3eMnN8fOJO8px4nRPXFfCCVhz25iOgCTtpczuaUXQyV02c8rfXwGa0PTEVAmx413bRG5WryxsCP+/uPVoCKHV8iUL6O2E/8YsvJuIV2z3K10xxXTZxplnrlz5/AamAk1o=
 sidebar_class_name: "post api-method"
 info_path: docs/api/micanto-api
 custom_edit_url: null
@@ -266,6 +266,15 @@ Update one or more tracks
                               
                             </SchemaItem><SchemaItem
                               collapsible={false}
+                              name={"explicit"}
+                              required={false}
+                              schemaName={"boolean"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"boolean"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
                               name={"genre"}
                               required={false}
                               schemaName={"string"}
@@ -395,7 +404,7 @@ Update one or more tracks
                   value={"Example (from schema)"}
                 >
                   <ResponseSamples
-                    responseExample={"{\n  \"tracks\": [\n    {\n      \"type\": \"string\",\n      \"url\": \"string\",\n      \"id\": 0,\n      \"title\": \"string\",\n      \"cover\": \"string\",\n      \"album\": \"string\",\n      \"album_id\": 0,\n      \"duration\": 0,\n      \"track\": 0,\n      \"disc\": 0,\n      \"year\": 0,\n      \"genre\": \"string\",\n      \"lyrics\": \"string\",\n      \"artists\": [\n        {\n          \"type\": \"string\",\n          \"id\": 0,\n          \"name\": \"string\",\n          \"image\": \"string\",\n          \"created_at\": \"string\"\n        }\n      ],\n      \"added_at\": \"string\"\n    }\n  ]\n}"}
+                    responseExample={"{\n  \"tracks\": [\n    {\n      \"type\": \"string\",\n      \"url\": \"string\",\n      \"id\": 0,\n      \"title\": \"string\",\n      \"cover\": \"string\",\n      \"album\": \"string\",\n      \"album_id\": 0,\n      \"duration\": 0,\n      \"track\": 0,\n      \"disc\": 0,\n      \"year\": 0,\n      \"explicit\": true,\n      \"genre\": \"string\",\n      \"lyrics\": \"string\",\n      \"artists\": [\n        {\n          \"type\": \"string\",\n          \"id\": 0,\n          \"name\": \"string\",\n          \"image\": \"string\",\n          \"created_at\": \"string\"\n        }\n      ],\n      \"added_at\": \"string\"\n    }\n  ]\n}"}
                     language={"json"}
                   >
                     

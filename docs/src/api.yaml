@@ -667,6 +667,8 @@ components:
             type: integer
           year:
             type: integer
+          explicit:
+            type: boolean
           genre:
             type: string
           lyrics:

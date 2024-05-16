@@ -4,6 +4,7 @@ import {formatToHis} from "../../helper/helper";
 import usePlayer from "../../store/playerStore";
 import {useDraggable} from "../../hooks/useDragAndDrop";
 import MicantoPlayer from "../../services/MicantoPlayer";
+import {TbExplicit} from "react-icons/tb";
 const List = ({ track, context, iteration, rowClicked, selectedRows, clearSelection, displayMenu }) => {
     const [currentTrack, isPlaying, playContext ] = usePlayer(state => [state.currentTrack, state.isPlaying, state.playContext]);
     const { startDragging } = useDraggable('tracks');
@@ -48,7 +49,14 @@ const List = ({ track, context, iteration, rowClicked, selectedRows, clearSelect
                         />
                     </div>
                 </span>
-                <span>{track.title}</span>
+                <span className="flex items-center">
+                    {track?.explicit === 1 &&
+                        <div className="explicit mr-1 inline-block">
+                            <TbExplicit size={16} />
+                        </div>
+                    }
+                    {track.title}
+                </span>
             </div>
             <div className="flex justify-end py-2 flex-1 mr-3">
                 {duration}

@@ -24,12 +24,12 @@ The simplest way is to clone the docker repository of micanto and use docker com
 * `yarn install`
 
 ## Initial Setup
+* Launch the app in your browser and go through the setup
 * ssh to your servers app root directory where you cloned this repo. Mostly (/var/www/html)
-* `php artistian micanto:init`
-* Edit your .env file for your needs and set the absolute path to your music library. E.g. /var/www/html/music/
 * Sync your music with `php artisan micanto:sync` and wait. This can take some time
 * Login with your created admin user and listen to your music!
 
 ## Changelog
+**1.1.0** - Add explicit to tracks and keep login for 1 year.
 **1.0.0** - Initial Release
 

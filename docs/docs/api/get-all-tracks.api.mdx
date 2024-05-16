@@ -5,7 +5,7 @@ description: "Get all tracks"
 sidebar_label: "Get all tracks"
 hide_title: true
 hide_table_of_contents: true
-api: eJyVVN1u0zAUfhXLFxNIJSlcVpqgoIEmNkDQu2maHPs08ebY4dhZVUV9IJ6DF+PYaUq7phP0orH9ne/8n9NxBV6iboJ2ls/4JwhMGMMCCvng+YR7kC3qsOazm46/B4GAbOEegIRvbje3Ex5E6enME4PTA4JvnPVArx1/M53Gz6GRr59JsXQ2gA0RFU1jtBQRze99FOm4lxXUIp6CDgaItRhcCusm3gWiWNP1UPfcsgQwt2Q7hg5Q+yNdx9yewWqnwBDaoGsAg+5D6c0OX+4DalvyzYS3aEbftdp71hRtCRjft06MMKR7JJExRJiirU8jd6dsqRZFH92oJykN40Tt5TiypiYYR0qwOB6YWaOWftx/SrAP+9hQ2KOqzZPoWMl75H8LdyppVtQnCLUoT1QOQQRQdyKMwPSjOJV6Bu9lGoFkOgD6NG57M3DCR2KQQ+SYTedQ8Th/P1uNQLEFbOFpsmxbFzTCNB2RypYO40Hbvks2kxGrf6PcGvUOw0cNRj2xfGipcivmK9caxUIFzMQCFcAimZz7N0sOFYX7nJW5l2AVsRhFEqHdLTLjgqKEVo6yQe0ZeydpmfFcNDrvt9zbmInzLv5vzqJ7590uws1ZUnTepc8mLUR8HAqUJp9XITR+luc17TAbXBZgpEmvnBQm+TNs1B8x+r5DD/fqLh1RcbSYBOleJDEeO0XbpdsfjeveNps3mhjRwd7s62yaTY+cWVA95t8uU/VvttTbF0/juPeZw/LldlcLmVp3W5i5Vfj7F/tOjRMX7GEiVqtVJkgAMMKZgpxEqNLapB5euncHaFoQmgrnYc/C9eXiSHGpQ9UWmXT14OSruvVaDre8MK7IyZDNry4/XHz5cZHVKs7XHxzEXTY=
+api: eJyVVN1u0zAUfhXLFxNIJSlcVpqgoIEmNkCsd9U0OfZp4s2xg+2sVFEfiOfgxTjHaUu7phP0orH9nXO+899xBUF63UTtLJ/wTxCZMIZFL+RD4CMeQLZexxWfzDv+HoQHz2buAVB4fru+HfEoyoBnnjQ4PngIjbMB8LXjb8Zj+hySfP2MhqWzEWwkVDSN0VIQmt8HEul4kBXUgk5RRwOoNdu6FFcN3YX3YoXXQ9tTyxLA3ILtNHSEOhzZOtbtNVjtFBhEG+8a8FH3ofS02y8P0Wtb8vWIt94Mvmu196wx2hI8vW+cGNCQ7hFFhhBhirY+jdyd4lKtF310g56kNAwr6iCHkRU2wTACP6mOOu6hhXMGhCW0BOuHwzYrr2UYjg7TH+I+ti37UU2nSXSoIXrkf8t6KqVW1CcUalGeqKsHEUHdiTgA4w/jVOoZvJdphEfqCD6kYdybkBM+ogY6hI7ZdI4Vp+n80WoPGFv0LTxNlm3rAgccZ4dU2cJ5Omjb99B6NMD6N8oNaXA+ftRg1BPmQ6bKLVmoXGsUixUwQwUqgJEyOvdvTM4rDPc5lmmQYBVqMYyEoN2NNGl9YUIrh9nA9qTeSVYmPBeNzvsd+JYycd7R//qM3DvvdhGuz5Kh8y591mld+sdtgdJe4FWMTZjkeY0bzkaXRRho0isnhUn+bPftDUXfd+jh1t2lgwwTYxKkUUtinDpF24XbH43rnptNG40a5GBP+zobZ+MjZ2ZYj+m3y1T9+Ub19sXTOO5D5nz5crPJhUytuynM1Cr/+xf7jo1D6/cwEcvlMhMoAJ7gTEGOIlhpbVIPL9y7AzQtCI2FC7DHcH05OzJc6li1RSZdvXXyVd0GLbe3vDCuyJHI5leXHy6+3FxktaL5+gMXVmee
 sidebar_class_name: "get api-method"
 info_path: docs/api/micanto-api
 custom_edit_url: null
@@ -231,6 +231,15 @@ Get all tracks
                         
                       </SchemaItem><SchemaItem
                         collapsible={false}
+                        name={"explicit"}
+                        required={false}
+                        schemaName={"boolean"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"boolean"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
                         name={"genre"}
                         required={false}
                         schemaName={"string"}
@@ -357,7 +366,7 @@ Get all tracks
                   value={"Example (from schema)"}
                 >
                   <ResponseSamples
-                    responseExample={"[\n  {\n    \"type\": \"string\",\n    \"url\": \"string\",\n    \"id\": 0,\n    \"title\": \"string\",\n    \"cover\": \"string\",\n    \"album\": \"string\",\n    \"album_id\": 0,\n    \"duration\": 0,\n    \"track\": 0,\n    \"disc\": 0,\n    \"year\": 0,\n    \"genre\": \"string\",\n    \"lyrics\": \"string\",\n    \"artists\": [\n      {\n        \"type\": \"string\",\n        \"id\": 0,\n        \"name\": \"string\",\n        \"image\": \"string\",\n        \"created_at\": \"string\"\n      }\n    ],\n    \"added_at\": \"string\"\n  }\n]"}
+                    responseExample={"[\n  {\n    \"type\": \"string\",\n    \"url\": \"string\",\n    \"id\": 0,\n    \"title\": \"string\",\n    \"cover\": \"string\",\n    \"album\": \"string\",\n    \"album_id\": 0,\n    \"duration\": 0,\n    \"track\": 0,\n    \"disc\": 0,\n    \"year\": 0,\n    \"explicit\": true,\n    \"genre\": \"string\",\n    \"lyrics\": \"string\",\n    \"artists\": [\n      {\n        \"type\": \"string\",\n        \"id\": 0,\n        \"name\": \"string\",\n        \"image\": \"string\",\n        \"created_at\": \"string\"\n      }\n    ],\n    \"added_at\": \"string\"\n  }\n]"}
                     language={"json"}
                   >
                     

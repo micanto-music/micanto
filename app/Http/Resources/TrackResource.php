@@ -25,7 +25,8 @@ class TrackResource extends JsonResource
             'track'     => $this->track,
             'disc'      => $this->disc,
             'year'      => $this->year,
-            'genre'      => $this->genre,
+            'explicit'  => $this->explicit,
+            'genre'     => $this->genre,
             'lyrics'    => $this->lyrics,
             'artists'   => $this->artists,
             'added_at'  => $this->created_at ?? null

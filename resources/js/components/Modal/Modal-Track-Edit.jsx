@@ -52,6 +52,7 @@ export default function ModalTrackEdit(props) {
         track: ItemsShareSameValue(tracks, 'track') ? tracks[0].track: '',
         disc: ItemsShareSameValue(tracks, 'disc') ? tracks[0].disc: '',
         genre: ItemsShareSameValue(tracks, 'genre') ? tracks[0].genre: '',
+        explicit: ItemsShareSameValue(tracks, 'explicit') ? tracks[0].explicit: '',
         year: ItemsShareSameValue(tracks, 'year') ? tracks[0].year: '',
     }
 
@@ -143,7 +144,7 @@ export default function ModalTrackEdit(props) {
                                 defaultValue={artistOptions.filter(c => value.includes(c.value))}
                                 onChange={val => onChange(val.map(c => c.value))}
                                 noOptionsMessage={() => t('select.noOptionsMessage')}
-                                formatCreateLabel={ (inputValue) => `${t('select.create')} "${inputValue}"`}
+                                formatCreateLabel={(inputValue) => `${t('select.create')} "${inputValue}"`}
                                 loadingMessage={() => t('select.loadingMessage')}
                                 loadOptions={searchArtists}
                                 options={artistOptions}
@@ -177,7 +178,7 @@ export default function ModalTrackEdit(props) {
                                 onChange={(val) => onChange(val)}
                                 noOptionsMessage={() => t('select.noOptionsMessage')}
                                 loadingMessage={() => t('select.loadingMessage')}
-                                formatCreateLabel={ (inputValue) => `${t('select.create')} "${inputValue}"`}
+                                formatCreateLabel={(inputValue) => `${t('select.create')} "${inputValue}"`}
                                 loadOptions={searchAlbum}
                                 cacheOptions
                                 isClearable
@@ -189,6 +190,15 @@ export default function ModalTrackEdit(props) {
                 <div className="form-field form-check">
                     <label>
                         <input type="checkbox" {...register("compilation")} /> {t('edit.compilation')}
+                    </label>
+                </div>
+
+                <div className="form-field form-check">
+                    <label>
+                        <input
+                            type="checkbox"
+                            defaultChecked={formData?.explicit == 1}
+                            {...register("explicit")} /> {t('edit.explicit')}
                     </label>
                 </div>
 

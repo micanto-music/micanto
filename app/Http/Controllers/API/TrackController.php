@@ -139,6 +139,7 @@ class TrackController extends Controller
         $track->disc = $request->disc ?: 1;
         $track->genre = $request->genre;
         $track->year = $request->year;
+        $track->explicit = $request->explicit == 'true';
 
         $track->save();
         return $track;
