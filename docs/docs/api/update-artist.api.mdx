@@ -1,0 +1,226 @@
+---
+id: update-artist
+title: "Update artist"
+description: "Update an artist"
+sidebar_label: "Update artist"
+hide_title: true
+hide_table_of_contents: true
+api: eJyNVNtu2zAM/RVDTy2Q2tkeg2FY2vUhWLsWbfqUBYNsM7ZaW9IkuWlg+IP2HfuxkbKdOnU6LAESXSjykOeQNUvBJkZoJ5RkM/agU+4g4DLgxgnr2IRZSCoj3I7NVjU7B27ABEv1BGi+WjfrCXM8s7hm3Qs8MfCrAuvOVYqvapYo6UA6WnKtC5FwihY9WgpZM5vkUHJauZ0GBKHiR0gotDZKA3oFS7eSlzCwss4ImbHGfyim1Ura1vTjdEp/h7ndfEOX/49FuILCzPs6HDqby6C9CUqVQjEC24IcgZ0wkQ6OBYLJwND5O9nhg5Jnx28SA0hW+pO798qCRpob9OzAWE/gqNgjCB2PixRzEpSq5i5nLanCAMJ3poK39Vh8DdQmcDn0wiFlYNxcpeRC+RJ6TzMWcS2i1iyq+2iNl5p57oFWpkDT3DltZ1FUIlHSqdDBES6uVMILH7DX6j1l2RJxqNh92uSYInpD3MfejFHFSAt3rwq+fOGlLuBVgUNu5EYNxXLdwgzmWqBzyqVF+CGchtMR7iVWa367CDbKBKvu6frkbcqPNlQmO+20yxM3QDKXqfnzO7gTkls0OKzZdrsNORqAoeswhQhNkHxReNo36svBLeWD/QDYQ4MI14vlyHEmXF7FYaLKHuRZWVmR9LsoLlQcYSAZXS0uLr/fX4Zl6ktLOii5HPjvB87RLhuMjmOTqaPSwYuLdIHhKAUPte6khkPJM7F/MtuLG9WSkyrRpq5jbuHBFE1Dx8i8oWmHy2duBI+JWlRkKiytUc8bXti3HTDEenLX9cppMOqLd2B3h1zuSDi8qGiHyyfYDVuyWaNtDjxFrRKm9vqijXy2JCevz0cDrpn0L+ZJAtr903bYv7c39ySDuBvoNPLw1PAtzQX8nbEf+MWN8tXwjefPa1ZwmVV+grHWL+mAV8TOvhm75pv0C8rsaEE+Dbv58748zjc31qZp/gJdLlMi
+sidebar_class_name: "post api-method"
+info_path: docs/api/micanto-api
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+
+<h1
+  className={"openapi__heading"}
+>
+  Update artist
+</h1>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/api/artist/{artistId}"}
+>
+  
+</MethodEndpoint>
+
+
+
+Update an artist
+
+## Request
+
+<details
+  style={{"marginBottom":"1rem"}}
+  className={"openapi-markdown__details"}
+  data-collapsed={false}
+  open={true}
+>
+  <summary
+    style={{}}
+  >
+    <h3
+      className={"openapi-markdown__details-summary-header-params"}
+    >
+      Path Parameters
+    </h3>
+  </summary><div>
+    <ul>
+      <ParamsItem
+        className={"paramsItem"}
+        param={{"schema":{"type":"integer"},"name":"artistId","in":"path","required":true,"description":"ID of the artist"}}
+      >
+        
+      </ParamsItem>
+    </ul>
+  </div>
+</details><MimeTabs
+  className={"openapi-tabs__mime"}
+>
+  <TabItem
+    label={"application/json"}
+    value={"application/json-schema"}
+  >
+    <details
+      style={{}}
+      className={"openapi-markdown__details mime"}
+      data-collapsed={false}
+      open={true}
+    >
+      <summary
+        style={{}}
+        className={"openapi-markdown__details-summary-mime"}
+      >
+        <h3
+          className={"openapi-markdown__details-summary-header-body"}
+        >
+          Body
+        </h3>
+      </summary><div
+        style={{"textAlign":"left","marginLeft":"1rem"}}
+      >
+        
+      </div><ul
+        style={{"marginLeft":"1rem"}}
+      >
+        <SchemaItem
+          collapsible={false}
+          name={"name"}
+          required={false}
+          schemaName={"string"}
+          qualifierMessage={undefined}
+          schema={{"type":"string"}}
+        >
+          
+        </SchemaItem>
+      </ul>
+    </details>
+  </TabItem>
+</MimeTabs><div>
+  <div>
+    <ApiTabs>
+      <TabItem
+        label={"200"}
+        value={"200"}
+      >
+        <div>
+          
+          
+          OK
+          
+          
+        </div><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={false}
+                        name={"type"}
+                        required={false}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"id"}
+                        required={false}
+                        schemaName={"integer"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"integer"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"name"}
+                        required={false}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"image"}
+                        required={false}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"created_at"}
+                        required={false}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string"}}
+                      >
+                        
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"type\": \"string\",\n  \"id\": 0,\n  \"name\": \"string\",\n  \"image\": \"string\",\n  \"created_at\": \"string\"\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem>
+    </ApiTabs>
+  </div>
+</div>
+      

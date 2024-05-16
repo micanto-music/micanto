@@ -138,6 +138,78 @@ const sidebar: SidebarsConfig = {
         },
       ],
     },
+    {
+      type: "category",
+      label: "album",
+      items: [
+        {
+          type: "doc",
+          id: "api/get-all-albums",
+          label: "Get all albums",
+          className: "api-method get",
+        },
+        {
+          type: "doc",
+          id: "api/get-album",
+          label: "Get album",
+          className: "api-method get",
+        },
+        {
+          type: "doc",
+          id: "api/update-album",
+          label: "Update album",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/combine-albums",
+          label: "Combine albums",
+          className: "api-method post",
+        },
+      ],
+    },
+    {
+      type: "category",
+      label: "artist",
+      items: [
+        {
+          type: "doc",
+          id: "api/get-all-artists",
+          label: "Get all artists",
+          className: "api-method get",
+        },
+        {
+          type: "doc",
+          id: "api/get-artist",
+          label: "Get artist",
+          className: "api-method get",
+        },
+        {
+          type: "doc",
+          id: "api/update-artist",
+          label: "Update artist",
+          className: "api-method post",
+        },
+      ],
+    },
+    {
+      type: "category",
+      label: "track",
+      items: [
+        {
+          type: "doc",
+          id: "api/get-all-tracks",
+          label: "Get all tracks",
+          className: "api-method get",
+        },
+        {
+          type: "doc",
+          id: "api/update-tracks",
+          label: "Update tracks",
+          className: "api-method post",
+        },
+      ],
+    },
   ],
 };
 

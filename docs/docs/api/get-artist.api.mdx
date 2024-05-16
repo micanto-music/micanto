@@ -1,0 +1,184 @@
+---
+id: get-artist
+title: "Get artist"
+description: "Get artist by id"
+sidebar_label: "Get artist"
+hide_title: true
+hide_table_of_contents: true
+api: eJx1VNtum0AQ/ZXVPiWSC24fraqq20aR1aStkvQpsqoFxrAJ7G52h6QW4oP6HfmxzgC28SW8sMz17JwzNDKDkHrtUFsjZ/ISUCiPOqBI1kJnciIDpLXXuJaz+0Z+AeXBizv7CBR+v2yXE4kqD3SWfZ4ki4fgrAlA5kZ+mE75td/n53eqnFqDYJC9yrlSp4q98UPgkEaGtIBK8Qk1lkBZ877D5KDY3IjeIyqbQUl+560DMvUIcO1g95YBvTa5bCeS7rczawKTg2e7UdUbCZXKT3tSDwoh+6PwhLt/CJbyVBnBh26Yowu+AWGY6YJ50HxVp7CQPOCnWnsg+OhrOJzH4puwK4EFDFRKZon6FpYSZA48wa7QTMbK6biPiptNs7Zj3T9vcNa+pNAC0YVZHFfEk0EbIZyg4sqmquz6bWRzy5fsedgXz/bWXJg7doH0nXRhkgemzcqOBXDd9xZzpymDAfZt30fTaHoE5o4mMP+1ECvrxf2Qujw7vMdDiKzPzwc9qrQjcBj/3GT+9Z+40UYFCtgfxMvLS6QoADy7owxiCiFCddlRubKf97zMKmkcaC9GHa4Xd0eFc41FnUSprTYg31V10OnmK05Km8TUyMRXi68XP24voirr5uVswEqZUf3dQh+Op9nt36m1H8hB+IuxK6kX4+9wNoN4aOM7GrblZ1u1Ev8FQeGYpklUgN++bFs2P9Xg+VdCx2fltUqYV9JYpgOfSaArVYZDSY+xnt0M4j8XR0J/A/ZgVGbNqlFlzV90fIT1eMfaJcUWoDJSH2Pq3fM0BYejxKN/1d56XV4woarmCW0lPkh6sjlw9ZOgPo535NMWInYrQ/ja9j9dgO5T
+sidebar_class_name: "get api-method"
+info_path: docs/api/micanto-api
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+
+<h1
+  className={"openapi__heading"}
+>
+  Get artist
+</h1>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/api/artist/{artistId}"}
+>
+  
+</MethodEndpoint>
+
+
+
+Get artist by id
+
+## Request
+
+<details
+  style={{"marginBottom":"1rem"}}
+  className={"openapi-markdown__details"}
+  data-collapsed={false}
+  open={true}
+>
+  <summary
+    style={{}}
+  >
+    <h3
+      className={"openapi-markdown__details-summary-header-params"}
+    >
+      Path Parameters
+    </h3>
+  </summary><div>
+    <ul>
+      <ParamsItem
+        className={"paramsItem"}
+        param={{"schema":{"type":"integer"},"name":"artistId","in":"path","required":true,"description":"ID of the artist"}}
+      >
+        
+      </ParamsItem>
+    </ul>
+  </div>
+</details><div>
+  <div>
+    <ApiTabs>
+      <TabItem
+        label={"200"}
+        value={"200"}
+      >
+        <div>
+          
+          
+          OK
+          
+          
+        </div><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={false}
+                        name={"type"}
+                        required={false}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"id"}
+                        required={false}
+                        schemaName={"integer"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"integer"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"name"}
+                        required={false}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"image"}
+                        required={false}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"created_at"}
+                        required={false}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string"}}
+                      >
+                        
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"type\": \"string\",\n  \"id\": 0,\n  \"name\": \"string\",\n  \"image\": \"string\",\n  \"created_at\": \"string\"\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem>
+    </ApiTabs>
+  </div>
+</div>
+      

@@ -186,7 +186,7 @@ paths:
   /api/player/play/{trackId}:
     parameters:
       - schema:
-          type: string
+          type: integer
         name: trackId
         in: path
         required: true
@@ -298,7 +298,7 @@ paths:
   /api/playlist/{playlistId}:
     parameters:
       - schema:
-          type: string
+          type: integer
         name: playlistId
         in: path
         required: true
@@ -350,7 +350,7 @@ paths:
   /api/playlist/{playlistId}/addItems:
     parameters:
       - schema:
-          type: string
+          type: integer
         name: playlistId
         in: path
         required: true
@@ -382,7 +382,7 @@ paths:
   /api/playlist/{playlistId}/deleteItems:
     parameters:
       - schema:
-          type: string
+          type: integer
         name: playlistId
         in: path
         required: true
@@ -412,13 +412,219 @@ paths:
               schema:
                 $ref: '#/components/schemas/Playlist'
 
-
+  /api/albums:
+    get:
+      summary: Get all albums
+      description: Get all albums
+      security:
+        - Bearer Token: [ ]
+      tags:
+        - album
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Albums'
+  /api/album/{albumId}:
+    parameters:
+      - schema:
+          type: integer
+        name: albumId
+        in: path
+        required: true
+        description: ID of the album
+    get:
+      summary: Get album
+      description: Get album by id
+      security:
+        - Bearer Token: [ ]
+      tags:
+        - album
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Album'
+    post:
+      summary: Update album
+      description: Update an album
+      security:
+        - Bearer Token: [ ]
+      tags:
+        - album
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Album'
+  /api/combineAlbums:
+    post:
+      summary: Combine albums
+      description: Combine 2 or more albums to one
+      tags:
+        - album
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                albums:
+                  type: array
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  removed:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Album'
+                  albums:
+                    type: string
+  /api/artists:
+    get:
+      summary: Get all artists
+      description: Get all artists
+      security:
+        - Bearer Token: [ ]
+      tags:
+        - artist
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Artists'
+  /api/artist/{artistId}:
+    parameters:
+      - schema:
+          type: integer
+        name: artistId
+        in: path
+        required: true
+        description: ID of the artist
+    get:
+      summary: Get artist
+      description: Get artist by id
+      security:
+        - Bearer Token: [ ]
+      tags:
+        - artist
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Artist'
+    post:
+      summary: Update artist
+      description: Update an artist
+      security:
+        - Bearer Token: [ ]
+      tags:
+        - artist
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Artist'
+  /api/tracks?page={page}&sort={sortField}&order={order}:
+    parameters:
+      - schema:
+          type: integer
+        name: page
+        in: path
+        required: true
+        description: number of page for pagination
+      - schema:
+          type: string
+        name: sortField
+        in: path
+        description: how should the list be sorted
+      - schema:
+          type: string
+        name: order
+        in: path
+        description: Ascending or descending order
+    get:
+      summary: Get all tracks
+      description: Get all tracks
+      security:
+        - Bearer Token: [ ]
+      tags:
+        - track
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tracks'
+  /api/tracks:
+    post:
+      summary: Update tracks
+      description: Update one or more tracks
+      tags:
+        - track
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tracks:
+                  type: array
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tracks:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Track'
 tags:
   - name: authentication
   - name: user
   - name: search
   - name: player
   - name: playlist
+  - name: album
+  - name: artist
+  - name: track
 
 components:
   schemas:
@@ -471,6 +677,12 @@ components:
               $ref: '#/components/schemas/Artist'
           added_at:
             type: string
+    Tracks:
+      title: Tracks
+      type: array
+      description: An array of Tracks
+      items:
+        $ref: '#/components/schemas/Track'
     Artist:
       title: Artist
       description: An Artist model
@@ -485,6 +697,12 @@ components:
             type: string
           created_at:
             type: string
+    Artists:
+      title: Artists
+      type: array
+      description: An array of Artists
+      items:
+        $ref: '#/components/schemas/Artist'
     Queue:
       title: Queue
       type: array
@@ -511,6 +729,37 @@ components:
       description: An array of Playlists
       items:
         $ref: '#/components/schemas/Playlist'
+    Album:
+      title: Album
+      type: object
+      properties:
+        type:
+          type: string
+        id:
+          type: integer
+        name:
+          type: string
+        artist:
+          type: object
+          properties:
+            id:
+              type: integer
+            name:
+              type: integer
+        cover:
+          type: string
+        is_compilation:
+          type: boolean
+        is_single:
+          type: boolean
+        year:
+          type: integer
+    Albums:
+      title: Albums
+      type: array
+      description: An array of Albums
+      items:
+        $ref: '#/components/schemas/Album'
   securitySchemes:
     Bearer Token:
       type: http
