@@ -57,8 +57,11 @@ class TrackController extends Controller
 
     private function updateTrack(Track $track, $request): Track
     {
-        $artists = $request->artists;
-        $albumArtistName = array_shift($artists);
+        $albumArtistName = null;
+        if($request->artists && is_array($request->artists)){
+            $albumArtistName = array_shift($request->artists);
+        }
+
         if(!$albumArtistName) {
             $albumArtist = $track->album->artist;
         } else {
@@ -114,18 +117,19 @@ class TrackController extends Controller
             }
         }
 
-
-
         $album->save();
 
 
         // if there are more artists, sync them
         $artistIds = [$albumArtist->id];
-        foreach($artists as $feature) {
-            $artist = Artist::firstOrCreate([
-                'name' => trim($feature)
-            ]);
-            $artistIds[] = $artist->id;
+        $artists = $request->artists;
+        if($artists && count($artists)){
+            foreach($artists as $feature) {
+                $artist = Artist::firstOrCreate([
+                    'name' => trim($feature)
+                ]);
+                $artistIds[] = $artist->id;
+            }
         }
 
         // add album
