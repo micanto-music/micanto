@@ -23,6 +23,8 @@ const sidebars = {
             items: [
                 'getting-started/introduction',
                 'getting-started/installation',
+                'getting-started/docker',
+                'getting-started/update',
             ],
         },
         {

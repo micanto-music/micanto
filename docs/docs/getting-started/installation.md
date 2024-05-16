@@ -6,7 +6,7 @@ sidebar_position: 2
 
 ## Quick Start Guide
 ### Docker
-The simplest way is to clone the docker repository of micanto and use docker compose. See <a href="https://github.com/micanto-music/docker">Micanto Docker</a> for more information.
+The simplest way is to clone the docker repository of micanto and use docker compose. See <a href="/docs/getting-started/docker">Docker</a> for more information.
 
 ### Setup without docker
 
