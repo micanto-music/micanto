@@ -37,7 +37,6 @@ class TrackController extends Controller
         );
     }
 
-
     public function update(Request $request)
     {
         $this->authorize('admin', Auth::user());
@@ -118,7 +117,6 @@ class TrackController extends Controller
         }
 
         $album->save();
-
 
         // if there are more artists, sync them
         $artistIds = [$albumArtist->id];
