@@ -356,4 +356,13 @@ export const PlayerAPI = {
 
         return response.data;
     },
+
+    download: async function (trackId) {
+        const response = await axios.request({
+            url: `/api/download/track/${trackId}`,
+            method: "GET",
+        });
+
+        return response.data;
+    },
 }

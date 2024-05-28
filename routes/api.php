@@ -16,6 +16,7 @@ use App\Http\Controllers\API\ProfileController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\SetupController;
 use App\Http\Controllers\API\SettingsController;
+use App\Http\Controllers\API\DownloadController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -76,15 +77,17 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('playlist/{playlist}', [PlaylistController::class, 'edit']);
     Route::delete('playlist/{playlist}', [PlaylistController::class, 'delete']);
 
-
-//    Route::apiResource('playlists', PlaylistController::class);
-
     Route::get('search', [SearchController::class, 'search']);
     Route::post('searchArtists', [SearchController::class, 'searchArtists']);
     Route::post('searchAlbum', [SearchController::class, 'searchAlbum']);
 
     Route::get('settings', [SettingsController::class, 'getSettings']);
 
+    // downloads
+    Route::get('download/track/{track}', [DownloadController::class, 'track']);
+    Route::get('download/album/{album}', [DownloadController::class, 'album']);
+    Route::get('download/artist/{artist}', [DownloadController::class, 'artist']);
+    Route::get('download/playlist/{playlist}', [DownloadController::class, 'playlist']);
 });
 
 

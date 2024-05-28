@@ -10,6 +10,7 @@ import {useDraggable} from "../../hooks/useDragAndDrop";
 import {useModal} from "../../hooks/useModal";
 import {useShallow} from "zustand/react/shallow";
 import {TbExplicit} from "react-icons/tb";
+import {PlayerAPI} from "../../api/PlayerAPI";
 
 const TableItem = ({ index, track, cols, context, rowClicked, selectedRows, clearSelection, setSelectedRows, displayMenu })  => {
     const [currentTrack, playContext] = usePlayer(useShallow(state => [state.currentTrack, state.playContext]));
@@ -33,8 +34,14 @@ const TableItem = ({ index, track, cols, context, rowClicked, selectedRows, clea
     }
 
     return(
-        <div className={`tableitem flex group ${track.selected ? 'selected' : ''}`} key={track.id}
-             onDragStart={(e) => onDragStart(track, e)}
+        <>
+            <button className="ml-2" onClick={() => {
+                PlayerAPI.download(track.id);
+            }}>DL
+            </button>
+
+    <div className={`tableitem flex group ${track.selected ? 'selected' : ''}`} key={track.id}
+         onDragStart={(e) => onDragStart(track, e)}
              onClick={(e) => rowClicked(e, track)}
              onDoubleClick={onDblClick}
              draggable="true"
@@ -74,6 +81,9 @@ const TableItem = ({ index, track, cols, context, rowClicked, selectedRows, clea
                             </div>
                         }
                         <ArtistList artists={track?.artists}/>
+
+
+
                     </div>
                 </div>
 
@@ -93,6 +103,7 @@ const TableItem = ({ index, track, cols, context, rowClicked, selectedRows, clea
                 </div>
             }
         </div>
+        </>
     );
 }
 

@@ -58,7 +58,8 @@ class TrackController extends Controller
     {
         $albumArtistName = null;
         if($request->artists && is_array($request->artists)){
-            $albumArtistName = array_shift($request->artists);
+            $requestArtist = $request->artists;
+            $albumArtistName = array_shift($requestArtist);
         }
 
         if(!$albumArtistName) {
