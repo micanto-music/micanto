@@ -156,4 +156,8 @@ class TrackController extends Controller
             'updated' => isset($matches[1]) ? $matches[1] : 0
         ]);
     }
+
+    public function findByIds( Request $request ) {
+        return TrackResource::collection($this->trackRepository->findByIds($request->ids));
+    }
 }

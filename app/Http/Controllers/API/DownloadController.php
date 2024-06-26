@@ -3,12 +3,19 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\TrackResource;
+use App\Models\Artist;
+use App\Models\Playlist;
 use App\Models\Track;
 use App\Models\Album;
+use App\Repositories\TrackRepository;
 
 class DownloadController extends Controller
 {
+
+    public function __construct(
+        private TrackRepository $trackRepository
+    )
+    {}
 
     public function track(Track $track)
     {
@@ -17,17 +24,17 @@ class DownloadController extends Controller
 
     public function album(Album $album)
     {
-        return TrackResource::collection($album->tracks);
+        return $album->tracks->pluck('id');
     }
 
-    public function artist()
+    public function artist(Artist $artist)
     {
-
+        return $this->trackRepository->getTracksByArtists($artist)->pluck('id');
     }
 
-    public function playlist()
+    public function playlist(Playlist $playlist)
     {
-
+        return $playlist->tracks->pluck('id');
     }
 
 }
