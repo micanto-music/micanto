@@ -38,7 +38,11 @@ class TrackRepository extends Repository
 
     public function makeSortable( $query, $sortColumn,  $sortDirection)
     {
-        $query->orderBy($sortColumn, $sortDirection);
+        if($sortColumn === 'random') {
+            $query->inRandomOrder();
+        } else  {
+            $query->orderBy($sortColumn, $sortDirection);
+        }
 
         if ($sortColumn === 'artists.name') {
             $query->orderBy('albums.name')
@@ -97,6 +101,9 @@ class TrackRepository extends Repository
         $sortField = isset($context['options']['sortField']) ? $context['options']['sortField'] : 'title';
         $sortOrder = isset($context['options']['order']) ? $context['options']['order'] : 'asc';
         $startIndex = isset($context['options']['index']) ? (int) $context['options']['index']: 0;
+        if(isset($context['options']['shuffle'])) {
+            $sortField = 'random';
+        }
 
         $res = $this->makeSortable($query, $sortField, $sortOrder)->offset($startIndex)->limit($max)->get();
         if(count($res) < $max && $startIndex > $max) {
