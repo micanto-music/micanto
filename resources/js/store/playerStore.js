@@ -74,13 +74,15 @@ const usePlayer = create((set, get) => ({
         if(data?.session?.track !== null) {
             let time = data.session.session?.current_time ? data.session.session?.current_time : 0;
             MicantoPlayer.load(data?.session?.track, time);
+            let context = JSON.parse(data.session.session?.context);
             set({
                 currentTrack: data.session.track,
                 currentTime: data.session.session?.current_time,
                 playlists: data.playlists,
                 queue: data.queue,
                 untouchedQueue: data.queue,
-                musicContext: JSON.parse(data.session.session?.context)
+                musicContext: context,
+                shuffle: context?.options?.shuffle === true
             })
         } else {
             let currentTrack = {
