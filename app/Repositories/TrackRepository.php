@@ -38,6 +38,7 @@ class TrackRepository extends Repository
 
     public function makeSortable( $query, $sortColumn,  $sortDirection)
     {
+        //dump($sortColumn);
         if($sortColumn === 'random') {
             $query->inRandomOrder();
         } else  {
@@ -101,7 +102,8 @@ class TrackRepository extends Repository
         $sortField = isset($context['options']['sortField']) ? $context['options']['sortField'] : 'title';
         $sortOrder = isset($context['options']['order']) ? $context['options']['order'] : 'asc';
         $startIndex = isset($context['options']['index']) ? (int) $context['options']['index']: 0;
-        if(isset($context['options']['shuffle'])) {
+
+        if(isset($context['options']['shuffle']) && $context['options']['shuffle'] !== false) {
             $sortField = 'random';
         }
 

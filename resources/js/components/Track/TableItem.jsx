@@ -34,13 +34,7 @@ const TableItem = ({ index, track, cols, context, rowClicked, selectedRows, clea
     }
 
     return(
-        <>
-            <button className="ml-2" onClick={() => {
-                PlayerAPI.download(track.id);
-            }}>DL
-            </button>
-
-    <div className={`tableitem flex group ${track.selected ? 'selected' : ''}`} key={track.id}
+        <div className={`tableitem flex group ${track.selected ? 'selected' : ''}`} key={track.id}
          onDragStart={(e) => onDragStart(track, e)}
              onClick={(e) => rowClicked(e, track)}
              onDoubleClick={onDblClick}
@@ -103,7 +97,6 @@ const TableItem = ({ index, track, cols, context, rowClicked, selectedRows, clea
                 </div>
             }
         </div>
-        </>
     );
 }
 

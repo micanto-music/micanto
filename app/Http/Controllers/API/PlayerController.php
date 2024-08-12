@@ -53,6 +53,7 @@ class PlayerController extends Controller
     {
         $session = $this->getSessionTrack();
         $context = $session->session ? json_decode($session->session->context, true) : [];
+
         if(!$context) $context = [];
         $resp = [
             'queue' => $this->queueService->generateQueue($context),
