@@ -188,19 +188,30 @@ const usePlayer = create((set, get) => ({
     setRepeatMode: (repeatType) => set(() => ({ repeatType: repeatType })),
     setShuffle: (shuffleState) => {
         let newState;
+        let newContext;
         if(shuffleState) {
             newState = shuffleState;
         } else {
             newState = !get().shuffle;
         }
         const currentTrack = get().currentTrack;
+        const context = get().musicContext;
         let queue = get().queue;
         if(newState === true) {
             queue = shuffleArr(queue, currentTrack);
         } else {
             queue = get().untouchedQueue;
         }
-        set((state) => ({ shuffle: newState, queue:queue }));
+
+        newContext = {...context};
+        newContext.options.shuffle = newState;
+
+        set((state) => ({
+            shuffle: newState,
+            queue:queue,
+            musicContext: newContext
+        }));
+
     },
     changeMusic: (type, auto) => {
         const repeatType = get().repeatType;
