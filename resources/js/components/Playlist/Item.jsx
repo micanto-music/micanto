@@ -11,7 +11,7 @@ import usePlayer from "../../store/playerStore";
 export default function Item({playlist, displayMenu}) {
     const { acceptsDrop,getDroppedData,getDragType } = useDroppable(['tracks', 'album', 'artist']);
     const [droppable, setDroppable] = useState(false);
-    const [setShuffle, playContext] = usePlayer(state => [state.setShuffle, state.playContext]);
+    const [setShuffle, playContext, setMusicContext] = usePlayer(state => [state.setShuffle, state.playContext, state.setMusicContext]);
     const [t] = useTranslation();
     const notify = (text, type) => toast(text, {type:'success'});
     const onDragOver = (event) => {
@@ -50,8 +50,9 @@ export default function Item({playlist, displayMenu}) {
     }
 
     const onDblClick = async () => {
-        await setShuffle(true);
         context['options']['shuffle'] = true;
+        await setMusicContext(context);
+        await setShuffle(true);
         await playContext(context,null, true);
     }
 
