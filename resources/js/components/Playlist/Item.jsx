@@ -39,7 +39,7 @@ export default function Item({playlist, displayMenu}) {
         return false;
     }
 
-    const context = {
+    let context = {
         type: 'playlist',
         id: playlist.id,
         options: {
