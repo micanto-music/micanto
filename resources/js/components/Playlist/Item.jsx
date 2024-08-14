@@ -50,8 +50,6 @@ export default function Item({playlist, displayMenu}) {
     }
 
     const onDblClick = async () => {
-        context['options']['shuffle'] = true;
-        await setMusicContext(context);
         await setShuffle(true);
         await playContext(context,null, true);
     }

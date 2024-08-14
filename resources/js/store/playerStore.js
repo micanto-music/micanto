@@ -204,7 +204,7 @@ const usePlayer = create((set, get) => ({
         }
 
         newContext = {...context};
-        newContext.options.shuffle = newState;
+        newContext['options']['shuffle'] = newState;
 
         set((state) => ({
             shuffle: newState,
