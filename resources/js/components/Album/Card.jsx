@@ -1,6 +1,6 @@
 import React from "react";
 import defaultCover from "../../assets/img/logo.svg";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import ArtistList from "../ArtistList";
 import {BaseCard} from "../BaseCard";
 import {useDraggable} from "../../hooks/useDragAndDrop";
@@ -15,10 +15,10 @@ const Card = ({ album, width, displayMenu, selectAble = false }) => {
     const { startDragging } = useDraggable('album');
     const [t] = useTranslation();
     const [updateItems] = useAlbumStore(state => [state.updateItems]);
+    const navigate = useNavigate();
 
     const [selected,setSelected] = useSelection(useShallow(state => [state.selected, state.setSelected]));
     const selectHandler = () => {
-        console.log('wat is loss')
         album.selected = !album.selected;
         let response = {albums:[album], removed:{albums:[]}}
         updateItems(response);
@@ -26,6 +26,12 @@ const Card = ({ album, width, displayMenu, selectAble = false }) => {
     }
     if(selectAble) {
 
+    }
+
+    const onClickHandler = (e) => {
+        if(e.currentTarget === e.target) {
+            navigate(`/album/${album?.id}`);
+        }
     }
 
     return (
@@ -43,7 +49,7 @@ const Card = ({ album, width, displayMenu, selectAble = false }) => {
                              className="w-full rounded-lg" />
                     </Link>
 
-                    <div className="card-shadow w-full rounded-lg">
+                    <div className="card-shadow w-full rounded-lg" onClick={onClickHandler}>
                         {selectAble && <span className="card-selectable" onClick={selectHandler}>
                             <PiCheckBold />
                         </span>}

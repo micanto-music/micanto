@@ -6,10 +6,12 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { BsMusicNoteList } from "react-icons/bs";
 import {useTranslation} from "react-i18next";
+import usePlayer from "../../store/playerStore";
 
 export default function Item({playlist, displayMenu}) {
     const { acceptsDrop,getDroppedData,getDragType } = useDroppable(['tracks', 'album', 'artist']);
     const [droppable, setDroppable] = useState(false);
+    const [setShuffle, playContext] = usePlayer(state => [state.setShuffle, state.playContext]);
     const [t] = useTranslation();
     const notify = (text, type) => toast(text, {type:'success'});
     const onDragOver = (event) => {
@@ -37,8 +39,25 @@ export default function Item({playlist, displayMenu}) {
         return false;
     }
 
+    const context = {
+        type: 'playlist',
+        id: playlist.id,
+        options: {
+            index: 0,
+            sortField: 'tracks.title',
+            order: 'asc'
+        }
+    }
+
+    const onDblClick = async () => {
+        await setShuffle(true);
+        context['options']['shuffle'] = true;
+        await playContext(context,null, true);
+    }
+
     return(
         <div
+            onDoubleClick={onDblClick}
             onDragOver={onDragOver}
             onDrop={onDrop}
             onDragLeave={onDragLeave}
