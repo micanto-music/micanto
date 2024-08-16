@@ -47,8 +47,8 @@ class ArtistController extends Controller
         $this->authorize('admin', Auth::user());
         if($artist) {
             $dataName = trim($request->name);
+            $oldName = $artist->name;
             $artist->name = !empty($dataName) ? $dataName : $artist->name;
-
             // detect name change, try to get new cover for artist by spotify, but only if no cover is in request
             if( $request->has('image')) {
                 $image = $request->image;
@@ -59,7 +59,7 @@ class ArtistController extends Controller
             } else {
 
                 // if name changed, get new image by spotify
-                if($dataName !== $artist->name) {
+                if($dataName !== $oldName) {
                     // get by spotify
                     $spotifyImage = $this->spotifyMetadataService->getArtistImage($artist);
                     if($spotifyImage) {
