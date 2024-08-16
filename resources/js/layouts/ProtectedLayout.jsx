@@ -63,16 +63,17 @@ export default function DefaultLayout() {
         <>
         <div className="h-screen flex flex-col justify-end">
             <div className="main-wrapper">
-                <Sidebar />
-                <main className="main-content">
-                    <section className="main-section">
-                        <Outlet />
-                    </section>
-                </main>
-                <AudioPlayer />
-            </div>
+                <Sidebar/>
+
+            <main className="main-content">
+                <section className="main-section">
+                    <Outlet/>
+                </section>
+            </main>
+            <AudioPlayer/>
         </div>
-        <ModalContainer />
-        </>
-    );
+        </div>
+    <ModalContainer/>
+</>
+);
 }

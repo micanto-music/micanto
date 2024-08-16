@@ -78,6 +78,7 @@ body {
     @apply text-white;
     @apply overflow-hidden;
     font-family: "PT Sans";
+    user-select: none;
 }
 
 h1,h2,h3,h4,h5 {
@@ -175,6 +176,12 @@ header {
     border-radius: 10px;
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
     background-color: var(--scroll-handle-color);
+}
+
+.sidebar.collapsed .sidebar-navigation a .p-2,
+.sidebar.collapsed .logotext,
+.sidebar.collapsed .sidebar-headline{
+    display: none;
 }
 
 .sidebar-navigation a {
@@ -926,6 +933,11 @@ input {
     transform:rotate(-90deg);
     width: 150px;
     height: 7px;
+}
+
+.cursor-col-resize {
+    background: var(--border-color);
+    width: 2px !important;
 }
 
 @keyframes rotate {

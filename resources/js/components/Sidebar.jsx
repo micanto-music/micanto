@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {Link, NavLink} from 'react-router-dom';
 import logo from "../assets/img/logo.svg"
 import usePlayer from "../store/playerStore";
@@ -14,7 +14,7 @@ import PlaylistMenu from "./ContextMenus/PlaylistMenu";
 const NavLinks = ({ handleClick, t }) => (
     <>
         <div className="flex items-center">
-            <img src={logo} alt="logo" className="h-14 object-contain" /> <span className="p-2 text-2xl"><strong>mi</strong>canto</span>
+            <img src={logo} alt="logo" className="h-14 object-contain" /> <span className="logotext p-2 text-2xl"><strong>mi</strong>canto</span>
         </div>
 
         <div className="sidebar-navigation mt-6">
@@ -40,6 +40,48 @@ const Sidebar = () => {
     const [t] = useTranslation();
     const { onOpen: openAddPlaylist } = useModal('Playlist-Add');
     const MENU_ID = "playlist-menu";
+    const [minWidth, maxWidth, defaultWidth] = [85, 350, 250];
+    const [width, setWidth] = useState(
+        parseInt(localStorage.getItem("sidebarWidth")) || defaultWidth
+    );
+    const [collapse, setCollapse] = useState(
+        localStorage.getItem("sidebarCollapsed") === 'true'
+    );
+
+    const isResized = useRef(false);
+
+    useEffect(() => {
+        window.addEventListener("mousemove", (e) => {
+            if (!isResized.current) {
+                return;
+            }
+
+            setWidth((previousWidth) => {
+                const newWidth = previousWidth + e.movementX / 2;
+
+                const isWidthInRange = newWidth >= minWidth && newWidth <= maxWidth;
+                if(newWidth < 210) {
+                    setCollapse(true);
+                } else {
+                    setCollapse(false);
+                }
+
+                return isWidthInRange ? newWidth : previousWidth;
+            });
+        });
+
+        window.addEventListener("mouseup", () => {
+            isResized.current = false;
+        });
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem("sidebarWidth", width);
+    }, [width]);
+
+    useEffect(() => {
+        localStorage.setItem("sidebarCollapsed", collapse);
+    }, [collapse]);
 
     const { show } = useContextMenu({
         id: MENU_ID
@@ -57,12 +99,13 @@ const Sidebar = () => {
 
     return (
         <>
-            <nav className="md:block hidden w-[250px] sidebar border-r">
+        <>
+            <nav className={`md:block hidden sidebar ${collapse ? `collapsed` : ``}`} style={{width: `${width}px`}}>
                 <NavLinks t={t}/>
 
                 <h3 className="mt-6 flex justify-between">
-                    <span>{t('sidebar.playlists.headline')}</span>
-                    <button className="hover:text-cyan-400" onClick={openAddPlaylist}><FiPlusSquare /></button>
+                    <span className="sidebar-headline">{t('sidebar.playlists.headline')}</span>
+                    <button className="hover:text-cyan-400" onClick={openAddPlaylist}><FiPlusSquare/></button>
                 </h3>
                 <div className="sidebar-navigation">
                     {playlists && playlists.map((playlist) => (
@@ -70,23 +113,17 @@ const Sidebar = () => {
                     ))}
                 </div>
             </nav>
-
-            {/* Mobile sidebar
-            <div className="absolute md:hidden block top-6 right-3">
-                {!mobileMenuOpen ? (
-                    <HiOutlineMenu className="w-6 h-6 mr-2 text-white" onClick={() => setMobileMenuOpen(true)} />
-                ) : (
-                    <RiCloseLine className="w-6 h-6 mr-2 text-white" onClick={() => setMobileMenuOpen(false)} />
-                )}
-            </div>
-
-            <div className={`absolute top-0 h-screen w-2/3 bg-gradient-to-tl from-white/10 to-[#483D8B] backdrop-blur-lg z-10 p-6 md:hidden smooth-transition ${mobileMenuOpen ? 'left-0' : '-left-full'}`}>
-                <NavLinks handleClick={() => setMobileMenuOpen(false)} />
-            </div>
-*/}
             <PlaylistMenu id={MENU_ID}/>
         </>
-    );
+        <div
+            className="cursor-col-resize"
+            onMouseDown={() => {
+                isResized.current = true;
+            }}
+        ></div>
+</>
+)
+    ;
 };
 
 export default Sidebar;
