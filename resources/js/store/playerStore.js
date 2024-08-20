@@ -185,7 +185,7 @@ const usePlayer = create((set, get) => ({
         })
     },
     setCurrentTime: (time) => set(() => ({ currentTime: time })),
-    setRepeatMode: (repeatType) => set(() => ({ repeatType: repeatType })),
+    setRepeatMode: (repeatMode) => set(() => ({ repeatMode: repeatMode })),
     setShuffle: (shuffleState) => {
         let newState;
         let newContext;
@@ -215,15 +215,15 @@ const usePlayer = create((set, get) => ({
 
     },
     changeMusic: (type, auto) => {
-        const repeatType = get().repeatType;
+        const repeatMode = get().repeatMode;
         const currentMusic = get().currentTrack;
-        if ( type === "next" && auto && repeatType === "off" ) {
+        if ( type === "next" && auto && repeatMode === "off" ) {
             set(() => ({ isPlaying: false }))
             return;
         }
         let nextTrack;
 
-        if ( type === "next" && auto && repeatType === "once" ) {
+        if ( type === "next" && auto && repeatMode === "track" ) {
             nextTrack = currentMusic;
             set(() => ({ isPlaying: false }))
             setTimeout(() => {
@@ -236,7 +236,7 @@ const usePlayer = create((set, get) => ({
         let queue = playList;
         let untouchedQueue = get().untouchedQueue;
         let currentMusicIndex = playList.findIndex(music => music.id === currentMusic.id)
-        if ( repeatType === "all" ) {
+        if ( repeatMode === "queue" ) {
             if ( type === "next" ) {
                 if ( currentMusicIndex + 1 === playlistLength ) {
                     currentMusicIndex = -1

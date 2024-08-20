@@ -13,16 +13,44 @@ export default function TrackMenu({id}) {
     const { onOpen: openEditTrack } = useModal('Track-Edit');
     const [t] = useTranslation();
     const navigate = useNavigate();
-    const [playlists] = usePlayer(useShallow(state => [state.playlists]));
+    const [playlists, musicContext, playContext, shuffle] = usePlayer(useShallow(state => [state.playlists, state.musicContext, state.playContext, state.shuffle]));
     const { user} = useAuth();
     const { pathname } = useLocation();
     const notify = (text, type) => toast(text, {type:'success'});
     let params = useParams();
     let ids;
+
+    const playTracksInContext = (tracks) => {
+
+        if(tracks.length === 0) {
+            return;
+        }
+
+        // if only 1 song, get queue by context
+        if(tracks.length === 1) {
+            let track = tracks[0];
+            playContext(musicContext, track, shuffle);
+        }
+        // else add only selected tracks to queue
+        else {
+            let track = tracks[0];
+            ids = tracks.map(track => track.id);
+            const context = {
+                'type': 'handpicked',
+                'ids': ids,
+                'options': {
+                    'shuffle': shuffle
+                }
+            }
+
+            playContext(context, track, shuffle);
+        }
+    };
+
     const handleItemClick = ({ id, event, props, data }) => {
         switch (id) {
             case "play":
-                console.log(event, props)
+                playTracksInContext(props);
                 break;
             case "edit":
                 openEditTrack(event,props);

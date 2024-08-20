@@ -970,6 +970,10 @@ input {
     color: #fff !important;
 }
 
+.controls svg.active {
+    color: var(--blue) !important;
+}
+
 .like-heart,
 .like-heart svg {
     transition:all 0.5s;

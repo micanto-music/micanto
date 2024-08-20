@@ -43,6 +43,12 @@ class QueueService
                 case 'latestTracks':
                     $tracks = $this->trackRepository->getLastAdded(100);
                     break;
+                case 'favorites':
+                    $tracks = $this->generateFavoriteQueue($context);
+                    break;
+                case 'handpicked':
+                    $tracks = $this->getHandpickedQueue($context);
+                    break;
                 case 'search':
 //                    $tracks = $this->trackRepository->getLastAdded(100);
                     break;
@@ -81,6 +87,18 @@ class QueueService
     public function generatePlaylistQueue($context)
     {
         return $this->trackRepository->generatePlaylistQueue($context, self::MAX_SONGS);
+    }
+
+    public function generateFavoriteQueue($context)
+    {
+        return $this->trackRepository->generateFavoriteQueue($context, self::MAX_SONGS);
+    }
+
+    public function getHandpickedQueue($context)
+    {
+        $ids = $context['ids'];
+        $shuffle = isset($context['options']['shuffle']) && $context['options']['shuffle'] !== false;
+        return $this->trackRepository->findByIds($ids, $shuffle);
     }
 
     public function generateArtistQueue($context)

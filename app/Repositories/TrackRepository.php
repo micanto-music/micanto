@@ -133,6 +133,35 @@ class TrackRepository extends Repository
         return $res;
     }
 
+    public function generateFavoriteQueue( array $context, int $max = 100)
+    {
+        $query = Track::withData()
+            ->where('interactions.liked', true)
+            ->select(
+                'tracks.*',
+                'albums.name',
+                'artists.name'
+            );
+
+        $sortField = isset($context['options']['sortField']) ? $context['options']['sortField'] : 'title';
+        $sortOrder = isset($context['options']['order']) ? $context['options']['order'] : 'asc';
+        $startIndex = isset($context['options']['index']) ? (int) $context['options']['index']: 0;
+
+        if(isset($context['options']['shuffle']) && $context['options']['shuffle'] !== false) {
+            $sortField = 'random';
+        }
+
+        $res = $this->makeSortable($query, $sortField, $sortOrder)->offset($startIndex)->limit($max)->get();
+        if(count($res) < $max && $startIndex > $max) {
+            $res2 = $this->makeSortable($query, $sortField, $sortOrder)->offset(0)->limit($max)->get();
+            if(count($res2) > 0) {
+                $res = $res->merge($res2);
+            }
+        }
+
+        return $res;
+    }
+
     public function getMostPlayed(int $count = 7): Collection
     {
         return Track::withData()
@@ -199,9 +228,13 @@ class TrackRepository extends Repository
         return Track::withData()->orderByDesc('created_at')->limit($count)->get();
     }
 
-    public function findByIds( $ids = []) {
-        $tracks = Track::withData()->whereIn('tracks.id', $ids)->get();
-        return $tracks->orderByArray($ids);
+    public function findByIds( $ids = [], $shuffle = false) {
+        $tracks = Track::withData()->whereIn('tracks.id', $ids);
+        if($shuffle) {
+            return $tracks->inRandomOrder()->get();
+        } else {
+            return $tracks->get()->orderByArray($ids);
+        }
     }
 
     public function getByStartIndex( $context ) {

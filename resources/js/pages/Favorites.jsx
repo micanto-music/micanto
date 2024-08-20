@@ -103,7 +103,6 @@ export default function Favorites() {
                     <Subline tracks={items}/>
                     <div className="mt-2">
                         <PlayAllBtn context={context}/>
-                        <ContextMenuDots menu="playlist-menu" data={playlist}/>
                     </div>
                 </div>
             </Header>
