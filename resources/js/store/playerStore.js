@@ -11,11 +11,9 @@ function shuffleArr (array, currentTrack = null) {
     if(currentTrack) {
         currentTrackIndex = copy.findIndex(music => music.id === currentTrack.id);
         if(currentTrackIndex === -1) currentTrackIndex = 0;
-    } else {
-        currentTrackIndex = 0;
+        copy.splice(currentTrackIndex, 1);
     }
 
-    copy.splice(currentTrackIndex, 1);
     for (let i = copy.length - 1; i > 0; i--) {
         let rand = Math.floor(Math.random() * (i + 1));
         oldElement = copy[i];
