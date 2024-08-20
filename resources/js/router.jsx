@@ -15,6 +15,7 @@ import Playlist from "./pages/Playlist";
 import Settings from "./pages/Settings";
 import Setup from "./pages/Setup";
 import NotFound from "./pages/NotFound";
+import Favorites from "./pages/Favorites";
 
 const router = createBrowserRouter([
     {
@@ -69,6 +70,10 @@ const router = createBrowserRouter([
             {
                 path: '/settings',
                 element: <Settings />,
+            },
+            {
+                path: '/favorites',
+                element: <Favorites />,
             },
             {
                 path: '/playlist/:id',

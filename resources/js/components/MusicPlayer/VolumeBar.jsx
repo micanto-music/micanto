@@ -1,21 +1,50 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { BsFillVolumeUpFill, BsVolumeDownFill, BsFillVolumeMuteFill } from 'react-icons/bs';
+import {TbVolume, TbVolume2, TbVolume3} from "react-icons/tb";
+import useOutsideClick from "../../hooks/useOutsideClick";
+import MicantoPlayer from "../../services/MicantoPlayer";
 
-const VolumeBar = ({ value, min, max, onChange, setVolume }) => (
-  <div className="hidden lg:flex flex-1 items-center justify-end">
-    {/*{value <= 1 && value > 0.5 && <BsFillVolumeUpFill size={25} color="#FFF" onClick={() => setVolume(0)} />}*/}
-    {/*{value <= 0.5 && value > 0 && <BsVolumeDownFill size={25} color="#FFF" onClick={() => setVolume(0)} />}*/}
-    {/*{value === 0 && <BsFillVolumeMuteFill size={25} color="#FFF" onClick={() => setVolume(1)} />}*/}
-    <input
-      type="range"
-      step="any"
-      value={value}
-      min={min}
-      max={max}
-      onChange={onChange}
-      className="2xl:w-40 lg:w-32 md:w-32 h-1 ml-2"
-    />
-  </div>
-);
+const VolumeBar = () => {
+    const [volume, setVolume] = useState(0.3);
+    const [volumeOpen, setVolumeOpen] = useState(false);
+    const handleClickOutside = () => {
+        setVolumeOpen(false);
+    }
+
+    const ref = useOutsideClick(handleClickOutside);
+
+    const handleVolume = ( volume ) => {
+        setVolume(volume);
+        MicantoPlayer.setVolume(volume);
+        document.getElementById('volume-slider').style.backgroundSize = volume * 100 + '% 100%'
+    }
+
+    const toggleVolume = () => {
+        setVolumeOpen(!volumeOpen);
+    }
+
+    useEffect(() => {
+        document.getElementById('volume-slider').style.backgroundSize = 0.3 * 100 + '% 100%'
+    }, []);
+
+    return (
+        <div ref={ref} className="volume-wrapper flex">
+            <button onClick={toggleVolume}>
+                {volume <= 1 && volume > 0.5 && <TbVolume color="#898989" className="w-6 h-6"/>}
+                {volume <= 0.5 && volume > 0 && <TbVolume2 color="#898989" className="w-6 h-6"/>}
+                {volume == 0 && <TbVolume3  color="#898989" className="w-6 h-6"/>}
+            </button>
+            <div className={`volume-dropdown absolute ${!volumeOpen ? 'hidden' : ''}`}>
+                <div className="input-range-wrapper">
+                    <input
+                        value={volume} step="any" type="range" min="0" max="1" id="volume-slider"
+                        onChange={(event) => handleVolume(event.target.value)}
+                    />
+                </div>
+            </div>
+        </div>
+    );
+}
+;
 
 export default VolumeBar;

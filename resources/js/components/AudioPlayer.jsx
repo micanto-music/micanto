@@ -1,6 +1,6 @@
 import React from "react";
 import {useTranslation} from "react-i18next";
-import Queue from "./Queue";
+import {Link} from "react-router-dom";
 import MicantoPlayer from "../services/MicantoPlayer";
 import MediaSession from "./MusicPlayer/MediaSession";
 import defaultCover from "../assets/img/logo.svg"
@@ -10,10 +10,15 @@ import usePlayer from "../store/playerStore";
 import {RepeatMode} from "../assets/constants";
 import {useShallow} from "zustand/react/shallow";
 import ActivityIndicator from "./ActivityIndicator";
+import VolumeBar from "./MusicPlayer/VolumeBar";
+import ContextMenuHorizontalDots from "./ContextMenuHorizontalDots";
+import AddToPlaylist from "./AddToPlaylist";
+import ArtistList from "./ArtistList";
+import Like from "./Like";
+
 const AudioPlayer = () => {
     const [t] = useTranslation();
     const [track,isShuffle,repeatMode,setRepeatMode, setShuffle] = usePlayer(useShallow(state => [state.currentTrack, state.shuffle, state.repeatMode, state.setRepeatMode, state.setShuffle]));
-
     const onSliderChange = async (position) => {
         await MicantoPlayer.seekTo(position)
     }
@@ -90,52 +95,62 @@ const AudioPlayer = () => {
             onSeekBackward={onSeekBackwardHandler}
             onSeekForward={onSeekForwardHandler}
         >
-            <div className="md:flex hidden sidebar w-[320px] border-l">
+            <div className="bottom-player">
                 {!track && <ActivityIndicator />}
                 {track &&
-                    <>
-                    <div>
-                        <h2 className="mt-2">{t('sidebar.player.headline')}</h2>
+                    <div className="flex flex-col h-[81px]">
 
-                        <div className="mt-10 mb-5 flex justify-center">
-                            <img src={track?.cover ? track?.cover : defaultCover} alt="cover art"
-                                 className="rounded-lg w-[180px]"/>
+                        <div className="grid grid-cols-2 gap-8 min-h-full">
+                            <div className="flex justify-around items-center">
+                                <Controls
+                                    repeatMode={repeatMode}
+                                    shuffle={isShuffle}
+                                    playHandler={onPlayHandler}
+                                    pauseHandler={onPauseHandler}
+                                    nextSong={onNextTrackHandler}
+                                    prevSong={onPreviousTrackHandler}
+                                    repeatClickHandler={onRepeatHandler}
+                                    shuffleClickHandler={onShuffleHandler}
+                                />
+
+                                <Seekbar
+                                    minimumValue={0}
+                                    onValueChange={(event) => onSliderChange(event.target.value)}
+                                />
+
+                                <VolumeBar></VolumeBar>
+                            </div>
+
+                            <div className="flex justify-between">
+                                <div className="flex items-center">
+                                    <div>
+                                        <img src={track?.cover ? track?.cover : defaultCover} alt="cover art"
+                                             className="rounded w-[50px] h-[50px] mr-2"/>
+                                    </div>
+                                    <div>
+                                        <p className="truncate text-white text-sm">
+                                            {track?.title ? track?.title : 'No active Song'}
+                                        </p>
+                                        <p className="truncate text-sm text-gray-400">
+                                            <ArtistList artists={track?.artists}/>
+                                        </p>
+                                        <p className="truncate text-sm text-gray-400">
+                                            <Link to={`/album/${track?.album_id}`}>{track?.album}</Link>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className="quick-actions flex mr-4 items-center">
+                                    <div className="mr-4 flex">
+                                        <Like track={track}/>
+                                    </div>
+                                    <AddToPlaylist track={track} />
+
+                                    {/*<ContextMenuHorizontalDots menu="track-menu" data={[track]}/>*/}
+
+                                </div>
+                            </div>
                         </div>
-                        <div className="">
-                            <p className="truncate text-white font-bold text-lg text-center">
-                                {track?.title ? track?.title : 'No active Song'}
-                            </p>
-                            <p className="truncate text-gray-300 text-center">
-
-                                {track?.artists?.map((artist, i) => [
-                                    i > 0 && ", ",
-                                    <span key={`artist${artist.id}`}> {artist.name}</span>
-                                ])}
-
-                                {track?.artists?.length == 0 &&
-                                    'Unknown Artist'
-                                }
-                            </p>
-                        </div>
-
-                        <Seekbar
-                            minimumValue={0}
-                            onValueChange={(event) => onSliderChange(event.target.value)}
-                        />
-
-                        <Controls
-                            repeatMode={repeatMode}
-                            shuffle={isShuffle}
-                            playHandler={onPlayHandler}
-                            pauseHandler={onPauseHandler}
-                            nextSong={onNextTrackHandler}
-                            prevSong={onPreviousTrackHandler}
-                            repeatClickHandler={onRepeatHandler}
-                            shuffleClickHandler={onShuffleHandler}
-                        />
                     </div>
-                    <Queue/>
-                    </>
                 }
             </div>
         </MediaSession>

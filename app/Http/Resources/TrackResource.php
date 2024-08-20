@@ -29,6 +29,7 @@ class TrackResource extends JsonResource
             'genre'     => $this->genre,
             'lyrics'    => $this->lyrics,
             'artists'   => $this->artists,
+            'liked'     => (bool) $this->liked,
             'added_at'  => $this->created_at ?? null
         ];
     }

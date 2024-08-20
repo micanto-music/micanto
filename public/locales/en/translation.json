@@ -5,7 +5,8 @@
         "tracks": "Tracks",
         "artists": "Artists",
         "albums": "Albums",
-        "queue": "Queue"
+        "queue": "Queue",
+        "favorites": "Favorite Tracks"
     },
     "sidebar": {
         "player": {
@@ -67,6 +68,7 @@
     "by": "by",
     "track": "Track",
     "tracks": "Tracks",
+    "favorites": "Favorite Tracks",
     "albums": "Albums",
     "artists": "Artists",
     "queue": "Current Queue",
@@ -209,5 +211,10 @@
     "error": {
         "email": "This is a correct email",
         "minLength": "Too less letters"
+    },
+    "tooltips": {
+        "addToPlaylist": "Add to playlist",
+        "like": "Like!",
+        "unlike": "Unlike"
     }
 }

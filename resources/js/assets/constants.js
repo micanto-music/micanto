@@ -1,7 +1,7 @@
 /* Drag&Drop Item Types */
 import {HiMusicNote, HiOutlineHome, HiOutlineSearch, HiOutlineUserGroup} from "react-icons/hi";
 import {BsDisc} from "react-icons/bs";
-import {LuLayoutList} from "react-icons/lu";
+import {LuLayoutList, LuHeart} from "react-icons/lu";
 
 export const DragItemTypes = {
     TRACK: 'track',
@@ -16,6 +16,7 @@ export const links = [
     { name: 'artists', to: '/artists', icon: HiOutlineUserGroup },
     { name: 'albums', to: '/albums', icon: BsDisc },
     { name: 'queue', to: '/queue', icon: LuLayoutList },
+    { name: 'favorites', to: '/favorites', icon: LuHeart },
 ];
 
 export const VALID_IMAGE_TYPES = ['image/jpeg', 'image/gif', 'image/png', 'image/webp']

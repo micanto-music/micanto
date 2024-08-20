@@ -365,4 +365,23 @@ export const PlayerAPI = {
 
         return response.data;
     },
+
+    like: async function (trackId) {
+        const response = await axios.request({
+            url: `/api/like`,
+            method: "POST",
+            data: {track: trackId}
+        });
+
+        return response.data;
+    },
+
+    getFavorites: async function (sortField = 'tracks.title', order = 'asc',  page = 1) {
+        const response = await axios.request({
+            url: `/api/favorites?page=${page}&sort=${sortField}&order=${order}`,
+            method: "GET"
+        });
+
+        return response.data;
+    },
 }

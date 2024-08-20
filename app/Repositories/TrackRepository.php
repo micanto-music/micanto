@@ -86,6 +86,21 @@ class TrackRepository extends Repository
         return $this->makeSortable($query, $sortColumn, $sortDirection)->paginate(50);
     }
 
+    public function getSortableFavorites(
+        string $sortColumn,
+        string $sortDirection
+    ) {
+        $query = Track::withData()
+            ->where('interactions.liked', true)
+            ->select(
+                'tracks.*',
+                'albums.name',
+                'artists.name',
+            );
+
+        return $this->makeSortable($query, $sortColumn, $sortDirection)->paginate(50);
+    }
+
     public function generatePlaylistQueue( array $context, int $max = 100)
     {
         $query = Track::withData()

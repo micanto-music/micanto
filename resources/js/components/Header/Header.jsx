@@ -22,14 +22,11 @@ export default function Header({title, children}) {
     const userImage = user?.image ? user?.image :profilePicture;
     const MENU_ID = 'profile-menu';
     const [t] = useTranslation();
-    const [volume, setVolume] = useState(0.3);
     const [volumeOpen, setVolumeOpen] = useState(false);
 
     const handleClickOutside = () => {
         setVolumeOpen(false);
     }
-
-    const ref = useOutsideClick(handleClickOutside);
 
     const syncHandler = () => {
         setSyncing(true);
@@ -40,20 +37,6 @@ export default function Header({title, children}) {
         });
     }
 
-    const handleVolume = ( volume ) => {
-        setVolume(volume);
-        MicantoPlayer.setVolume(volume);
-        document.getElementById('volume-slider').style.backgroundSize = volume * 100 + '% 100%'
-    }
-
-    const toggleVolume = () => {
-        setVolumeOpen(!volumeOpen);
-    }
-
-    useEffect(() => {
-        document.getElementById('volume-slider').style.backgroundSize = 0.3 * 100 + '% 100%'
-    }, []);
-
     return (
         <>
         <header className="items-start">
@@ -61,22 +44,6 @@ export default function Header({title, children}) {
                 {children}
             </div>
             <div className="top-navi flex">
-                <div ref={ref} className="relative mr-3 flex justify center">
-                    <button onClick={toggleVolume}>
-                        {volume <= 1 && volume > 0.5 && <TbVolume className="w-7 h-7" />}
-                        {volume <= 0.5 && volume > 0 && <TbVolume2 className="w-7 h-7" />}
-                        {volume == 0 && <TbVolume3 className="w-7 h-7" />}
-                    </button>
-                    <div className={`volume-dropdown absolute ${!volumeOpen ? 'hidden' : ''}`}>
-                        <div className="input-range-wrapper">
-                        <input
-                            value={volume} step="any" type="range" min="0" max="1" id="volume-slider"
-                            onChange={(event) => handleVolume(event.target.value)}
-                        />
-                        </div>
-                    </div>
-                </div>
-
                 <button
                     className={`mr-3 ${syncing ? 'syncing' : ''}`}
                     title={t('header.reloadLibrary')}

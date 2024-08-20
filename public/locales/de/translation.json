@@ -5,7 +5,8 @@
         "tracks": "Lieder",
         "artists": "Künstler/in",
         "albums": "Alben",
-        "queue": "Wiedergabeliste"
+        "queue": "Wiedergabeliste",
+        "favorites": "Lieblinglieder"
     },
     "sidebar": {
         "player": {
@@ -67,6 +68,7 @@
     "by": "von",
     "track": "Lied",
     "tracks": "Alle Lieder",
+    "favorites": "Lieblingslieder",
     "albums": "Alben",
     "artists": "Künstler/in",
     "queue": "Aktuelle Wiedergabeliste",
@@ -210,5 +212,10 @@
     "error": {
         "email": "Dies ist keine korrekte E-Mail",
         "minLength": "Der Wert ist nicht lang genug"
+    },
+    "tooltips": {
+        "addToPlaylist": "Zur Playlist hinzufügen",
+        "like": "Mag ich!",
+        "unlike": "Mag ich nicht mehr"
     }
 }

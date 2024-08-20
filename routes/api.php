@@ -17,6 +17,8 @@ use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\SetupController;
 use App\Http\Controllers\API\SettingsController;
 use App\Http\Controllers\API\DownloadController;
+use App\Http\Controllers\API\InteractionController;
+use App\Http\Controllers\API\FavoritesController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -46,6 +48,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('/profile/{user}', [ProfileController::class, 'update']);
 
+    // start page
     Route::get('overview', [StartController::class, 'index']);
 
     // music-player interactions for handling song session over devices
@@ -54,22 +57,27 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('player/played', [PlayerController::class, 'played']);
     Route::post('player/getQueue', [PlayerController::class, 'getQueue']);
 
+    // tracks
     Route::apiResource('tracks', TrackController::class)->except(['show','destroy']);
     Route::post('tracks', [TrackController::class, 'update']);
     Route::get('syncTracks', [TrackController::class, 'sync']);
     Route::post('tracks/findByIds', [TrackController::class, 'findByIds']);
 
+    // initial data
     Route::get('getAll', [PlayerController::class, 'getAll']);
 
+    // artists
     Route::apiResource('artists', ArtistsController::class)->except(['show','update','store','destroy']);;
     Route::get('/artist/{artist}', [ArtistController::class, 'show']);
     Route::post('/artist/{artist}', [ArtistController::class, 'update']);
 
+    // albums
     Route::apiResource('albums', AlbumsController::class)->except(['show','update','store','destroy']);;
     Route::get('/album/{album}', [AlbumController::class, 'show']);
     Route::post('/album/{album}', [AlbumController::class, 'update']);
     Route::post('/combineAlbums', [AlbumController::class, 'combine']);
 
+    // playlists
     Route::get('playlists', [PlaylistController::class, 'all']);
     Route::get('playlist/{playlist}', [PlaylistController::class, 'show']);
     Route::post('playlist/{playlist}/addItems', [PlaylistController::class, 'addItems']);
@@ -78,11 +86,17 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('playlist/{playlist}', [PlaylistController::class, 'edit']);
     Route::delete('playlist/{playlist}', [PlaylistController::class, 'delete']);
 
+    // search
     Route::get('search', [SearchController::class, 'search']);
     Route::post('searchArtists', [SearchController::class, 'searchArtists']);
     Route::post('searchAlbum', [SearchController::class, 'searchAlbum']);
 
+    // settings
     Route::get('settings', [SettingsController::class, 'getSettings']);
+
+    // like/favorites
+    Route::post('like', [InteractionController::class, 'toggleLike']);
+    Route::get('favorites', [FavoritesController::class, 'show']);
 
     // downloads
     Route::get('download/track/{track}', [DownloadController::class, 'track']);

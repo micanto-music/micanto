@@ -20,6 +20,8 @@ class TrackBuilder extends Builder
                 'tracks.*',
                 'albums.name',
                 'artists.name',
+                'interactions.liked',
+                'interactions.play_count'
             );
     }
 }

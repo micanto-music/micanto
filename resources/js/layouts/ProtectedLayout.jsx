@@ -10,6 +10,8 @@ import usePlayer from "../store/playerStore";
 import { useShallow } from 'zustand/react/shallow'
 import ModalContainer from "../components/Modal/ModalContainer";
 import MicantoPlayer from "../services/MicantoPlayer";
+import Queue from "../components/Queue";
+import PlaylistsMenu from "../components/ContextMenus/PlaylistsMenu";
 
 export default function DefaultLayout() {
     const { user, setUser } = useAuth();
@@ -70,8 +72,13 @@ export default function DefaultLayout() {
                     <Outlet/>
                 </section>
             </main>
-            <AudioPlayer/>
+
+            <div className="md:flex hidden sidebar w-[320px] border-l">
+                <Queue/>
+            </div>
         </div>
+            <PlaylistsMenu id="playlists-menu" />
+            <AudioPlayer/>
         </div>
     <ModalContainer/>
 </>

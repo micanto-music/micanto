@@ -31,7 +31,7 @@ class PlayerController extends Controller
     public function getSessionTrack() {
 
         $session = ListeningSession::where('user_id', Auth::id())->first();
-        $track = $session ? TrackResource::make(Track::with(['artists:id,name', 'album:id,name,cover'] )->where('id',$session->track_id)->first()): null;
+        $track = $session ? TrackResource::make(Track::withData()->where('tracks.id',$session->track_id)->first()): null;
 
         $resp = new \stdClass();
         $resp->track = $track;
