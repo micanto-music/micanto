@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {useAuth} from "../../contexts/AuthContext";
 import {NavLink} from "react-router-dom";
 import {PiGearLight} from "react-icons/pi";
@@ -6,12 +6,10 @@ import profilePicture from "../../assets/img/user.png";
 import {useModal} from "../../hooks/useModal";
 import ProfileMenu from "../ContextMenus/ProfileMenu";
 import {Dropdown} from "../Dropdown";
-import {TbReload, TbVolume, TbVolume2, TbVolume3} from "react-icons/tb";
+import {TbReload} from "react-icons/tb";
 import {useTranslation} from "react-i18next";
 import {PlayerAPI} from "../../api/PlayerAPI";
 import {toast} from "react-toastify";
-import MicantoPlayer from "../../services/MicantoPlayer";
-import useOutsideClick from "../../hooks/useOutsideClick";
 
 export default function Header({title, children}) {
     const { user} = useAuth();
@@ -22,11 +20,7 @@ export default function Header({title, children}) {
     const userImage = user?.image ? user?.image :profilePicture;
     const MENU_ID = 'profile-menu';
     const [t] = useTranslation();
-    const [volumeOpen, setVolumeOpen] = useState(false);
 
-    const handleClickOutside = () => {
-        setVolumeOpen(false);
-    }
 
     const syncHandler = () => {
         setSyncing(true);
