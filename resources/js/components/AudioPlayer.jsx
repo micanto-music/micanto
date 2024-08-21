@@ -15,6 +15,7 @@ import ContextMenuHorizontalDots from "./ContextMenuHorizontalDots";
 import AddToPlaylist from "./AddToPlaylist";
 import ArtistList from "./ArtistList";
 import Like from "./Like";
+import SidebarToggle from "./SidebarToggle";
 
 const AudioPlayer = () => {
     const [t] = useTranslation();
@@ -146,6 +147,10 @@ const AudioPlayer = () => {
                                         <Like track={track}/>
                                     </div>
                                     <AddToPlaylist track={track} />
+
+                                    <span className="mx-3 text-gray-500">|</span>
+
+                                    <SidebarToggle />
 
                                     {/*<ContextMenuHorizontalDots menu="track-menu" data={[track]}/>*/}
 

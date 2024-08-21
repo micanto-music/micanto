@@ -66,17 +66,13 @@ export default function DefaultLayout() {
         <div className="h-screen flex flex-col justify-end">
             <div className="main-wrapper">
                 <Sidebar/>
-
-            <main className="main-content">
-                <section className="main-section">
-                    <Outlet/>
-                </section>
-            </main>
-
-            <div className="md:flex hidden sidebar w-[320px] border-l">
+                <main className="main-content">
+                    <section className="main-section">
+                        <Outlet/>
+                    </section>
+                </main>
                 <Queue/>
             </div>
-        </div>
             <PlaylistsMenu id="playlists-menu" />
             <AudioPlayer/>
         </div>

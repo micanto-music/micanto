@@ -216,6 +216,8 @@
     "tooltips": {
         "addToPlaylist": "Zur Playlist hinzufügen",
         "like": "Mag ich!",
-        "unlike": "Mag ich nicht mehr"
+        "unlike": "Mag ich nicht mehr",
+        "hideQueue": "Wiedergabeliste ausblenden",
+        "showQueue": "Wiedergabeliste zeigen"
     }
 }

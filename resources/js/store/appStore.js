@@ -34,7 +34,16 @@ const useApp = create((set, get) => ({
         set(() => ({
             modal: modal
         }))
-    }
+    },
+    queueCollapsed: localStorage.getItem("queueCollapsed") === 'true',
+    toggleQueueSidebar: () => {
+        set((state) => {
+            localStorage.setItem("queueCollapsed", !state.queueCollapsed);
+            return {
+                queueCollapsed: !state.queueCollapsed,
+            };
+        })
+    },
 }));
 
 export default useApp;

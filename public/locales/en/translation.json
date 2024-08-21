@@ -215,6 +215,8 @@
     "tooltips": {
         "addToPlaylist": "Add to playlist",
         "like": "Like!",
-        "unlike": "Unlike"
+        "unlike": "Unlike",
+        "hideQueue": "Hide Queue",
+        "showQueue": "Show Queue"
     }
 }
