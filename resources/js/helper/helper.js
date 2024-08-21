@@ -1,5 +1,6 @@
 import {sampleSize, sumBy} from "lodash";
 import {VALID_IMAGE_TYPES} from "../assets/constants";
+import {isEqual} from "lodash";
 
 export const formatToHis = (total) => {
     total = Math.round(total)
@@ -51,6 +52,14 @@ export const makeArray = (itemArr) => ([]).concat(itemArr)
 export const ItemsShareSameValue = (array, key) => {
     if (array.length === 1) return true
     return new Set(array.map(item => item[key])).size === 1
+}
+
+export const ItemsShareSameObjectValues = (array, key) => {
+    if (array.length === 1) return true;
+    let firstElem = array[0][key];
+    return new Set(array.map((item) => {
+        return isEqual(firstElem, item[key])
+    })).size === 1;
 }
 
 /* Map data to object for react select */

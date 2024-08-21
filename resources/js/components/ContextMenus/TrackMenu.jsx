@@ -4,7 +4,7 @@ import {useTranslation} from "react-i18next";
 import {useLocation, useNavigate, useParams} from "react-router-dom";
 import usePlayer from "../../store/playerStore";
 import {useShallow} from "zustand/react/shallow";
-import {ItemsShareSameValue} from "../../helper/helper";
+import {ItemsShareSameObjectValues, ItemsShareSameValue} from "../../helper/helper";
 import {PlayerAPI} from "../../api/PlayerAPI";
 import {toast} from "react-toastify";
 import {useAuth} from "../../contexts/AuthContext";
@@ -82,10 +82,14 @@ export default function TrackMenu({id}) {
         }
     }
 
-    function sameAlbum({ props, data, triggerEvent }) {
+    function sameAlbum({ props }) {
         return !ItemsShareSameValue(props, 'album_id');
     }
-    function notPlaylist({ props, data, triggerEvent }) {
+
+    function sameArtist({ props }) {
+        return !ItemsShareSameObjectValues(props, 'artists');
+    }
+    function notPlaylist() {
         return pathname.indexOf('playlist') !== 1;
     }
 
@@ -98,6 +102,7 @@ export default function TrackMenu({id}) {
 
             <Separator hidden={sameAlbum} />
             <Item hidden={sameAlbum} id="linkalbum" onClick={handleItemClick}>{t('context.goto_album')}</Item>
+            <Item hidden={sameArtist} id="linkalbum" onClick={handleItemClick}>{t('context.goto_artist')}</Item>
 
             <Separator hidden={notPlaylist}/>
             <Item hidden={notPlaylist} id="remove" onClick={handleItemClick}>{t('context.remove_from_playlist')}</Item>
