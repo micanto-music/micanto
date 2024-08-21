@@ -5,6 +5,7 @@ import usePlayer from "../../store/playerStore";
 import {useDraggable} from "../../hooks/useDragAndDrop";
 import MicantoPlayer from "../../services/MicantoPlayer";
 import {TbExplicit} from "react-icons/tb";
+import Like from "../Like";
 const List = ({ track, context, iteration, rowClicked, selectedRows, clearSelection, displayMenu }) => {
     const [currentTrack, isPlaying, playContext ] = usePlayer(state => [state.currentTrack, state.isPlaying, state.playContext]);
     const { startDragging } = useDraggable('tracks');
@@ -60,7 +61,11 @@ const List = ({ track, context, iteration, rowClicked, selectedRows, clearSelect
             </div>
             <div className="flex justify-end py-2 flex-1 mr-3">
                 {duration}
+                <div className="px-3 flex">
+                    <Like track={track} />
+                </div>
             </div>
+
 
         </div>
     );

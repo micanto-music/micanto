@@ -70,6 +70,7 @@ const Table = ({ tracks, cols, handleSorting, fetchMore, hasMore, context, optio
                             { col.accessor === sortField && order === 'desc' && <span className="table-sort"><RxCaretUp size="20" /></span> }
                         </div>
                     ))}
+                    <div className="table-header basis-10 py-2"></div>
                 </div>
                     <InfiniteScroll
                         scrollableTarget="main-scroll"

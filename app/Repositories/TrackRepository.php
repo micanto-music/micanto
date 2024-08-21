@@ -80,7 +80,8 @@ class TrackRepository extends Repository
                 'tracks.*',
                 'albums.name',
                 'artists.name',
-                'playlist_track.created_at'
+                'playlist_track.created_at',
+                'interactions.liked'
             );
 
         return $this->makeSortable($query, $sortColumn, $sortDirection)->paginate(50);
@@ -96,6 +97,7 @@ class TrackRepository extends Repository
                 'tracks.*',
                 'albums.name',
                 'artists.name',
+                'interactions.liked'
             );
 
         return $this->makeSortable($query, $sortColumn, $sortDirection)->paginate(50);

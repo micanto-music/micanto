@@ -11,6 +11,7 @@ import {useModal} from "../../hooks/useModal";
 import {useShallow} from "zustand/react/shallow";
 import {TbExplicit} from "react-icons/tb";
 import {PlayerAPI} from "../../api/PlayerAPI";
+import Like from "../Like";
 
 const TableItem = ({ index, track, cols, context, rowClicked, selectedRows, clearSelection, setSelectedRows, displayMenu })  => {
     const [currentTrack, playContext] = usePlayer(useShallow(state => [state.currentTrack, state.playContext]));
@@ -96,6 +97,9 @@ const TableItem = ({ index, track, cols, context, rowClicked, selectedRows, clea
                     {dayjs(track?.added_at).format('DD.MM.YYYY')}
                 </div>
             }
+            <div className="basis-10 py-2">
+                <Like track={track} />
+            </div>
         </div>
     );
 }
