@@ -68,7 +68,7 @@ export default function Artist() {
     return (
         <>
             <Header title={artist?.name}>
-                <div className="thumb-wrapper w-[150px] mr-3">
+                <div className="thumb-wrapper w-[105px] mr-3">
                     <img
                         className="rounded-lg"
                         src={artist?.image ?  artist?.image : defaultCover}

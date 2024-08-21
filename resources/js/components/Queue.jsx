@@ -11,7 +11,7 @@ const Queue = () => {
     const [t] = useTranslation();
     return(
         <div className={`sidebar w-[320px] border-l ${queueCollapsed ? `hidden`: ``}`}>
-            <div className="mt-6">
+            <div className="mt-2">
                 <h3>{t('sidebar.queue.headline')}</h3>
                 <ul>
                     {queue?.map((track, i) => (

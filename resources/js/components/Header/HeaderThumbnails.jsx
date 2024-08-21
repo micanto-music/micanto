@@ -15,7 +15,7 @@ export default function HeaderThumbnails({items}) {
     const tiles = thumbs().length < 4 ? 'tile-1' : 'tile-4';
 
     return (
-        <div className={`thumbnail-wrapper w-[150px] mr-3 ${tiles}`}>
+        <div className={`thumbnail-wrapper w-[105px] mr-3 ${tiles}`}>
             {thumbs().map((thumb, i) => (
             <img
                 key={i}

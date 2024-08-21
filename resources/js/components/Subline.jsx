@@ -3,8 +3,13 @@ import React from "react";
 import {getTracklistLength} from "../helper/helper";
 import {useTranslation} from "react-i18next";
 
-export default function Subline({tracks, album, albums}) {
+export default function Subline({tracks, album, albums, trackcount}) {
     const [t] = useTranslation();
+
+    if(!trackcount) {
+        trackcount = tracks?.length;
+    }
+
     return (
         <div className="subline mt-1">
             {album &&
@@ -24,7 +29,7 @@ export default function Subline({tracks, album, albums}) {
             }
             {albums && <span> {albums?.length} {t('albums')}</span>}
 
-            <span>{albums && <>&middot;</>} {tracks?.length} {t('subline.tracks')}</span>
+            <span>{albums && <>&middot;</>} {trackcount} {t('subline.tracks')}</span>
             <span>&middot; {getTracklistLength(tracks, t)}</span>
         </div>
     );
