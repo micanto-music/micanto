@@ -20,6 +20,10 @@ export default function ModalTrackEdit(props) {
     const { control, formState: { errors }, register, handleSubmit } = useForm();
     const onlyOne = tracks.length === 1;
     const placeholder = onlyOne ? '' : t('edit.leave');
+    const [crop, setCrop] = useState({});
+    const saveCrop = (croppedArea, croppedAreaPixels) => {
+        setCrop(croppedAreaPixels);
+    }
 
     let artistOptions = [];
     if(onlyOne) {
@@ -68,6 +72,7 @@ export default function ModalTrackEdit(props) {
         // add cover
         if(newCover && newCover !== cover) {
             formData.append("image", newCover);
+            formData.append("crop", JSON.stringify(crop));
         }
 
         // add all fields
@@ -108,7 +113,7 @@ export default function ModalTrackEdit(props) {
         <BaseModal title={t('context.edit_tracks')} show={props.isOpen} onClose={props.onClose}>
 
             <form onSubmit={handleSubmit(onSubmit)}>
-                <EditCoverDroppable cover={cover} setCover={setCover}/>
+                <EditCoverDroppable cover={cover} setCover={setCover} saveCrop={saveCrop}/>
 
                 <div className="form-field">
                     <label>{t('edit.title')}</label>

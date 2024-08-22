@@ -5,13 +5,18 @@ import {formatToHis} from "../../helper/helper";
 import usePlayer from "../../store/playerStore";
 import {useDraggable} from "../../hooks/useDragAndDrop";
 import MicantoPlayer from "../../services/MicantoPlayer";
-const SmallBar = ({ track }) => {
+const SmallBar = ({ track, context }) => {
     const [musicContext, playContext] = usePlayer(state => [state.musicContext, state.playContext]);
     const { startDragging } = useDraggable('tracks');
+    let useContext = musicContext;
+
+    if(context) {
+        useContext = context;
+    }
 
     return (
         <li className="smallbar flex items-center"
-            onClick={() => playContext(musicContext, track)}
+            onClick={() => playContext(useContext, track)}
             onDragStart={(e) => startDragging(e, track)}
             draggable
         >

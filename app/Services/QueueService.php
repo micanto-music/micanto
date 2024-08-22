@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Http\Resources\TrackResource;
+use App\Models\Artist;
 use App\Models\Track;
 use App\Repositories\TrackRepository;
 
@@ -39,6 +40,17 @@ class QueueService
                     break;
                 case 'mostPlayed':
                     $tracks = $this->trackRepository->getMostPlayed(100);
+                    break;
+                case 'mostPlayedByArtist':
+                    $artist = Artist::find((int)$context['id']);
+                    $tracks = $this->trackRepository->getMostPlayedByArtist($artist);
+                    // if too less tracks try to fill with other tracks by artist
+                    if($tracks->count() < 100) {
+                        $additionalTracks = $this->generateArtistQueue($context);
+                        if($additionalTracks->count()) {
+                            $tracks = $tracks->concat($additionalTracks)->unique();
+                        }
+                    }
                     break;
                 case 'latestTracks':
                     $tracks = $this->trackRepository->getLastAdded(100);

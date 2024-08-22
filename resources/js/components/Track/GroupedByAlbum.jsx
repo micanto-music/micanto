@@ -3,11 +3,33 @@ import Bar from "../Album/Bar";
 import React from "react";
 import List from "./List";
 import {useSelection} from "../../hooks/useSelection";
+import TrackMenu from "../ContextMenus/TrackMenu";
+import {useContextMenu} from "react-contexify";
 
 export default function GroupedByAlbum({tracks, albums})
 {
     const grouped = groupBy(tracks, 'album_id');
-    const {rowClicked, selectedRows, escapeKeyHandler} = useSelection(tracks);
+    const {rowClicked, selectedRows, escapeKeyHandler, clearSelection} = useSelection(tracks);
+    const MENU_ID = 'track-menu';
+    const { show } = useContextMenu();
+
+    function displayMenu(e, data){
+        e.preventDefault();
+        let selected = selectedRows;
+        if(!data.selected) {
+            clearSelection();
+            selected = [data];
+            setSelectedRows(selected);
+            data.selected = true;
+        }
+
+        show({
+            event: e,
+            props: selected,
+            id: MENU_ID
+        });
+    }
+
     return(
         <>
         {albums?.map((album, i) => (
@@ -20,10 +42,17 @@ export default function GroupedByAlbum({tracks, albums})
                     iteration={j}
                     rowClicked={rowClicked}
                     selectedRows={selectedRows}
+                    clearSelection={clearSelection}
+                    context={{
+                        'type': 'album',
+                        'id': album.id
+                    }}
+                    displayMenu={displayMenu}
                 />
             ))}
             </div>
         ))}
+            <TrackMenu id={MENU_ID} />
         </>
     );
 }

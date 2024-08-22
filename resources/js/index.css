@@ -227,6 +227,15 @@ header {
     background: var(--secondary-color) !important;
 }
 
+.current-playing svg,
+.current-playing .like-heart.liked svg{
+    color: #fff !important;
+}
+
+.current-playing .like-heart.liked svg {
+    fill: #fff !important;
+}
+
 [draggable] {
     user-select: none;
     -khtml-user-drag: element;
@@ -329,11 +338,13 @@ header {
     background: var(--blue-light) !important;
 }
 
+.selected .like-heart svg {
+    color: #fff !important;
+}
+
 .selected a {
     color: #fff;
 }
-
-
 
 #bubble {
     background: var(--secondary-color);

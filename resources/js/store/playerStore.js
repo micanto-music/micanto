@@ -137,7 +137,7 @@ const usePlayer = create((set, get) => ({
         let shuffle = get().shuffle;
         let currentQueue = get().queue;
         let currentTrack;
-        if(context.hasOwnProperty('type')) {
+        if(context && context.hasOwnProperty('type')) {
             if(context.type !== 'queue' && !isEqual(currentContext, context)) {
                 const {data: queue} = await PlayerAPI.getQueue(context);
                 currentQueue = queue;

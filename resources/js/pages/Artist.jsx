@@ -35,6 +35,7 @@ export default function Artist() {
 
     const MENU_ID = 'album-menu';
     const ARTIST_MENU_ID = 'artist-menu';
+
     const { show } = useContextMenu({
         id: MENU_ID
     });
@@ -46,6 +47,10 @@ export default function Artist() {
             event: e,
             props: data
         });
+    }
+
+    function displayTrackMenu() {
+
     }
 
     useEffect(() => {
@@ -91,7 +96,10 @@ export default function Artist() {
                     <h3>{t('artist.top_tracks')}</h3>
                     <ul className="mb-8">
                     {topTracks?.map((track, i) => (
-                        <SmallBar key={track.id} track={track}/>
+                        <SmallBar key={track.id} track={track} context={{
+                            'type': 'mostPlayedByArtist',
+                            'id': id
+                        }}/>
                     ))}
                     </ul>
                 </>
@@ -116,6 +124,7 @@ export default function Artist() {
                             <GroupedByAlbum
                                 tracks={tracks}
                                 albums={albums}
+                                displayMenu={displayTrackMenu}
                             />
                         </div>
                     }
@@ -132,6 +141,7 @@ export default function Artist() {
                 }
                 <AlbumMenu id={MENU_ID}/>
                 <ArtistMenu id={ARTIST_MENU_ID} />
+
             </Scroll>
         </>
     );
