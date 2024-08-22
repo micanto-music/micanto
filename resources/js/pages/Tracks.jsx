@@ -11,9 +11,10 @@ import {useLocation} from "react-router-dom";
 import ActivityIndicator from "../components/ActivityIndicator";
 import useAlbumStore from "../store/AlbumStore";
 import useTrackStore from "../store/TrackStore";
+import Subline from "../components/Subline";
 
 export default function Tracks() {
-    const [items, setItems, addItems] = useTrackStore(state => [state.items, state.setItems, state.addItems]);
+    const [items, setItems, addItems, trackCount, trackLength] = useTrackStore(state => [state.items, state.setItems, state.addItems, state.trackCount, state.trackLength]);
     const [isLoading, setIsLoading] = useState(true);
     const loaderRef = useRef(null);
     const [hasNext, setHasNext] = useState(true);
@@ -91,6 +92,7 @@ export default function Tracks() {
                 <HeaderThumbnails items={items}/>
                 <div className="flex-col items-start">
                     <HeaderTitle>{t('tracks')}</HeaderTitle>
+                    <Subline tracks={items} trackcount={trackCount} length={trackLength}/>
                     <PlayAllBtn context={context}/>
                 </div>
             </Header>

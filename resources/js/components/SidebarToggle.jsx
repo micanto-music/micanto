@@ -14,7 +14,6 @@ export default function() {
     const [t] = useTranslation();
 
     const onClick = () => {
-        console.log(queueCollapsed);
         toggleQueueSidebar();
     }
 

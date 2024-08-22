@@ -26,7 +26,6 @@ const AudioPlayer = () => {
 
     const onRepeatHandler = async () => {
         let newRepeatMode;
-        console.log(repeatMode);
         switch(repeatMode) {
             case 'queue':
                 newRepeatMode = 'track';
@@ -41,7 +40,6 @@ const AudioPlayer = () => {
                 await MicantoPlayer.setRepeatMode(RepeatMode.Queue);
                 break;
         }
-        console.log(newRepeatMode);
         setRepeatMode(newRepeatMode);
     }
 

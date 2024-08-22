@@ -21,7 +21,11 @@ const useTrackStore = create((set, get) => ({
         set({
             items: newItems
         })
-    }
+    },
+    trackCount: 0,
+    setTrackCount: (count) => set(() => ({ trackCount: count })),
+    trackLength: 0,
+    setTrackLength: (length) => set(() => ({ trackLength: length })),
 }));
 
 export default useTrackStore;

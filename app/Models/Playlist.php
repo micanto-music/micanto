@@ -13,10 +13,10 @@ class Playlist extends Model
 {
     use HasFactory;
     use HasEagerLimit;
-    public function tracks(): BelongsToMany
-    {
-        return $this->belongsToMany(Track::class)->withTimestamps();
-    }
+//    public function tracks(): BelongsToMany
+//    {
+//        return $this->belongsToMany(Track::class)->withTimestamps();
+//    }
 
     public function user(): BelongsTo
     {
@@ -37,5 +37,10 @@ class Playlist extends Model
         return Attribute::get(function ($value) {
             return $value ? url('img/playlists/'.$value) : null;
         });
+    }
+
+    public function tracks(): BelongsToMany
+    {
+        return $this->belongsToMany(Track::class)->using(PlaylistTrack::class)->withTimestamps();
     }
 }

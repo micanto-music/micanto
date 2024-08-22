@@ -107,8 +107,6 @@ export default function Playlist() {
         return <ActivityIndicator />;
     }
 
-    console.log(playlist);
-
     return (
         <>
             {playlist &&
@@ -116,7 +114,7 @@ export default function Playlist() {
                 <HeaderThumbnails items={[playlist]}/>
                 <div className="flex-col items-start">
                     <HeaderTitle>{playlist?.name}</HeaderTitle>
-                    <Subline tracks={items} trackcount={playlist?.tracks_count}/>
+                    <Subline tracks={items} trackcount={playlist?.tracks_count} length={playlist?.length}/>
                     <div className="mt-2">
                         <PlayAllBtn context={context}/>
                         <ContextMenuDots menu="playlist-menu" data={playlist}/>

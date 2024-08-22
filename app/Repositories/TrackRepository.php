@@ -258,4 +258,9 @@ class TrackRepository extends Repository
 
         return $res;
     }
+
+    public function getTotalLength(): float
+    {
+        return Track::query()->sum('length');
+    }
 }

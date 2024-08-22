@@ -58,7 +58,11 @@ class PlayerController extends Controller
         $resp = [
             'queue' => $this->queueService->generateQueue($context),
             'session' => $session,
-            'playlists' => $this->playlistRepository->getUserPlaylists()
+            'playlists' => $this->playlistRepository->getUserPlaylists(),
+            'info' => [
+                'trackCount' => Track::query()->count(),
+                'trackLength' => Track::query()->sum('duration')
+            ]
         ];
         return response()->json($resp);
     }

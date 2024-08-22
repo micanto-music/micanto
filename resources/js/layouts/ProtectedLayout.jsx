@@ -12,6 +12,7 @@ import ModalContainer from "../components/Modal/ModalContainer";
 import MicantoPlayer from "../services/MicantoPlayer";
 import Queue from "../components/Queue";
 import PlaylistsMenu from "../components/ContextMenus/PlaylistsMenu";
+import useTrackStore from "../store/TrackStore";
 
 export default function DefaultLayout() {
     const { user, setUser } = useAuth();
@@ -39,6 +40,7 @@ export default function DefaultLayout() {
     }
 
     const [ setFromSession ] = usePlayer(useShallow((state) => [state.setFromSession]));
+    const [ setTrackCount,setTrackLength ] = useTrackStore(useShallow((state) => [state.setTrackCount,state.setTrackLength]));
 
     useEffect(() => {
         let unmounted = false;
@@ -48,6 +50,11 @@ export default function DefaultLayout() {
 
             const initData = await PlayerAPI.getInitialData();
             await setFromSession(initData);
+
+            // add infos for all tracks
+            setTrackCount(initData['info']['trackCount']);
+            setTrackLength(initData['info']['trackLength']);
+
             setIsPlayerReady(true);
         })();
         return () => {

@@ -5,7 +5,7 @@ use App\Models\Playlist;
 use App\Services\ImageService;
 class PlaylistObserver
 {
-    public function __construct(
+      public function __construct(
         private ImageService $imageService
     ){}
 
@@ -15,6 +15,7 @@ class PlaylistObserver
 
             $tracks = $playlist->tracks;
             $covers = [];
+
             foreach($tracks as $track) {
                 if($track->album->cover && !in_array($track->album->cover, $covers)) {
                     $covers[] = $track->album->cover;
