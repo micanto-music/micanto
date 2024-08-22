@@ -81,30 +81,48 @@ class ImageService
             ->save($target, self::QUALITY);
     }
 
-    public function createAlbumImage( $imageData, $extension, Album $album ) {
+    public function createAlbumImage( $imageData, $extension, Album $album, $crop = null) {
 
         $filename = $album->id.'cover.jpg';
         $coverDir = public_path(config('micanto.album_cover_dir'));
 
-        $this->create($imageData, $coverDir.$filename);
+        if($crop) {
+            $this->cropByUser($imageData, $coverDir.$filename, $crop);
+        } else {
+            $this->create($imageData, $coverDir.$filename);
+        }
+
         return $filename;
     }
 
-    public function createArtistImage($imageData, $extension, Artist $artist)
+    public function createArtistImage($imageData, $extension, Artist $artist, $crop = null)
     {
         $filename = $artist->id.'cover.jpg';
         $coverDir = public_path(config('micanto.artist_image_dir'));
-
-        $this->crop($imageData, $coverDir.$filename);
+        if($crop) {
+            $this->cropByUser($imageData, $coverDir.$filename, $crop);
+        } else {
+            $this->crop($imageData, $coverDir . $filename);
+        }
         return $filename;
     }
 
-    public function createUserImage($imageData, $extension, User $user)
+    public function createUserImage($imageData, $extension, User $user, $crop = null)
     {
         $filename = $user->id.'cover.jpg';
         $coverDir = public_path(config('micanto.user_image_dir'));
-
-        $this->crop($imageData, $coverDir.$filename);
+        if($crop) {
+            $this->cropByUser($imageData, $coverDir.$filename, $crop);
+        } else {
+            $this->crop($imageData, $coverDir.$filename);
+        }
         return $filename;
+    }
+
+    public function cropByUser(object|string $imageData, string $target, object $crop) {
+        $this->imageManager
+            ->make($imageData)
+            ->crop($crop->width, $crop->height, $crop->x, $crop->y)
+            ->save($target, self::QUALITY);
     }
 }

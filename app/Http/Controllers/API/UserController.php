@@ -31,7 +31,8 @@ class UserController extends Controller
             $image = $request->image;
             $extension = explode('/', $image->getMimeType());
             $extension = $extension[1] ?? 'png';
-            $filename = $this->imageService->createUserImage($image,$extension,$user);
+            $crop = json_decode($request->crop);
+            $filename = $this->imageService->createUserImage($image,$extension,$user,$crop);
             $user->image = basename($filename);
         }
 

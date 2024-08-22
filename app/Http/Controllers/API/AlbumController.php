@@ -44,8 +44,17 @@ class AlbumController extends Controller
                 $image = $request->image;
                 $extension = explode('/', $image->getMimeType());
                 $extension = $extension[1] ?? 'png';
-                $filename = $this->imageService->createAlbumImage($image,$extension,$album);
+                $crop = json_decode($request->crop);
+                $filename = $this->imageService->createAlbumImage($image, $extension, $album, $crop);
                 $album->cover = basename($filename);
+            } else {
+                if( !$request->has('image') && $request->has('crop') && $album->cover) {
+                    $image = $album->cover;
+                    $extension = pathinfo($image, PATHINFO_EXTENSION) ?? 'png';
+                    $crop = json_decode($request->crop);
+                    $filename = $this->imageService->createAlbumImage($image, $extension, $album, $crop);
+                    $album->cover = basename($filename);
+                }
             }
 
             $is_compilation = $request->compilation == 'true';

@@ -997,6 +997,12 @@ input {
     fill: var(--secondary-color);
 }
 
+.crop-area {
+    width: 150px;
+    height: 150px;
+    position: relative;
+}
+
 @keyframes rotate {
     100% {
         transform: rotate(360deg);

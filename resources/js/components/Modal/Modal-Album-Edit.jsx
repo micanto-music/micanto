@@ -19,7 +19,10 @@ export default function ModalAlbumEdit(props) {
     const cover = props.data.cover ? props.data.cover : defaultCover;
     const [newCover, setCover] = useState(cover);
     const updateItems = useAlbumStore((state) => state.updateItems);
-
+    const [crop, setCrop] = useState({});
+    const saveCrop = (croppedArea, croppedAreaPixels) => {
+        setCrop(croppedAreaPixels);
+    }
     async function searchArtists(value) {
         return PlayerAPI.searchArtists(value)
             .then((response) => response.map(mapResponseToValuesAndLabels))
@@ -35,9 +38,15 @@ export default function ModalAlbumEdit(props) {
     const onSubmit = async (values) => {
         showLoader();
         const formData = new FormData();
-
+        let newImage = false;
         if(newCover && newCover !== cover) {
             formData.append("image", newCover);
+            newImage = true;
+        }
+
+        if(crop && Object.hasOwn(crop, 'x')) {
+            formData.append("crop", JSON.stringify(crop));
+            newImage = true;
         }
 
         for (const key in values) {
@@ -59,7 +68,7 @@ export default function ModalAlbumEdit(props) {
         <BaseModal title={t('context.edit_album')} show={props.isOpen} onClose={props.onClose}>
             <form onSubmit={handleSubmit(onSubmit)}>
 
-                <EditCoverDroppable cover={cover} setCover={setCover}/>
+                <EditCoverDroppable cover={cover} setCover={setCover} saveCrop={saveCrop}/>
 
                 <div className="form-field">
                     <label>{t('edit.name')}</label>

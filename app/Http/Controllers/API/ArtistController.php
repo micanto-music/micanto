@@ -68,6 +68,16 @@ class ArtistController extends Controller
                             $artist->image = basename($artistImage);
                         }
                     }
+                } else {
+                    // if only crop changes
+                    if( !$request->has('image') && $request->has('crop') && $artist->image) {
+                        $image = $artist->image;
+                        $extension = pathinfo($image, PATHINFO_EXTENSION) ?? 'png';
+                        $crop = json_decode($request->crop);
+                        $filename = $this->imageService->createArtistImage($image, $extension, $artist, $crop);
+                        $artist->image = basename($filename);
+                    }
+
                 }
             }
 

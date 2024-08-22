@@ -36,8 +36,17 @@ class ProfileController extends Controller
                 $image = $request->image;
                 $extension = explode('/', $image->getMimeType());
                 $extension = $extension[1] ?? 'png';
-                $filename = $this->imageService->createUserImage($image,$extension,$user);
+                $crop = json_decode($request->crop);
+                $filename = $this->imageService->createUserImage($image, $extension, $user, $crop);
                 $user->image = basename($filename);
+            } else {
+                if( !$request->has('image') && $request->has('crop') && $user->image) {
+                    $image = $user->image;
+                    $extension = pathinfo($image, PATHINFO_EXTENSION) ?? 'png';
+                    $crop = json_decode($request->crop);
+                    $filename = $this->imageService->createUserImage($image, $extension, $user, $crop);
+                    $user->image = basename($filename);
+                }
             }
 
             $user->name = $request->name;

@@ -10,18 +10,30 @@ import {useAuth} from "../../contexts/AuthContext";
 
 export default function ModalUserEdit(props) {
     const [t] = useTranslation();
-    const { user} = useAuth();
+    const { user, setUser} = useAuth();
     const { formState: { errors }, register, handleSubmit, watch } = useForm();
 
     const cover = props?.data?.image ? props?.data?.image : defaultCover;
     const [newCover, setCover] = useState(cover);
     const userData = props.data;
+    const [crop, setCrop] = useState({});
+    const saveCrop = (croppedArea, croppedAreaPixels) => {
+        setCrop(croppedAreaPixels);
+    }
+
     const onSubmit = async (data) => {
         showLoader();
         const formData = new FormData();
+        let newImage = false;
 
         if(newCover && newCover !== cover) {
             formData.append("image", newCover);
+            newImage = true;
+        }
+
+        if(crop && Object.hasOwn(crop, 'x')) {
+            formData.append("crop", JSON.stringify(crop));
+            newImage = true;
         }
 
         if(data.password) {
@@ -35,9 +47,12 @@ export default function ModalUserEdit(props) {
             formData.append("new_password", data.new_password);
         }
 
-        PlayerAPI.updateUser(userData?.id, formData).then(() => {
-            // navigate("/artists", { replace: true});
+        PlayerAPI.updateUser(userData?.id, formData).then((res) => {
             hideLoader();
+            setUser(res?.data);
+            if(newImage) {
+                document.querySelector('.profile-img').src = res?.data.image + '?='+ Date.now();
+            }
         });
         props.onClose();
     };
@@ -46,7 +61,7 @@ export default function ModalUserEdit(props) {
         <BaseModal title={t('profile.title')} show={props.isOpen} onClose={props.onClose}>
             <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
 
-                <EditCoverDroppable cover={cover} setCover={setCover}/>
+                <EditCoverDroppable cover={cover} setCover={setCover} saveCrop={saveCrop}/>
                 {user.is_admin !== 1 &&
                     <div className="form-field">
                         <label>{t('profile.current_password')}</label>

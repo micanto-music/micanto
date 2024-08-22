@@ -17,15 +17,29 @@ export default function ModalArtistEdit(props) {
     const [newCover, setCover] = useState(cover);
     const updateItem = useArtistStore((state) => state.updateItem);
     const artistData = props.data;
-
+    const [crop, setCrop] = useState({});
+    const saveCrop = (croppedArea, croppedAreaPixels) => {
+        setCrop(croppedAreaPixels);
+    }
     const onSubmit = async (data) => {
         showLoader();
         const formData = new FormData();
+        let newImage = false;
         if(newCover && newCover !== cover) {
             formData.append("image", newCover);
+            newImage = true;
         }
+
+        if(crop && Object.hasOwn(crop, 'x')) {
+            formData.append("crop", JSON.stringify(crop));
+            newImage = true;
+        }
+
         formData.append("name", data.name);
         PlayerAPI.updateArtist(artistData?.id, formData).then((res) => {
+            if(newImage) {
+                res.data.image = res.data.image + "?t=" + Date.now();
+            }
             updateItem(res.data);
             hideLoader();
         });
@@ -36,7 +50,7 @@ export default function ModalArtistEdit(props) {
         <BaseModal title={t('context.edit_artist')} show={props.isOpen} onClose={props.onClose}>
             <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
 
-                <EditCoverDroppable cover={cover} setCover={setCover}/>
+                <EditCoverDroppable cover={cover} setCover={setCover} saveCrop={saveCrop}/>
 
                 <div className="form-field">
                     <label>{t('edit.name')}</label>

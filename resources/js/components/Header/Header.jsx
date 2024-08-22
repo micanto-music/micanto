@@ -54,7 +54,7 @@ export default function Header({title, children}) {
                 </NavLink>
 
                 <Dropdown id={MENU_ID} props={user}>
-                    <img src={userImage} className="w-[28px] rounded-full"/>
+                    <img src={userImage} className="profile-img w-[28px] rounded-full"/>
                 </Dropdown>
             </div>
 
