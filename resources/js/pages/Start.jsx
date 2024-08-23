@@ -8,7 +8,6 @@ import Card from "../components/Album/Card";
 import HeaderTitle from "../components/Header/HeaderTitle";
 import Tile from "../components/Playlist/Tile";
 import {useContextMenu} from "react-contexify";
-import TrackMenu from "../components/ContextMenus/TrackMenu";
 import ActivityIndicator from "../components/ActivityIndicator";
 import {FiPlusSquare} from "react-icons/fi";
 import {useModal} from "../hooks/useModal";
@@ -146,7 +145,6 @@ const Start = () => {
 
 
             </Scroll>
-            <TrackMenu id={TRACK_MENU_ID}/>
         </>
     );
 };

@@ -20,7 +20,6 @@ export default function ({track}) {
         >
             <LuHeart size="24" color="#898989"/>
         </button>
-        <Tooltip id="like-tooltip" />
         </>
     );
 

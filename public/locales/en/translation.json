@@ -217,6 +217,7 @@
         "like": "Like!",
         "unlike": "Unlike",
         "hideQueue": "Hide Queue",
-        "showQueue": "Show Queue"
+        "showQueue": "Show Queue",
+        "context": "Show more options"
     }
 }

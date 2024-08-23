@@ -218,6 +218,7 @@
         "like": "Mag ich!",
         "unlike": "Mag ich nicht mehr",
         "hideQueue": "Wiedergabeliste ausblenden",
-        "showQueue": "Wiedergabeliste zeigen"
+        "showQueue": "Wiedergabeliste zeigen",
+        "context": "Weitere Optionen zeigen"
     }
 }

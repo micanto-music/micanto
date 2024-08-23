@@ -973,6 +973,12 @@ input {
     stroke: #fff !important;
 }
 
+.quick-actions .btn-round,
+.quick-actions .btn-round:hover {
+    background: transparent;
+    border: 0 none;
+}
+
 .controls {
     width: 190px;
 }

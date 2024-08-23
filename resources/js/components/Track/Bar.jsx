@@ -6,7 +6,6 @@ import defaultCover from "../../assets/img/logo.svg";
 import usePlayer from "../../store/playerStore";
 import {useDraggable} from "../../hooks/useDragAndDrop";
 import ContextMenuHorizontalDots from "../ContextMenuHorizontalDots";
-import MicantoPlayer from "../../services/MicantoPlayer";
 import Like from "../Like";
 const Bar = ({ track, context, displayMenu }) => {
     const [currentTrack, isPlaying, playContext ] = usePlayer(state => [state.currentTrack, state.isPlaying, state.playContext]);

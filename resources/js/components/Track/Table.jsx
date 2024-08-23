@@ -4,8 +4,6 @@ import { RxCaretDown,RxCaretUp } from "react-icons/rx";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import {useTranslation} from "react-i18next";
 import {useSelection} from "../../hooks/useSelection";
-import PlaylistMenu from "../ContextMenus/PlaylistMenu";
-import TrackMenu from "../ContextMenus/TrackMenu";
 import {useContextMenu} from "react-contexify";
 
 const Table = ({ tracks, cols, handleSorting, fetchMore, hasMore, context, options = [] }) => {
@@ -95,7 +93,6 @@ const Table = ({ tracks, cols, handleSorting, fetchMore, hasMore, context, optio
                             ))}
                         </div>
                     </InfiniteScroll>
-                    <TrackMenu id={MENU_ID}/>
             </>
             }
         </>

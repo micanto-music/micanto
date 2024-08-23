@@ -13,6 +13,7 @@ import MicantoPlayer from "../services/MicantoPlayer";
 import Queue from "../components/Queue";
 import PlaylistsMenu from "../components/ContextMenus/PlaylistsMenu";
 import useTrackStore from "../store/TrackStore";
+import {Tooltip} from "react-tooltip";
 
 export default function DefaultLayout() {
     const { user, setUser } = useAuth();
@@ -83,6 +84,8 @@ export default function DefaultLayout() {
             <PlaylistsMenu id="playlists-menu" />
             <AudioPlayer/>
         </div>
+        <Tooltip id="context-tooltip" />
+        <Tooltip id="like-tooltip" />
     <ModalContainer/>
 </>
 );

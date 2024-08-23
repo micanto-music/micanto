@@ -145,13 +145,11 @@ const AudioPlayer = () => {
                                         <Like track={track}/>
                                     </div>
                                     <AddToPlaylist track={track} />
+                                    <ContextMenuHorizontalDots menu="track-menu" data={[track]} size={24}/>
 
                                     <span className="mx-3 text-gray-500">|</span>
 
                                     <SidebarToggle />
-
-                                    {/*<ContextMenuHorizontalDots menu="track-menu" data={[track]}/>*/}
-
                                 </div>
                             </div>
                         </div>

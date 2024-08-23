@@ -10,7 +10,6 @@ import HeaderTitle from "../components/Header/HeaderTitle";
 import PlayAllBtn from "../components/PlayAllBtn";
 import HeaderThumbnails from "../components/Header/HeaderThumbnails";
 import {useContextMenu} from "react-contexify";
-import TrackMenu from "../components/ContextMenus/TrackMenu";
 import ContextMenuDots from "../components/ContextMenuDots";
 import AlbumMenu from "../components/ContextMenus/AlbumMenu";
 import {useTranslation} from "react-i18next";
@@ -136,7 +135,6 @@ export default function Album() {
                         ))}
                     </div>
                 ))}
-                <TrackMenu id={MENU_ID}/>
             </Scroll>
             <AlbumMenu id={ALBUM_MENU_ID}/>
         </>

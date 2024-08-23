@@ -13,7 +13,6 @@ import Card from "../components/Track/Card";
 import LastSearches from "../components/LastSearches";
 import AlbumMenu from "../components/ContextMenus/AlbumMenu";
 import ArtistMenu from "../components/ContextMenus/ArtistMenu";
-import TrackMenu from "../components/ContextMenus/TrackMenu";
 import {useContextMenu} from "react-contexify";
 
 const Search = () => {
@@ -199,7 +198,6 @@ const Search = () => {
                     }
                 </div>
             </Scroll>
-            <TrackMenu id={TRACK_MENU_ID}/>
             <AlbumMenu id={ALBUM_MENU_ID}/>
             <ArtistMenu id={ARTIST_MENU_ID} />
         </>

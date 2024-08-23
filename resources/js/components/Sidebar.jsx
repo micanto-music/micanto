@@ -10,6 +10,7 @@ import {FiPlusSquare} from "react-icons/fi";
 import {useModal} from "../hooks/useModal";
 import {useContextMenu} from "react-contexify";
 import PlaylistMenu from "./ContextMenus/PlaylistMenu";
+import TrackMenu from "./ContextMenus/TrackMenu";
 
 const NavLinks = ({ handleClick, t }) => (
     <>
@@ -40,6 +41,7 @@ const Sidebar = () => {
     const [t] = useTranslation();
     const { onOpen: openAddPlaylist } = useModal('Playlist-Add');
     const MENU_ID = "playlist-menu";
+    const TRACK_MENU_ID = "track-menu";
     const [minWidth, maxWidth, defaultWidth] = [85, 350, 250];
     const [width, setWidth] = useState(
         parseInt(localStorage.getItem("sidebarWidth")) || defaultWidth
@@ -114,6 +116,7 @@ const Sidebar = () => {
                 </div>
             </nav>
             <PlaylistMenu id={MENU_ID}/>
+            <TrackMenu id={TRACK_MENU_ID}/>
         </>
         <div
             className="cursor-col-resize"
