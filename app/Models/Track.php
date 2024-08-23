@@ -6,16 +6,13 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Query\JoinClause;
 use Laravel\Scout\Searchable;
 use App\Builder\TrackBuilder;
-use Staudenmeir\EloquentEagerLimit\HasEagerLimit;
 
 class Track extends Model
 {
 
     use Searchable;
-    use HasEagerLimit;
 
     protected $hidden = ['pivot'];
     protected $guarded = [];

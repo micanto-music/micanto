@@ -7,16 +7,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Staudenmeir\EloquentEagerLimit\HasEagerLimit;
 
 class Playlist extends Model
 {
     use HasFactory;
-    use HasEagerLimit;
-//    public function tracks(): BelongsToMany
-//    {
-//        return $this->belongsToMany(Track::class)->withTimestamps();
-//    }
 
     public function user(): BelongsTo
     {
