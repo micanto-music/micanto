@@ -213,6 +213,16 @@
         "email": "Dies ist keine korrekte E-Mail",
         "minLength": "Der Wert ist nicht lang genug"
     },
+    "upload": {
+        "title": "Lieder hochladen",
+        "dnd": "Drag & Drop deine Lieder oder <span class=\"filepond--label-action\">Durchsuchen</span>",
+        "processing": "Lädt hoch",
+        "processingError": "Fehler beim Hochladen",
+        "processingComplete": "Hochgeladen",
+        "tapToRetry": "Nochmal versuchen",
+        "tapToCancel": "Abbrechen",
+        "tapToUndo": "Rückgängig"
+    },
     "tooltips": {
         "addToPlaylist": "Zur Playlist hinzufügen",
         "like": "Mag ich!",

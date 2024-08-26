@@ -16,6 +16,7 @@ import Settings from "./pages/Settings";
 import Setup from "./pages/Setup";
 import NotFound from "./pages/NotFound";
 import Favorites from "./pages/Favorites";
+import Upload from "./pages/Upload";
 
 const router = createBrowserRouter([
     {
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
             {
                 path: '/settings',
                 element: <Settings />,
+            },
+            {
+                path: '/upload',
+                element: <Upload />,
             },
             {
                 path: '/favorites',

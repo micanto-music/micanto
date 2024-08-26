@@ -19,6 +19,7 @@ use App\Http\Controllers\API\SettingsController;
 use App\Http\Controllers\API\DownloadController;
 use App\Http\Controllers\API\InteractionController;
 use App\Http\Controllers\API\FavoritesController;
+use App\Http\Controllers\API\UploadController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -103,6 +104,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('download/album/{album}', [DownloadController::class, 'album']);
     Route::get('download/artist/{artist}', [DownloadController::class, 'artist']);
     Route::get('download/playlist/{playlist}', [DownloadController::class, 'playlist']);
+
+    // uploads
+    Route::post('upload', [UploadController::class, 'upload']);
 });
 
 

@@ -976,6 +976,11 @@ fastq@^1.6.0:
   dependencies:
     reusify "^1.0.4"
 
+filepond@^4.31.2:
+  version "4.31.2"
+  resolved "https://registry.yarnpkg.com/filepond/-/filepond-4.31.2.tgz#66e0478d03f11a71650cb5d01777682c78831fec"
+  integrity sha512-D1G8PUjXfD6va0zkhtPhCqT8k4YW1RrCpBNmhlvho1bkFihiOEQJiplHRtrh95UvjcgZYeVNwUOH9OkBDljHFg==
+
 fill-range@^7.0.1:
   version "7.0.1"
   resolved "https://registry.yarnpkg.com/fill-range/-/fill-range-7.0.1.tgz#1919a6a7c75fe38b2c7c77e5198535da9acdda40"
@@ -1537,6 +1542,11 @@ react-easy-crop@^5.0.8:
   dependencies:
     normalize-wheel "^1.0.1"
     tslib "^2.0.1"
+
+react-filepond@^7.1.2:
+  version "7.1.2"
+  resolved "https://registry.yarnpkg.com/react-filepond/-/react-filepond-7.1.2.tgz#8f04d06396a59b5980dda479c095ed23e6d1f68b"
+  integrity sha512-vrlx9o/n+jGikh6jLey+PpUGYtEZn8MdeB6JFeX/5/N/Mu75IHG+MFQbv8R27bNXvS41mDtV9Fo5DG+s6siVIA==
 
 react-hook-form@^7.50.1:
   version "7.50.1"

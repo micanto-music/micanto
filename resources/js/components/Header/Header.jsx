@@ -10,6 +10,7 @@ import {TbReload} from "react-icons/tb";
 import {useTranslation} from "react-i18next";
 import {PlayerAPI} from "../../api/PlayerAPI";
 import {toast} from "react-toastify";
+import {RiUploadCloud2Line} from "react-icons/ri";
 
 export default function Header({title, children}) {
     const { user} = useAuth();
@@ -38,6 +39,14 @@ export default function Header({title, children}) {
                 {children}
             </div>
             <div className="top-navi flex">
+
+                <NavLink
+                    to="/upload"
+                    className="mr-3"
+                >
+                    <RiUploadCloud2Line className="w-7 h-7" />
+                </NavLink>
+
                 <button
                     className={`mr-3 ${syncing ? 'syncing' : ''}`}
                     title={t('header.reloadLibrary')}

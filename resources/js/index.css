@@ -1,5 +1,6 @@
 @import "react-contexify/dist/ReactContexify.css";
 @import "react-tooltip/dist/react-tooltip.css";
+@import "filepond/dist/filepond.min.css";
 
 @tailwind base;
 @tailwind components;
@@ -1018,6 +1019,19 @@ input {
     width: 150px;
     height: 150px;
     position: relative;
+}
+
+.filepond--panel-root {
+    @apply bg-music-light border-sidebar border;
+    color: #fff;
+}
+
+.filepond--drop-label.filepond--drop-label label {
+    color: #fff;
+}
+
+.filepond--item-panel {
+    @apply bg-music;
 }
 
 @keyframes rotate {

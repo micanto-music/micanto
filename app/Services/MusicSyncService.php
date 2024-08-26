@@ -21,7 +21,7 @@ class MusicSyncService
         private SpotifyMetadataService $spotifyMetadataService
     ){}
 
-    public function sync(bool $force = false)
+    public function sync(bool $force = false, $newFile = false)
     {
         $settings = Setting::first();
         $musicPath = $settings->music_folder;
@@ -30,8 +30,7 @@ class MusicSyncService
             'new' => 0,
             'error' => 0
         ];
-
-        $files = $this->findFiles($musicPath);
+        $files = $newFile ? [$newFile] : $this->findFiles($musicPath);
 
         foreach ($files as $file) {
             try {

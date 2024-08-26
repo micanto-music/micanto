@@ -384,4 +384,17 @@ export const PlayerAPI = {
 
         return response.data;
     },
+
+    uploadFile:  async function (formData) {
+        const response = await axios.request({
+            url: `/api/upload`,
+            method: "POST",
+            data:formData,
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+
+        return response.data;
+    },
 }
