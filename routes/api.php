@@ -61,6 +61,7 @@ Route::middleware('auth:sanctum')->group(function () {
     // tracks
     Route::apiResource('tracks', TrackController::class)->except(['show','destroy']);
     Route::post('tracks', [TrackController::class, 'update']);
+    Route::delete('tracks', [TrackController::class, 'delete']);
     Route::get('syncTracks', [TrackController::class, 'sync']);
     Route::post('tracks/findByIds', [TrackController::class, 'findByIds']);
 

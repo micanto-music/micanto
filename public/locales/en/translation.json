@@ -62,12 +62,16 @@
         "compilation": "Different artists",
         "features": "Features"
     },
+    "album": {
+        "is_single": "Single"
+    },
     "subline": {
         "tracks": "Lieder"
     },
     "by": "by",
     "track": "Track",
     "tracks": "Tracks",
+    "track_delete": "Really delete this song(s) from filesystem? This is NOT reversible!",
     "favorites": "Favorite Tracks",
     "albums": "Albums",
     "artists": "Artists",
@@ -120,8 +124,9 @@
         "play_album": "Play album",
         "shuffle_album": "Shuffle all",
         "edit_album": "Edit album",
-        "play_track": "Play Tracks(s)",
-        "edit_tracks": "Edit Tracks(s)",
+        "play_track": "Play Track(s)",
+        "edit_tracks": "Edit Track(s)",
+        "delete_track": "Delete Track(s)",
         "play": "Play",
         "shuffle": "Shuffle all",
         "edit": "Edit",

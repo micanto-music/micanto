@@ -62,12 +62,16 @@
         "compilation": "Verschiedene Künstler/innen",
         "features": "Features"
     },
+    "album": {
+        "is_single": "Single"
+    },
     "subline": {
         "tracks": "Lieder"
     },
     "by": "von",
     "track": "Lied",
     "tracks": "Alle Lieder",
+    "track_delete": "Willst du das/die Lied/er wirklich vom Dateisystem löschen? Dieser Schritt kann NICHT rückgängig gemacht werden!",
     "favorites": "Lieblingslieder",
     "albums": "Alben",
     "artists": "Künstler/in",
@@ -122,6 +126,7 @@
         "edit_album": "Album bearbeiten",
         "edit_tracks": "Lied(er) bearbeiten",
         "play_track": "Lied(er) abspielen",
+        "delete_track": "Lied(er) löschen",
         "play": "Abspielen",
         "shuffle": "Zufällig abspielen",
         "edit": "Bearbeiten",

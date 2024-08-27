@@ -6,6 +6,7 @@ use App\Http\Requests\API\TrackUpdateRequest;
 use App\Http\Resources\TrackResource;
 use App\Models\Album;
 use App\Models\Artist;
+use App\Models\Song;
 use App\Models\Track;
 use App\Repositories\TrackRepository;
 use App\Services\ImageService;
@@ -52,6 +53,38 @@ class TrackController extends Controller
         return response()->json([
             'tracks' => TrackResource::collection($updated)
         ]);
+    }
+
+    public function delete(Request $request)
+    {
+        $this->authorize('admin', Auth::user());
+        $ids = $request->ids;
+
+        $shouldBackUp = config('micanto.backup_on_delete');
+
+        // remove from disk, to prevent resync
+        $tracks = Track::query()->findMany($ids);
+        $tracks->each(function (Track $track) use ($shouldBackUp): void {
+            try {
+                if ($shouldBackUp) {
+                    rename($track->path, $track->path . '.bak');
+                } else {
+                    unlink($track->path);
+                }
+            } catch (Throwable $e) {
+
+                // TODO implement logger
+//                $this->logger->error('Failed to remove song file', [
+//                    'path' => $song->path,
+//                    'exception' => $e,
+//                ]);
+            }
+        });
+
+        // remove from DB
+        Track::destroy($ids);
+
+        return response()->noContent();
     }
 
     private function updateTrack(Track $track, $request): Track

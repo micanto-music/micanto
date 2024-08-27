@@ -73,6 +73,17 @@ export const PlayerAPI = {
         return response.data;
     },
 
+    deleteTracks: async function (ids) {
+        const response = await axios.request({
+            url: `/api/tracks`,
+            method: "DELETE",
+            data: {
+                ids: ids
+            }
+        })
+        return response.data;
+    },
+
     getInitialData: async function () {
         const response = await axios.request({
             url: `/api/getAll`,

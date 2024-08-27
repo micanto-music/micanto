@@ -53,6 +53,7 @@
     --blue: #1bafff;
     --blue-light: #6296b9;
     --text-cyan: rgb(34 211 238 / 1);
+    --danger: #e74c3c;
 
     --contexify-menu-bgColor: #23263d;
     --contexify-separator-color: #383a5a;
@@ -1032,6 +1033,14 @@ input {
 
 .filepond--item-panel {
     @apply bg-music;
+}
+
+[data-identifier="danger"] .contexify_itemContent {
+    color: var(--danger) !important;
+}
+
+[data-identifier="danger"]:hover .contexify_itemContent {
+    color: #fff !important;
 }
 
 @keyframes rotate {

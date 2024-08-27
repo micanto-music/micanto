@@ -3,6 +3,7 @@
 return [
     'media_path' => env('MEDIA_PATH'),
 
+    'backup_on_delete' => env('BACKUP_ON_DELETE', true),
     'album_cover_dir' => 'img/covers/',
     'album_thumbnail_dir' => 'img/thumbnails/',
     'user_image_dir' => 'img/users/',

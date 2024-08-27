@@ -28,6 +28,8 @@ const Card = ({ album, width, displayMenu, selectAble = false }) => {
 
     }
 
+    console.log(album);
+
     const onClickHandler = (e) => {
         if(e.currentTarget === e.target) {
             navigate(`/album/${album?.id}`);
@@ -65,6 +67,7 @@ const Card = ({ album, width, displayMenu, selectAble = false }) => {
                         {album.year && <span>{album.year} &middot;&nbsp;</span>}
                         {album.is_compilation == true && t('artist.compilation')}
                         {!album.is_compilation && <ArtistList artists={[album?.artist]}/>}
+                        {album.is_single == true && <span>&nbsp;&middot;&nbsp; {t('album.is_single')}</span>}
                     </p>
                 </div>
             </div>

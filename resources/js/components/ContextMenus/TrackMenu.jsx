@@ -11,6 +11,7 @@ import {useAuth} from "../../contexts/AuthContext";
 
 export default function TrackMenu({id}) {
     const { onOpen: openEditTrack } = useModal('Track-Edit');
+    const { onOpen: openDeleteTrack } = useModal('Track-Delete');
     const [t] = useTranslation();
     const navigate = useNavigate();
     const [playlists, musicContext, playContext, shuffle] = usePlayer(useShallow(state => [state.playlists, state.musicContext, state.playContext, state.shuffle]));
@@ -62,9 +63,7 @@ export default function TrackMenu({id}) {
                 ids = props.map(track => track.id);
                 PlayerAPI.removePlaylistItems(params.id, 'tracks', ids).then(() => {
                     document.getElementById('main-scroll').scrollTo(0,0);
-                    // navigate(pathname);
                 });
-
                 break;
             case "addtoplaylist":
                 ids = props.map(track => track.id);
@@ -75,7 +74,9 @@ export default function TrackMenu({id}) {
                 ).then((res) => {
                     notify(t('toast.added_to_playlist'));
                 });
-
+                break;
+            case "delete":
+                openDeleteTrack(event,props);
                 break;
             default:
                 break;
@@ -114,6 +115,9 @@ export default function TrackMenu({id}) {
                     <Item id="addtoplaylist" key={`playlist${playlist.id}`} data={{id:playlist.id}} onClick={handleItemClick}>{playlist.name}</Item>
                 ))}
             </Submenu>
+
+            <Separator />
+            <Item data-identifier="danger" id="delete" onClick={handleItemClick}>{t('context.delete_track')}</Item>
         </Menu>
     );
 }
