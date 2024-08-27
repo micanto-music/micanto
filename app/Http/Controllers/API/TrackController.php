@@ -16,6 +16,7 @@ use Illuminate\Database\Query\JoinClause;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
+use Psr\Log\LoggerInterface;
 
 class TrackController extends Controller
 {
@@ -24,7 +25,8 @@ class TrackController extends Controller
         private TrackRepository $trackRepository,
         private MusicSyncService $musicSyncService,
         private PruneService $pruneService,
-        private ImageService $imageService
+        private ImageService $imageService,
+        private LoggerInterface $logger
     )
     {}
 
@@ -72,12 +74,10 @@ class TrackController extends Controller
                     unlink($track->path);
                 }
             } catch (Throwable $e) {
-
-                // TODO implement logger
-//                $this->logger->error('Failed to remove song file', [
-//                    'path' => $song->path,
-//                    'exception' => $e,
-//                ]);
+                $this->logger->error('Failed to remove track file', [
+                    'path' => $track->path,
+                    'exception' => $e,
+                ]);
             }
         });
 
