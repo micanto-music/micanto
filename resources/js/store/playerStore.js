@@ -141,6 +141,7 @@ const usePlayer = create((set, get) => ({
             if(context.type !== 'queue' && !isEqual(currentContext, context)) {
                 const {data: queue} = await PlayerAPI.getQueue(context);
                 currentQueue = queue;
+                currentContext = context;
             }
         }
 
@@ -167,11 +168,12 @@ const usePlayer = create((set, get) => ({
             currentTime: 0,
             queue: currentQueue,
             untouchedQueue: currentQueue,
-            shuffle: shuffle
+            shuffle: shuffle,
+            musicContext: currentContext
         });
 
         await MicantoPlayer.load(currentTrack);
-        MicantoPlayer.play();
+        await MicantoPlayer.play();
 
     },
     playQueue: (queue) => {

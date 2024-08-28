@@ -6,13 +6,15 @@ export default function PlayAllBtn({context}) {
     const [setShuffle, playContext] = usePlayer(state => [state.setShuffle, state.playContext]);
     const playAll = async () => {
         await setShuffle(false);
-        context['options']['shuffle'] = false;
+        if(!Object.hasOwn(context, 'options')) context.options = {};
+        context.options.shuffle = false;
         await playContext(context,null);
     };
 
     const playAllShuffle = async () => {
         await setShuffle(true);
-        context['options']['shuffle'] = true;
+        if(!Object.hasOwn(context, 'options')) context.options = {};
+        context.options.shuffle = true;
         await playContext(context,null, true);
     };
 

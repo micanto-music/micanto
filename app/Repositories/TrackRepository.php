@@ -38,7 +38,6 @@ class TrackRepository extends Repository
 
     public function makeSortable( $query, $sortColumn,  $sortDirection)
     {
-        //dump($sortColumn);
         if($sortColumn === 'random') {
             $query->inRandomOrder();
         } else  {

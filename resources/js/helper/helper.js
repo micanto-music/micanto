@@ -107,7 +107,8 @@ export const getThumbnails = (items) => {
     return sampleCovers.slice(0, 4);
 }
 
-export const seekUpdate = ( position, max ) => {
+export const seekUpdate = ( position, max ) =>
+{
     const min = 0;
     const range = document.getElementById('seekbar');
     const bubble = document.getElementById('bubble');
@@ -119,6 +120,17 @@ export const seekUpdate = ( position, max ) => {
     range.style.backgroundSize = newVal + '% 100%'
 }
 
-export const reorderArr = (i, arr) => {
+export const reorderArr = (i, arr) =>
+{
     return [...arr.slice(i), ...arr.slice(0,i)];
+}
+
+// check if context is in equal in general. Without any options, startindexes etc
+export const sameContext = (currentContext, pageContext) =>
+{
+    const c1 = {...currentContext}
+    delete c1.options;
+    const c2 = {...pageContext}
+    delete c2.options;
+    return isEqual(c1, c2);
 }

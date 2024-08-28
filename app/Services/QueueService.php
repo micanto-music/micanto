@@ -85,15 +85,17 @@ class QueueService
 
     public function generateAlbumQueue($context)
     {
+        $shuffle = isset($context['options']['shuffle']) && $context['options']['shuffle'] !== false;
         $tracks = Track::with(['artists:id,name', 'album:id,name,cover'] )
-            ->where('album_id', $context['id'])
-            ->orderBy('tracks.disc')
-            ->orderBy('tracks.track')
-            ->orderBy('tracks.title')
-            ->limit(self::MAX_SONGS)
-            ->get();
-
-        return $tracks;
+            ->where('album_id', $context['id']);
+        if($shuffle) {
+            $tracks->inRandomOrder();
+        } else {
+            $tracks->orderBy('tracks.disc')
+                ->orderBy('tracks.track')
+                ->orderBy('tracks.title');
+        }
+        return $tracks->limit(self::MAX_SONGS)->get();
     }
 
     public function generatePlaylistQueue($context)
@@ -115,19 +117,22 @@ class QueueService
 
     public function generateArtistQueue($context)
     {
+        $shuffle = isset($context['options']['shuffle']) && $context['options']['shuffle'] !== false;
         $tracks = Track::withData()
             ->whereHas('artists', function($q) use($context) {
                 $q->where('artist_id',$context['id']);
-            })
-            ->orderBy('year', 'desc')
-            ->orderBy('albums.name')
-            ->orderBy('tracks.disc')
-            ->orderBy('tracks.track')
-            ->orderBy('tracks.title')
-            ->limit(self::MAX_SONGS)
-            ->get();
+            });
 
-        return $tracks;
+        if($shuffle) {
+            $tracks->inRandomOrder();
+        } else {
+            $tracks->orderBy('year', 'desc')
+                ->orderBy('albums.name')
+                ->orderBy('tracks.disc')
+                ->orderBy('tracks.track')
+                ->orderBy('tracks.title');
+        }
+        return $tracks->limit(self::MAX_SONGS)->get();
     }
 
 }
