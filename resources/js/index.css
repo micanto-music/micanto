@@ -128,7 +128,7 @@ input[type=range]:focus {
 
 .main-scroll {
     @apply flex flex-col flex-1 overflow-y-auto start-0;
-    padding: 0 1.5rem 1.5rem;
+    /*padding: 0 1.5rem 1.5rem;*/
     flex: 1;
     -ms-overflow-style: -ms-autohiding-scrollbar;
     /*place-content: start;*/
@@ -151,9 +151,19 @@ input[type=range]:focus {
 }
 
 .sticky-header {
-    @apply sticky top-0;
+    @apply sticky;
+    top: 40px;
     background: var(--main-bg-color);
     border-bottom: 1px solid #42476f;
+}
+
+#compact-header {
+    background: var(--main-bg-color);
+    height: 50px;
+    top: 0;
+    opacity: 0;
+    z-index: 10;
+    margin-bottom: -50px;
 }
 
 header {

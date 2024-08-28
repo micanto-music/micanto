@@ -113,28 +113,30 @@ export default function Album() {
             </Header>
 
             <Scroll>
-                {discs?.map((disc, i) => (
-                    <div key={disc.no} className="striped">
-                        {discs.length > 1 &&
-                        <h4 className="mt-3">{t('disc')} {disc.no}</h4>}
+                <div className="pl-5 pr-2">
+                    {discs?.map((disc, i) => (
+                        <div key={disc.no} className="striped">
+                            {discs.length > 1 &&
+                                <h4 className="mt-3">{t('disc')} {disc.no}</h4>}
 
-                        {disc?.tracks.map((track, i) => (
-                            <List
-                                key={track.id}
-                                track={track}
-                                rowClicked={rowClicked}
-                                selectedRows={selectedRows}
-                                context={{
-                                    type: 'album',
-                                    id: album.id
-                                }}
-                                iteration={i}
-                                displayMenu={displayMenu}
-                                clearSelection={clearSelection}
-                            />
-                        ))}
-                    </div>
-                ))}
+                            {disc?.tracks.map((track, i) => (
+                                <List
+                                    key={track.id}
+                                    track={track}
+                                    rowClicked={rowClicked}
+                                    selectedRows={selectedRows}
+                                    context={{
+                                        type: 'album',
+                                        id: album.id
+                                    }}
+                                    iteration={i}
+                                    displayMenu={displayMenu}
+                                    clearSelection={clearSelection}
+                                />
+                            ))}
+                        </div>
+                    ))}
+                </div>
             </Scroll>
             <AlbumMenu id={ALBUM_MENU_ID}/>
         </>

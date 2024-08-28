@@ -14,6 +14,7 @@ import PlayAllBtn from "../components/PlayAllBtn";
 import ContextMenuDots from "../components/ContextMenuDots";
 import ActivityIndicator from "../components/ActivityIndicator";
 import useTrackStore from "../store/TrackStore";
+import CompactHeader from "../components/Header/CompactHeader";
 export default function Playlist() {
     const [isLoading, setIsLoading] = useState(true);
     const [playlist, setPlaylist] = useState(null);
@@ -109,21 +110,24 @@ export default function Playlist() {
 
     return (
         <>
-            {playlist &&
-            <Header title={playlist?.name}>
-                <HeaderThumbnails items={[playlist]}/>
-                <div className="flex-col items-start">
-                    <HeaderTitle>{playlist?.name}</HeaderTitle>
-                    <Subline tracks={items} trackcount={playlist?.tracks_count} length={playlist?.length}/>
-                    <div className="mt-2">
-                        <PlayAllBtn context={context}/>
-                        <ContextMenuDots menu="playlist-menu" data={playlist}/>
-                    </div>
-                </div>
-            </Header>
-            }
             {items.length > 0 &&
                     <Scroll>
+                        {playlist &&
+                            <>
+                            <Header title={playlist?.name}>
+                                <HeaderThumbnails items={[playlist]}/>
+                                <div className="flex-col items-start">
+                                    <HeaderTitle>{playlist?.name}</HeaderTitle>
+                                    <Subline tracks={items} trackcount={playlist?.tracks_count} length={playlist?.length}/>
+                                    <div className="mt-2">
+                                        <PlayAllBtn context={context}/>
+                                        <ContextMenuDots menu="playlist-menu" data={playlist}/>
+                                    </div>
+                                </div>
+                            </Header>
+                            <CompactHeader title={playlist?.name} context={context} />
+                            </>
+                        }
                         <Table
                             tracks={items}
                             cols={cols}

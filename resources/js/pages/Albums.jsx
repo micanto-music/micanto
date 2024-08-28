@@ -82,24 +82,26 @@ export default function Albums() {
                     <HeaderTitle>{t('albums')}</HeaderTitle>
                 </Header>
                 <Scroll>
-                <InfiniteScroll
-                    scrollableTarget="main-scroll"
-                    dataLength={items.length}
-                    next={fetchData}
-                    hasMore={hasNext}
-                >
-                    <div className="flex flex-wrap sm:justify-start justify-center gap-2">
-                        {items?.map((album, i) => (
-                            <Card
-                                selectAble={true}
-                                key={i} album={album}
-                                displayMenu={displayMenu}
-                            />
-                        ))}
+                    <div className="pl-5 pr-2">
+                        <InfiniteScroll
+                            scrollableTarget="main-scroll"
+                            dataLength={items.length}
+                            next={fetchData}
+                            hasMore={hasNext}
+                        >
+                            <div className="flex flex-wrap sm:justify-start justify-center gap-2">
+                                {items?.map((album, i) => (
+                                    <Card
+                                        selectAble={true}
+                                        key={i} album={album}
+                                        displayMenu={displayMenu}
+                                    />
+                                ))}
+                            </div>
+                        </InfiniteScroll>
+                        <AlbumMenu id={MENU_ID}/>
                     </div>
-                </InfiniteScroll>
-                    <AlbumMenu id={MENU_ID}/>
                 </Scroll>
             </>
-    );
+);
 }

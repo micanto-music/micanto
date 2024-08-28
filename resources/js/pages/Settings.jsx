@@ -56,7 +56,7 @@ const Settings = () => {
             </Header>
 
             <Scroll>
-                <div className="flex ...">
+                <div className="flex pl-5 pr-2">
                     <div className="w-full lg:w-1/2">
                         <form onSubmit={handleSubmit(onSubmit)}>
 

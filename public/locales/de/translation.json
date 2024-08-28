@@ -73,6 +73,12 @@
     "tracks": "Alle Lieder",
     "track_delete": "Willst du das/die Lied/er wirklich vom Dateisystem löschen? Dieser Schritt kann NICHT rückgängig gemacht werden!",
     "favorites": "Lieblingslieder",
+    "favorite": {
+        "empty": {
+            "title": "Bisher keine Lieblinslieder",
+            "body": "Klicke auf das Herz-Symbol um neue Lieder als Lieblingslieder zu markieren."
+        }
+    },
     "albums": "Alben",
     "artists": "Künstler/in",
     "queue": "Aktuelle Wiedergabeliste",

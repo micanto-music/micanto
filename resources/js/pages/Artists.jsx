@@ -80,20 +80,22 @@ export default function Artists() {
                 <HeaderTitle>{t('artists')}</HeaderTitle>
             </Header>
             <Scroll>
-                <InfiniteScroll
-                    scrollableTarget="main-scroll"
-                    dataLength={items.length}
-                    next={fetchData}
-                    hasMore={hasNext}
-                >
-                <div className="flex flex-wrap sm:justify-start justify-center gap-2">
-                    {items?.map((artist, i) => (
-                        <Card key={artist.id} artist={artist}
-                              displayMenu={displayMenu}
-                        />
-                    ))}
+                <div className="pl-5 pr-2">
+                    <InfiniteScroll
+                        scrollableTarget="main-scroll"
+                        dataLength={items.length}
+                        next={fetchData}
+                        hasMore={hasNext}
+                    >
+                        <div className="flex flex-wrap sm:justify-start justify-center gap-2">
+                            {items?.map((artist, i) => (
+                                <Card key={artist.id} artist={artist}
+                                      displayMenu={displayMenu}
+                                />
+                            ))}
+                        </div>
+                    </InfiniteScroll>
                 </div>
-                </InfiniteScroll>
             </Scroll>
             <ArtistMenu id={MENU_ID}/>
         </>

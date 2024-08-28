@@ -12,6 +12,7 @@ import ActivityIndicator from "../components/ActivityIndicator";
 import useAlbumStore from "../store/AlbumStore";
 import useTrackStore from "../store/TrackStore";
 import Subline from "../components/Subline";
+import CompactHeader from "../components/Header/CompactHeader";
 
 export default function Tracks() {
     const [items, setItems, addItems, trackCount, trackLength] = useTrackStore(state => [state.items, state.setItems, state.addItems, state.trackCount, state.trackLength]);
@@ -88,15 +89,17 @@ export default function Tracks() {
 
     return (
         <>
-            <Header title={t('tracks')}>
-                <HeaderThumbnails items={items}/>
-                <div className="flex-col items-start">
-                    <HeaderTitle>{t('tracks')}</HeaderTitle>
-                    <Subline tracks={items} trackcount={trackCount} length={trackLength}/>
-                    <PlayAllBtn context={context}/>
-                </div>
-            </Header>
             <Scroll>
+                <Header title={t('tracks')}>
+                    <HeaderThumbnails items={items}/>
+                    <div className="flex-col items-start">
+                        <HeaderTitle>{t('tracks')}</HeaderTitle>
+                        <Subline tracks={items} trackcount={trackCount} length={trackLength}/>
+                        <PlayAllBtn context={context}/>
+
+                    </div>
+                </Header>
+                <CompactHeader title={t('tracks')} context={context} />
                 <Table
                     tracks={items}
                     cols={cols}

@@ -19,14 +19,14 @@ export default function UserList() {
         })
     }, []);
     return(
-        <>
+        <div className="pl-5 pr-2">
             <h2 className="mt-4 mb-2">{t('userList.title')}</h2>
             <div className="flex flex-wrap sm:justify-start justify-center gap-2">
                 {items?.map((user, i) => (
                     <User user={user} key={user.id}/>
                 ))}
             </div>
-        </>
+        </div>
     );
 
 }

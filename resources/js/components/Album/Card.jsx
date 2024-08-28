@@ -5,7 +5,6 @@ import ArtistList from "../ArtistList";
 import {BaseCard} from "../BaseCard";
 import {useDraggable} from "../../hooks/useDragAndDrop";
 import {useTranslation} from "react-i18next";
-import usePlayer from "../../store/playerStore";
 import {useShallow} from "zustand/react/shallow";
 import useSelection from "../../store/SelectionStore";
 import useAlbumStore from "../../store/AlbumStore";
@@ -24,11 +23,6 @@ const Card = ({ album, width, displayMenu, selectAble = false }) => {
         updateItems(response);
         setSelected(album);
     }
-    if(selectAble) {
-
-    }
-
-    console.log(album);
 
     const onClickHandler = (e) => {
         if(e.currentTarget === e.target) {

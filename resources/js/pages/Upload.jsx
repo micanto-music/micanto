@@ -74,28 +74,30 @@ export default function Upload() {
             </Header>
 
             <Scroll>
-                <FilePond
-                    files={files}
-                    credits={false}
-                    onupdatefiles={setFiles}
-                    allowMultiple={true}
-                    process
-                    server={ serverOptions }
-                    withCredentials="true"
-                    //onerror={(response) =>{console.log(response)}}
-                    name="files" /* sets the file input name, it's filepond by default */
-                    labelIdle={t('upload.dnd')}
-                    labelFileProcessing={t('upload.processing')}
-                    labelFileProcessingError={t('upload.processingError')}
-                    labelTapToRetry={t('upload.tapToRetry')}
-                    labelTapToUndo={t('upload.tapToUndo')}
-                    labelFileProcessingComplete={t('upload.processingComplete')}
-                    labelTapToCancel={t('upload.tapToCancel')}
-                    allowRemove={false}
-                    allowRevert={false}
-                />
+                <div className="pl-5 pr-2">
+                    <FilePond
+                        files={files}
+                        credits={false}
+                        onupdatefiles={setFiles}
+                        allowMultiple={true}
+                        process
+                        server={serverOptions}
+                        withCredentials="true"
+                        //onerror={(response) =>{console.log(response)}}
+                        name="files" /* sets the file input name, it's filepond by default */
+                        labelIdle={t('upload.dnd')}
+                        labelFileProcessing={t('upload.processing')}
+                        labelFileProcessingError={t('upload.processingError')}
+                        labelTapToRetry={t('upload.tapToRetry')}
+                        labelTapToUndo={t('upload.tapToUndo')}
+                        labelFileProcessingComplete={t('upload.processingComplete')}
+                        labelTapToCancel={t('upload.tapToCancel')}
+                        allowRemove={false}
+                        allowRevert={false}
+                    />
+                </div>
             </Scroll>
         </div>
-    )
+)
 
 }

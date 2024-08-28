@@ -57,19 +57,22 @@ const Table = ({ tracks, cols, handleSorting, fetchMore, hasMore, context, optio
     }
 
     return(
-        <>
+        <div className="pl-5 pr-2">
             {tracks &&
                 <>
-                <div className="sticky-header flex p-2">
-                    {cols?.map((col, i) => (
-                        <div onClick={() => handleSortingChange(col.accessor)} key={col.label} className={`${col.class} table-header`}>
-                            <span className="table-label">{t(col.label)}</span>
-                            { col.accessor === sortField && order === 'asc' && <span className="table-sort"><RxCaretDown size="20"/></span> }
-                            { col.accessor === sortField && order === 'desc' && <span className="table-sort"><RxCaretUp size="20" /></span> }
-                        </div>
-                    ))}
-                    <div className="table-header basis-10 py-2"></div>
-                </div>
+                    <div className="sticky-header flex p-2">
+                        {cols?.map((col, i) => (
+                            <div onClick={() => handleSortingChange(col.accessor)} key={col.label}
+                                 className={`${col.class} table-header`}>
+                                <span className="table-label">{t(col.label)}</span>
+                                {col.accessor === sortField && order === 'asc' &&
+                                    <span className="table-sort"><RxCaretDown size="20"/></span>}
+                                {col.accessor === sortField && order === 'desc' &&
+                                    <span className="table-sort"><RxCaretUp size="20"/></span>}
+                            </div>
+                        ))}
+                        <div className="table-header basis-10 py-2"></div>
+                    </div>
                     <InfiniteScroll
                         scrollableTarget="main-scroll"
                         dataLength={tracks.length}
@@ -93,9 +96,9 @@ const Table = ({ tracks, cols, handleSorting, fetchMore, hasMore, context, optio
                             ))}
                         </div>
                     </InfiniteScroll>
-            </>
+                </>
             }
-        </>
+        </div>
     );
 }
 

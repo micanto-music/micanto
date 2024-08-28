@@ -73,6 +73,12 @@
     "tracks": "Tracks",
     "track_delete": "Really delete this song(s) from filesystem? This is NOT reversible!",
     "favorites": "Favorite Tracks",
+    "favorite": {
+        "empty": {
+            "title": "No favorite tracks",
+            "body": "Click the heart icon to add tracks to your favorit tracks."
+        }
+    },
     "albums": "Albums",
     "artists": "Artists",
     "queue": "Current Queue",

@@ -12,6 +12,7 @@ import Subline from "../components/Subline";
 import PlayAllBtn from "../components/PlayAllBtn";
 import ContextMenuDots from "../components/ContextMenuDots";
 import Table from "../components/Track/Table";
+import CompactHeader from "../components/Header/CompactHeader";
 
 export default function Favorites() {
     const [isLoading, setIsLoading] = useState(true);
@@ -96,18 +97,19 @@ export default function Favorites() {
 
     return (
         <>
-            <Header title={t('favorites')}>
-                <HeaderThumbnails items={items}/>
-                <div className="flex-col items-start">
-                    <HeaderTitle>{t('favorites')}</HeaderTitle>
-                    <Subline tracks={items}/>
-                    <div className="mt-2">
-                        <PlayAllBtn context={context}/>
-                    </div>
-                </div>
-            </Header>
             {items.length > 0 &&
                 <Scroll>
+                    <Header title={t('favorites')}>
+                        <HeaderThumbnails items={items}/>
+                        <div className="flex-col items-start">
+                            <HeaderTitle>{t('favorites')}</HeaderTitle>
+                            <Subline tracks={items}/>
+                            <div className="mt-2">
+                                <PlayAllBtn context={context}/>
+                            </div>
+                        </div>
+                    </Header>
+                    <CompactHeader title={t('favorites')} context={context} />
                     <Table
                         tracks={items}
                         cols={cols}
@@ -121,8 +123,8 @@ export default function Favorites() {
             {items.length === 0 &&
                 <div className="flex items-center justify-center flex-1">
                     <div className="text-center">
-                        <h2>{t('playlist.empty.title')}</h2>
-                        {t('playlist.empty.body')}
+                        <h2>{t('favorite.empty.title')}</h2>
+                        {t('favorite.empty.body')}
                     </div>
                 </div>
             }

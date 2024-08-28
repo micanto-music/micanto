@@ -112,90 +112,92 @@ const Search = () => {
                 <HeaderTitle>{t('search.title')}</HeaderTitle>
             </Header>
             <Scroll>
-                <div className="w-full">
-                    <input
-                        id="searchbar" className="bg-music-light mb-4 w-full"
-                        placeholder={t('search.placeholder')}
-                        onChange={(input) => updateValue(input.target.value)}
-                        value={query}
-                    />
-                    {query == '' &&
-                        <LastSearches lastSearches={lastSearches} removeFromLastSearch={removeFromLastSearch}/>
-                    }
-                </div>
-                <div>
-                    <div className="flex">
-                        {result?.top &&
-                            <div>
-                                <h2 className="mb-2">{t('search.top_result')}</h2>
-                                {result?.top?.type == 'tracks' &&
-                                    <Card
-                                        key={result?.top.id}
-                                        track={result?.top}
-                                        width={200}
-                                        displayMenu={displayMenu}
-                                    />
-                                }
-                                {result?.top?.type == 'artist' &&
-                                    <ArtistCard
-                                        key={result?.top.id}
-                                        artist={result?.top}
-                                        width={222}
-                                        displayMenu={displayMenu}
-                                    />
-                                }
-                                {result?.top?.type == 'albums' &&
-                                    <AlbumCard
-                                        key={result?.top.id}
-                                        album={result?.top}
-                                        width={200}
-                                        displayMenu={displayMenu}
-                                    />
-                                }
-                            </div>
+                <div className="pl-5 pr-2">
+                    <div className="w-full sticky top-0 z-10">
+                        <input
+                            id="searchbar" className="bg-music-light mb-4 w-full"
+                            placeholder={t('search.placeholder')}
+                            onChange={(input) => updateValue(input.target.value)}
+                            value={query}
+                        />
+                        {query == '' &&
+                            <LastSearches lastSearches={lastSearches} removeFromLastSearch={removeFromLastSearch}/>
                         }
-                        {result?.tracks?.length > 0 &&
-                            <div className="ml-4 w-full">
-                                <h2 className="mb-2">{t('search.tracks')}</h2>
-                                <ul>
-                                    {result?.tracks?.map((track, i) => (
-                                        <SmallBar
-                                            key={track.id}
-                                            track={track}
+                    </div>
+                    <div>
+                        <div className="flex">
+                            {result?.top &&
+                                <div>
+                                    <h2 className="mb-2">{t('search.top_result')}</h2>
+                                    {result?.top?.type == 'tracks' &&
+                                        <Card
+                                            key={result?.top.id}
+                                            track={result?.top}
+                                            width={200}
+                                            displayMenu={displayMenu}
+                                        />
+                                    }
+                                    {result?.top?.type == 'artist' &&
+                                        <ArtistCard
+                                            key={result?.top.id}
+                                            artist={result?.top}
+                                            width={222}
+                                            displayMenu={displayMenu}
+                                        />
+                                    }
+                                    {result?.top?.type == 'albums' &&
+                                        <AlbumCard
+                                            key={result?.top.id}
+                                            album={result?.top}
+                                            width={200}
+                                            displayMenu={displayMenu}
+                                        />
+                                    }
+                                </div>
+                            }
+                            {result?.tracks?.length > 0 &&
+                                <div className="ml-4 w-full">
+                                    <h2 className="mb-2">{t('search.tracks')}</h2>
+                                    <ul>
+                                        {result?.tracks?.map((track, i) => (
+                                            <SmallBar
+                                                key={track.id}
+                                                track={track}
+                                            />
+                                        ))}
+                                    </ul>
+                                </div>
+                            }
+                        </div>
+                        {result?.albums?.length > 0 &&
+                            <div className="mt-6">
+                                <h2 className="mb-2">{t('search.albums')}</h2>
+                                <CardWrapper>
+                                    {result?.albums?.map((album, i) => (
+                                        <AlbumCard
+                                            key={album.id}
+                                            album={album}
+                                            displayMenu={displayMenu}
                                         />
                                     ))}
-                                </ul>
+                                </CardWrapper>
+                            </div>
+                        }
+                        {result?.artists?.length > 0 &&
+                            <div className="mt-6">
+                                <h2 className="mb-2">{t('search.artists')}</h2>
+                                <CardWrapper>
+                                    {result?.artists?.map((artist, i) => (
+                                        <ArtistCard
+                                            key={artist.id}
+                                            artist={artist}
+                                            displayMenu={displayMenu}
+                                        />
+                                    ))}
+                                </CardWrapper>
                             </div>
                         }
                     </div>
-                    {result?.albums?.length > 0 &&
-                        <div className="mt-6">
-                            <h2 className="mb-2">{t('search.albums')}</h2>
-                            <CardWrapper>
-                            {result?.albums?.map((album, i) => (
-                                <AlbumCard
-                                    key={album.id}
-                                    album={album}
-                                    displayMenu={displayMenu}
-                                />
-                            ))}
-                            </CardWrapper>
-                        </div>
-                    }
-                    {result?.artists?.length > 0 &&
-                        <div className="mt-6">
-                            <h2 className="mb-2">{t('search.artists')}</h2>
-                            <CardWrapper>
-                                {result?.artists?.map((artist, i) => (
-                                    <ArtistCard
-                                        key={artist.id}
-                                        artist={artist}
-                                        displayMenu={displayMenu}
-                                    />
-                                ))}
-                            </CardWrapper>
-                        </div>
-                    }
                 </div>
             </Scroll>
             <AlbumMenu id={ALBUM_MENU_ID}/>

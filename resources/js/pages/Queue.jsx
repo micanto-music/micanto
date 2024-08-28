@@ -21,20 +21,22 @@ export default function Queue() {
                 </div>
             </Header>
             <Scroll>
-                <ul>
-                    {queue?.map((track, i) => (
-                        <SmallBar
-                            key={track.id}
-                            track={track}
-                        iteration={i}
-                        context={{
-                            type: 'queue',
-                            id: null
-                        }}
-                    />
-                ))}
-                </ul>
+                <div className="pl-5 pr-2">
+                    <ul>
+                        {queue?.map((track, i) => (
+                            <SmallBar
+                                key={track.id}
+                                track={track}
+                                iteration={i}
+                                context={{
+                                    type: 'queue',
+                                    id: null
+                                }}
+                            />
+                        ))}
+                    </ul>
+                </div>
             </Scroll>
         </>
-    );
+);
 }
