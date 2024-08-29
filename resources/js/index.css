@@ -374,8 +374,8 @@ header {
 #bubble::after {
     content: "";
     position: absolute;
-    width: 0px;
-    height: 0px;
+    width: 0;
+    height: 0;
     border-style: solid;
     border-width: 3px 3px 0 3px;
     border-color: var(--secondary-color) transparent transparent transparent;
@@ -398,7 +398,7 @@ input[type="range"] {
     background: rgba(255, 255, 255, 0.6);
     border-radius: 5px;
     background-image: linear-gradient(var(--secondary-color), var(--secondary-color));
-    background-size: 0% 100%;
+    background-size: 0 100%;
     background-repeat: no-repeat;
 }
 
@@ -829,6 +829,10 @@ input {
     display: block;
 }
 
+/*.card-wrap {*/
+/*    flex: 1 0 17%;*/
+/*}*/
+
 .card-shadow {
     display: none;
     position: absolute;
@@ -937,8 +941,8 @@ input {
 .volume-dropdown:before {
     position: absolute;
     content: '';
-    width: 0px;
-    height: 0px;
+    width: 0;
+    height: 0;
     border-style: solid;
     border-width: 6px 4px 0 4px;
     border-color: var(--main-bg-color-light) transparent transparent transparent ;

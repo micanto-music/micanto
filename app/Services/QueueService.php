@@ -22,6 +22,10 @@ class QueueService
 
         $tracks = [];
         if(count($context) && isset($context['type'])) {
+            $shuffle = false;
+            if(isset($context['options']['shuffle']) && $context['options']['shuffle'] !== false) {
+                $shuffle = true;
+            }
             switch ($context['type']) {
                 case 'tracks':
                     $tracks = $this->trackRepository->getByStartIndex($context);
@@ -37,14 +41,22 @@ class QueueService
                     break;
                 case 'lastPlayed':
                     $tracks = $this->trackRepository->getLastPlayed(100);
+                    // shuffle afterward, not in query
+                    if($shuffle) {
+                        $tracks = $tracks->shuffle();
+                    }
                     break;
                 case 'mostPlayed':
                     $tracks = $this->trackRepository->getMostPlayed(100);
+                    // shuffle afterward, not in query
+                    if($shuffle) {
+                        $tracks = $tracks->shuffle();
+                    }
                     break;
                 case 'mostPlayedByArtist':
                     $artist = Artist::find((int)$context['id']);
                     $tracks = $this->trackRepository->getMostPlayedByArtist($artist);
-                    // if too less tracks try to fill with other tracks by artist
+                    // if too few tracks try to fill with other tracks by artist
                     if($tracks->count() < 100) {
                         $additionalTracks = $this->generateArtistQueue($context);
                         if($additionalTracks->count()) {
