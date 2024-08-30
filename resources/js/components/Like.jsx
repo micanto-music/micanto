@@ -7,7 +7,9 @@ export default function ({track}) {
 
     const [liked, setLiked] = useState(track.liked);
     const [t] = useTranslation();
-    const onClick = () => {
+    const onClick = (e) => {
+        e.stopPropagation();
+        e.preventDefault();
         setLiked(!liked);
         PlayerAPI.like(track?.id);
     }
