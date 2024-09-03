@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\PlaylistResource;
 use App\Http\Resources\TrackResource;
 use App\Models\Album;
 use App\Models\Artist;
@@ -75,7 +76,8 @@ class PlaylistController extends Controller
                 $playlist->tracks()->syncWithoutDetaching($request->ids);
                 break;
         }
-        return response()->noContent();
+
+        return PlaylistResource::make($playlist);
     }
 
     public function removeItems(Playlist $playlist, Request $request)
