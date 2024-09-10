@@ -153,7 +153,7 @@ class TrackRepository extends Repository
         }
 
         $res = $this->makeSortable($query, $sortField, $sortOrder)->offset($startIndex)->limit($max)->get();
-        if(count($res) < $max && $startIndex > $max) {
+        if(count($res) < $max && $startIndex > 0) {
             $res2 = $this->makeSortable($query, $sortField, $sortOrder)->offset(0)->limit($max)->get();
             if(count($res2) > 0) {
                 $res = $res->merge($res2);
