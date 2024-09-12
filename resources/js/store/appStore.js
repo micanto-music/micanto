@@ -43,7 +43,7 @@ const useApp = create((set, get) => ({
                 queueCollapsed: !state.queueCollapsed,
             };
         })
-    },
+    }
 }));
 
 export default useApp;

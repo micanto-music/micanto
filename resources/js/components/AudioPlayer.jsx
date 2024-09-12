@@ -16,10 +16,13 @@ import AddToPlaylist from "./AddToPlaylist";
 import ArtistList from "./ArtistList";
 import Like from "./Like";
 import SidebarToggle from "./SidebarToggle";
+import useKeyPress from "../hooks/useKeyPress";
+import {useIsPlaying} from "../hooks/useIsPlaying";
 
 const AudioPlayer = () => {
     const [t] = useTranslation();
     const [track,isShuffle,repeatMode,setRepeatMode, setShuffle] = usePlayer(useShallow(state => [state.currentTrack, state.shuffle, state.repeatMode, state.setRepeatMode, state.setShuffle]));
+    const { playing } = useIsPlaying();
     const onSliderChange = async (position) => {
         await MicantoPlayer.seekTo(position)
     }
@@ -74,6 +77,21 @@ const AudioPlayer = () => {
     const onSeekForwardHandler = async () => {
         await MicantoPlayer.seekForward();
     }
+
+    /* use hotkeys */
+    useKeyPress([' '], async(event) => {
+        event.preventDefault();
+        switch (event.key) {
+            case ' ':
+                if(playing) {
+                    await MicantoPlayer.pause();
+                } else {
+                    await MicantoPlayer.play();
+                }
+                break;
+        }
+
+    })
 
     return (
         <MediaSession
