@@ -13,14 +13,14 @@ import {FiPlusSquare} from "react-icons/fi";
 import {useModal} from "../hooks/useModal";
 import AlbumMenu from "../components/ContextMenus/AlbumMenu";
 import useAlbumStore from "../store/AlbumStore";
+import useTrackStore from "../store/TrackStore";
 
 const Start = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [mostPlayed, setMostPlayed] = useState([])
-    const [lastPlayed, setLastPlayed] = useState([])
-    const [latestTracks, setLatestTracks] = useState([])
     const [latestAlbums, setLatestAlbums] = useAlbumStore(state => [state.items, state.setItems]);
     const [yourPlaylists, setYourPlaylists] = useState([])
+    const [typedItems, setTypedItems] = useTrackStore(state => [state.typedItems, state.setTypedItems])
     const [t] = useTranslation();
     const { onOpen: openAddPlaylist } = useModal('Playlist-Add');
 
@@ -49,9 +49,10 @@ const Start = () => {
     useEffect(() => {
         PlayerAPI.getOverview().then((res) => {
             // response handling
-            setMostPlayed(res.most_played);
-            setLastPlayed(res.last_played);
-            setLatestTracks(res.latest_tracks);
+            setTypedItems(res.most_played, 'mostPlayed');
+            setTypedItems(res.last_played, 'lastPlayed');
+            setTypedItems(res.latest_tracks, 'latestTracks');
+
             setLatestAlbums(res.latest_albums);
             setYourPlaylists(res.playlists);
             setIsLoading(false);
@@ -74,7 +75,7 @@ const Start = () => {
                             <div>
                                 <h3 className="text-white">{t('start.last_played')}</h3>
                                 <div className="flex flex-wrap sm:justify-start justify-center gap-2">
-                                    {lastPlayed?.map((track, i) => (
+                                    {typedItems?.lastPlayed?.map((track, i) => (
                                         <Bar
                                             key={track.id}
                                             track={track}
@@ -86,11 +87,11 @@ const Start = () => {
                                     ))}
                                 </div>
                             </div>
-                            {mostPlayed?.length > 0 &&
+                            {typedItems?.mostPlayed?.length > 0 &&
                                 <div>
                                     <h3 className="text-white">{t('start.most_played')}</h3>
                                     <div className="flex flex-wrap sm:justify-start justify-center gap-2">
-                                        {mostPlayed?.map((track, i) => (
+                                        {typedItems?.mostPlayed?.map((track, i) => (
                                             <Bar
                                                 key={track.id}
                                                 track={track}
@@ -111,7 +112,7 @@ const Start = () => {
                             <div>
                                 <h3 className="text-white">{t('start.latest_tracks')}</h3>
                                 <div className="flex flex-wrap sm:justify-start justify-center gap-2">
-                                    {latestTracks?.map((track, i) => (
+                                    {typedItems?.latestTracks?.map((track, i) => (
                                         <Bar
                                             key={track.id}
                                             track={track}
