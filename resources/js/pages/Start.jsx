@@ -12,13 +12,14 @@ import ActivityIndicator from "../components/ActivityIndicator";
 import {FiPlusSquare} from "react-icons/fi";
 import {useModal} from "../hooks/useModal";
 import AlbumMenu from "../components/ContextMenus/AlbumMenu";
+import useAlbumStore from "../store/AlbumStore";
 
 const Start = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [mostPlayed, setMostPlayed] = useState([])
     const [lastPlayed, setLastPlayed] = useState([])
     const [latestTracks, setLatestTracks] = useState([])
-    const [latestAlbums, setLatestAlbums] = useState([])
+    const [latestAlbums, setLatestAlbums] = useAlbumStore(state => [state.items, state.setItems]);
     const [yourPlaylists, setYourPlaylists] = useState([])
     const [t] = useTranslation();
     const { onOpen: openAddPlaylist } = useModal('Playlist-Add');
