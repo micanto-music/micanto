@@ -17,7 +17,6 @@ import useTrackStore from "../store/TrackStore";
 
 const Start = () => {
     const [isLoading, setIsLoading] = useState(true);
-    const [mostPlayed, setMostPlayed] = useState([])
     const [latestAlbums, setLatestAlbums] = useAlbumStore(state => [state.items, state.setItems]);
     const [yourPlaylists, setYourPlaylists] = useState([])
     const [typedItems, setTypedItems] = useTrackStore(state => [state.typedItems, state.setTypedItems])
