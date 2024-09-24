@@ -14,8 +14,14 @@ import TrackMenu from "./ContextMenus/TrackMenu";
 
 const NavLinks = ({ handleClick, t }) => (
     <>
-        <div className="flex items-center">
-            <img src={logo} alt="logo" className="h-14 object-contain" /> <span className="logotext p-2 text-2xl"><strong>mi</strong>canto</span>
+        <div className="flex">
+            <NavLink
+                key="logo"
+                to="/home"
+                className="logolink flex items-center"
+            >
+                <img src={logo} alt="logo" className="h-14 object-contain" /> <span className="logotext p-2 text-2xl"><strong>mi</strong>canto</span>
+            </NavLink>
         </div>
 
         <div className="sidebar-navigation mt-6">

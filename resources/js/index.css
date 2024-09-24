@@ -201,6 +201,10 @@ header {
     display: none;
 }
 
+.logolink {
+    color: #fff !important;
+}
+
 .sidebar-navigation a {
     @apply text-gray-400 items-center text-sm font-medium;
     height: 50px;
