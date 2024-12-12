@@ -1,18 +1,18 @@
 {
-  "_BaseModal-9cb39090.js": {
-    "file": "assets/BaseModal-9cb39090.js",
+  "_BaseModal-7d501c66.js": {
+    "file": "assets/BaseModal-7d501c66.js",
     "imports": [
       "resources/js/index.jsx"
     ]
   },
-  "_EditCoverDroppable-ab19b0ff.js": {
-    "file": "assets/EditCoverDroppable-ab19b0ff.js",
+  "_EditCoverDroppable-e6caf92c.js": {
+    "file": "assets/EditCoverDroppable-e6caf92c.js",
     "imports": [
       "resources/js/index.jsx"
     ]
   },
-  "_react-select-async-creatable.esm-a4172876.js": {
-    "file": "assets/react-select-async-creatable.esm-a4172876.js",
+  "_react-select-async-creatable.esm-48633e7b.js": {
+    "file": "assets/react-select-async-creatable.esm-48633e7b.js",
     "imports": [
       "resources/js/index.jsx"
     ]
@@ -42,69 +42,69 @@
     "src": "resources/js/assets/img/user.png"
   },
   "resources/js/components/Modal/Modal-Album-Edit.jsx": {
-    "file": "assets/Modal-Album-Edit-70ce26ab.js",
+    "file": "assets/Modal-Album-Edit-e95fbe7d.js",
     "imports": [
       "resources/js/index.jsx",
-      "_BaseModal-9cb39090.js",
-      "_react-select-async-creatable.esm-a4172876.js",
-      "_EditCoverDroppable-ab19b0ff.js"
+      "_BaseModal-7d501c66.js",
+      "_react-select-async-creatable.esm-48633e7b.js",
+      "_EditCoverDroppable-e6caf92c.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/components/Modal/Modal-Album-Edit.jsx"
   },
   "resources/js/components/Modal/Modal-Artist-Edit.jsx": {
-    "file": "assets/Modal-Artist-Edit-c1b7adff.js",
+    "file": "assets/Modal-Artist-Edit-f71d931a.js",
     "imports": [
       "resources/js/index.jsx",
-      "_BaseModal-9cb39090.js",
-      "_EditCoverDroppable-ab19b0ff.js"
+      "_BaseModal-7d501c66.js",
+      "_EditCoverDroppable-e6caf92c.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/components/Modal/Modal-Artist-Edit.jsx"
   },
   "resources/js/components/Modal/Modal-Playlist-Add.jsx": {
-    "file": "assets/Modal-Playlist-Add-5dfdab4d.js",
+    "file": "assets/Modal-Playlist-Add-11a00ad3.js",
     "imports": [
       "resources/js/index.jsx",
-      "_BaseModal-9cb39090.js"
+      "_BaseModal-7d501c66.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/components/Modal/Modal-Playlist-Add.jsx"
   },
   "resources/js/components/Modal/Modal-Playlist-Delete.jsx": {
-    "file": "assets/Modal-Playlist-Delete-93f7a679.js",
+    "file": "assets/Modal-Playlist-Delete-29461fc8.js",
     "imports": [
       "resources/js/index.jsx",
-      "_BaseModal-9cb39090.js"
+      "_BaseModal-7d501c66.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/components/Modal/Modal-Playlist-Delete.jsx"
   },
   "resources/js/components/Modal/Modal-Playlist-Edit.jsx": {
-    "file": "assets/Modal-Playlist-Edit-c6ba516e.js",
+    "file": "assets/Modal-Playlist-Edit-0d5c5a86.js",
     "imports": [
       "resources/js/index.jsx",
-      "_BaseModal-9cb39090.js"
+      "_BaseModal-7d501c66.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/components/Modal/Modal-Playlist-Edit.jsx"
   },
   "resources/js/components/Modal/Modal-Track-Delete.jsx": {
-    "file": "assets/Modal-Track-Delete-16fd5f7c.js",
+    "file": "assets/Modal-Track-Delete-c907179d.js",
     "imports": [
       "resources/js/index.jsx",
-      "_BaseModal-9cb39090.js"
+      "_BaseModal-7d501c66.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/components/Modal/Modal-Track-Delete.jsx"
   },
   "resources/js/components/Modal/Modal-Track-Edit.jsx": {
-    "file": "assets/Modal-Track-Edit-dea3631b.js",
+    "file": "assets/Modal-Track-Edit-c9ea9874.js",
     "imports": [
       "resources/js/index.jsx",
-      "_BaseModal-9cb39090.js",
-      "_react-select-async-creatable.esm-a4172876.js",
-      "_EditCoverDroppable-ab19b0ff.js"
+      "_BaseModal-7d501c66.js",
+      "_react-select-async-creatable.esm-48633e7b.js",
+      "_EditCoverDroppable-e6caf92c.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/components/Modal/Modal-Track-Edit.jsx"
@@ -115,17 +115,17 @@
     "src": "resources/js/components/Modal/Modal-User-Add.jsx"
   },
   "resources/js/components/Modal/Modal-User-Edit.jsx": {
-    "file": "assets/Modal-User-Edit-aa9027d3.js",
+    "file": "assets/Modal-User-Edit-f103ffcf.js",
     "imports": [
       "resources/js/index.jsx",
-      "_BaseModal-9cb39090.js",
-      "_EditCoverDroppable-ab19b0ff.js"
+      "_BaseModal-7d501c66.js",
+      "_EditCoverDroppable-e6caf92c.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/components/Modal/Modal-User-Edit.jsx"
   },
   "resources/js/index.css": {
-    "file": "assets/index-797e9efa.css",
+    "file": "assets/index-47498527.css",
     "src": "resources/js/index.css"
   },
   "resources/js/index.jsx": {
@@ -138,7 +138,7 @@
       "assets/pt-sans-v17-latin-700italic-001d8a10.woff2"
     ],
     "css": [
-      "assets/index-797e9efa.css"
+      "assets/index-47498527.css"
     ],
     "dynamicImports": [
       "resources/js/components/Modal/Modal-Album-Edit.jsx",
@@ -151,7 +151,7 @@
       "resources/js/components/Modal/Modal-User-Add.jsx",
       "resources/js/components/Modal/Modal-User-Edit.jsx"
     ],
-    "file": "assets/index-6eb254c0.js",
+    "file": "assets/index-339a0c71.js",
     "isEntry": true,
     "src": "resources/js/index.jsx"
   }
