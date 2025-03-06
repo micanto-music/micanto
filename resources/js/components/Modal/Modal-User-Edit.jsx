@@ -7,9 +7,11 @@ import {hideLoader, showLoader} from "../../helper/helper";
 import EditCoverDroppable from "../EditCoverDroppable";
 import {useState} from "react";
 import {useAuth} from "../../contexts/AuthContext";
+import useUserStore from "../../store/UserStore";
 
 export default function ModalUserEdit(props) {
     const [t] = useTranslation();
+    const [updateItem] = useUserStore(state => [state.updateItem]);
     const { user, setUser} = useAuth();
     const { formState: { errors }, register, handleSubmit, watch } = useForm();
 
@@ -49,10 +51,7 @@ export default function ModalUserEdit(props) {
 
         PlayerAPI.updateUser(userData?.id, formData).then((res) => {
             hideLoader();
-            setUser(res?.data);
-            if(newImage) {
-                document.querySelector('.profile-img').src = res?.data.image + '?='+ Date.now();
-            }
+            updateItem(res?.data);
         });
         props.onClose();
     };
