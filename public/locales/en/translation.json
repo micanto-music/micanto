@@ -185,7 +185,10 @@
     "userList": {
         "title": "Manage users",
         "admin": "Admin",
-        "user": "User"
+        "user": "User",
+        "add": "Add user",
+        "password": "Password",
+        "delete": "Delete user"
     },
     "header": {
         "reloadLibrary": "Synchronize Tracks"

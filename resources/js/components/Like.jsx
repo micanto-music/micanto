@@ -1,6 +1,5 @@
 import {LuHeart} from "react-icons/lu";
 import React, {useState} from "react";
-import { Tooltip } from 'react-tooltip';
 import {useTranslation} from "react-i18next";
 import {PlayerAPI} from "../api/PlayerAPI";
 export default function ({track}) {

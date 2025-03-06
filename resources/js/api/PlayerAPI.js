@@ -15,9 +15,9 @@ export const PlayerAPI = {
         return response.data;
     },
 
-    addUser: async function (id, formData) {
+    addUser: async function (formData) {
         const response = await axios.request({
-            url: `/api/users/add`,
+            url: `/api/user`,
             method: "POST",
             data: formData,
             headers: {
@@ -25,6 +25,15 @@ export const PlayerAPI = {
             }
         })
 
+        return response.data;
+    },
+
+    deleteUser: async function (id) {
+        const response = await axios.request({
+            url: `/api/user/${id}`,
+            method: "DELETE"
+        });
+        hideLoader();
         return response.data;
     },
 

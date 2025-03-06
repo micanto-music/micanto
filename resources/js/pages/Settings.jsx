@@ -9,7 +9,7 @@ import {PlayerAPI} from "../api/PlayerAPI";
 import React, {useCallback, useEffect, useState} from "react";
 import debounce from "lodash/debounce";
 import {PiCheckBold, PiXBold} from "react-icons/pi";
-import Sidebar from "../components/Sidebar";
+
 const Settings = () => {
 
     const [t] = useTranslation();
@@ -22,9 +22,6 @@ const Settings = () => {
             hideLoader();
         })
     }
-
-
-
     const checkSettings = (data) => {
         PlayerAPI.checkSettings({"music_folder": data}).then((res) => {
             setValidFolder(res);

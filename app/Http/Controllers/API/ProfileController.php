@@ -30,7 +30,6 @@ class ProfileController extends Controller
             $authorize = true;
         }
 
-        //$this->authorize('admin', Auth::user());
         if($user && $authorize) {
             if( $request->has('image')) {
                 $image = $request->image;

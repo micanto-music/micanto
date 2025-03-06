@@ -4,7 +4,7 @@ import React from "react";
 import {useTranslation} from "react-i18next";
 import {useModal} from "../hooks/useModal";
 
-export default function User({user}) {
+export default function User({user, displayMenu}) {
     const userImage = user?.image ? user?.image :profilePicture;
     const [t] = useTranslation();
 
@@ -16,7 +16,10 @@ export default function User({user}) {
 
     return(
         <BaseCard>
-            <div onClick={clickHandler}>
+
+            <div
+                 onClick={clickHandler}
+                 onContextMenu={(e) => displayMenu(e,user)}>
                 <img src={userImage} className="w-full rounded-lg card-cover"/>
                 <div className="mt-4 flex flex-col">
                     <p className="font-semibold text-lg text-white truncate">

@@ -5,12 +5,16 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\API\UserAddRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
+use App\Services\ImageService;
 use Illuminate\Contracts\Hashing\Hasher;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
     public function __construct(
-        private Hasher $hasher)
+        private Hasher $hasher,
+        private ImageService $imageService
+    )
     {}
 
     public function index()
@@ -38,6 +42,13 @@ class UserController extends Controller
 
         $user->save();
         return new UserResource($user);
+    }
+
+    public function delete(User $user)
+    {
+        $this->authorize('admin', Auth::user());
+        $user->delete();
+        return response()->noContent();
     }
 
 }
