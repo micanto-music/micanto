@@ -1,0 +1,71 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      # FrankenPHP / Caddy Configuration
+      SERVER_NAME: "${SERVER_NAME:-http://localhost}" # Set to your domain in .env for HTTPS (e.g., https://example.com)
+      
+      # Laravel Configuration
+      APP_KEY: "${APP_KEY}"
+      APP_ENV: production
+      APP_DEBUG: "${APP_DEBUG:-false}"
+      APP_URL: "${APP_URL:-http://localhost}"
+      
+      # Database Connection
+      DB_CONNECTION: mysql
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_DATABASE: "${DB_DATABASE}"
+      DB_USERNAME: "${DB_USERNAME}"
+      DB_PASSWORD: "${DB_PASSWORD}"
+      
+      # Other Services
+      SCOUT_DRIVER: database # Example, adjust as needed
+      
+    volumes:
+      - ./storage:/app/storage
+      # Mount Caddy data to persist certificates
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+  db:
+    image: mariadb:10.11
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: "${DB_DATABASE}"
+      MYSQL_USER: "${DB_USERNAME}"
+      MYSQL_PASSWORD: "${DB_PASSWORD}"
+      MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - app-network
+
+  adminer:
+    image: adminer
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      ADMINER_DEFAULT_SERVER: db
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  db_data:
+  caddy_data:
+  caddy_config:
