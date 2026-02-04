@@ -17,10 +17,12 @@ class PlaylistResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'user_id' => $this->user->id,
+            'user_id' => $this->user_id,
             'length' => $this->length,
             'cover' => $this->cover,
-            'tracks_count' => $this->tracks()->count()
+            'tracks_count' => $this->whenCounted('tracks'),
+            'artists' => $this->when(isset($this->artists), $this->artists),
+            'covers' => $this->when(isset($this->covers), $this->covers),
         ];
     }
 }

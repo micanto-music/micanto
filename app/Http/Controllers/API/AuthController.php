@@ -10,20 +10,15 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    // login a user method
-    public function loginWithCookie(LoginRequest $request) {
-        $data = $request->validated();
+    public function loginWithCookie(LoginRequest $request)
+    {
+        $user = $this->verifyCredentials($request->validated());
 
-        $user = User::where('email', $data['email'])->first();
-
-        if (!$user || !Hash::check($data['password'], $user->password)) {
-            return response()->json([
-                'message' => 'Email or password is incorrect!'
-            ], 401);
+        if (!$user) {
+            return response()->json(['message' => 'Email or password is incorrect!'], 401);
         }
 
         $token = $user->createToken('auth_token')->plainTextToken;
-
         $cookie = cookie('token', $token, 365 * 60 * 24); // 1 year
 
         return response()->json([
@@ -31,20 +26,30 @@ class AuthController extends Controller
         ])->withCookie($cookie);
     }
 
-    public function login(LoginRequest $request) {
-        $data = $request->validated();
+    public function login(LoginRequest $request)
+    {
+        $user = $this->verifyCredentials($request->validated());
 
-        $user = User::where('email', $data['email'])->first();
-
-        if (!$user || !Hash::check($data['password'], $user->password)) {
-            return response()->json([
-                'message' => 'Email or password is incorrect!'
-            ], 401);
+        if (!$user) {
+            return response()->json(['message' => 'Email or password is incorrect!'], 401);
         }
-        $deviceName = isset($data['device_name']) ? $data['device_name'] : 'auth_token';
+
+        $deviceName = $request->input('device_name', 'auth_token');
+
         return response()->json([
             'token' => $user->createToken($deviceName)->plainTextToken
         ]);
+    }
+
+    private function verifyCredentials(array $data): ?User
+    {
+        $user = User::where('email', $data['email'])->first();
+
+        if (!$user || !Hash::check($data['password'], $user->password)) {
+            return null;
+        }
+
+        return $user;
     }
 
     // logout a user method

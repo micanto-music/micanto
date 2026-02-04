@@ -18,19 +18,20 @@ class TrackResource extends JsonResource
             'url'       => $this->fullUrl,
             'id'        => $this->id,
             'title'     => $this->title,
-            'cover'     => $this->album->cover,
-            'album'     => $this->album->name,
-            'album_id'  => $this->album->id,
-            'duration'  => $this->duration,
-            'track'     => $this->track,
-            'disc'      => $this->disc,
+            'cover'     => $this->album?->cover,
+            'album'     => $this->album?->name,
+            'album_id'  => $this->album?->id,
+            'duration'  => (float) $this->duration,
+            'track'     => (int) $this->track,
+            'disc'      => (int) $this->disc,
             'year'      => $this->year,
-            'explicit'  => $this->explicit,
+            'explicit'  => (bool) $this->explicit,
             'genre'     => $this->genre,
             'lyrics'    => $this->lyrics,
-            'artists'   => $this->artists,
+            'artists'   => ArtistResource::collection($this->whenLoaded('artists')),
             'liked'     => (bool) $this->liked,
-            'added_at'  => $this->created_at ?? null
+            'play_count'=> (int) $this->play_count,
+            'added_at'  => $this->created_at ? $this->created_at->toDateTimeString() : null
         ];
     }
 }

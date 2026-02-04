@@ -9,6 +9,8 @@ use App\Services\TrackService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use App\Http\Requests\API\TrackUpdateRequest;
+
 class TrackController extends Controller
 {
     public function __construct(
@@ -26,17 +28,17 @@ class TrackController extends Controller
         );
     }
 
-    public function update(Request $request)
+    public function update(TrackUpdateRequest $request)
     {
         $this->authorize('admin', Auth::user());
         
-        $trackIds = $request->tracks;
+        $trackIds = $request->validated('tracks');
         $updated = [];
         
         foreach ($trackIds as $trackId) {
             $track = Track::with(['artists', 'album', 'album.artist'])->find($trackId);
             if ($track) {
-                $updated[] = $this->trackService->updateTrack($track, $request->all());
+                $updated[] = $this->trackService->updateTrack($track, $request->validated());
             }
         }
 
