@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Bar from '../components/Track/Bar';
 import { PlayerAPI } from '../api/PlayerAPI';
 import Header from "../components/Header/Header";
@@ -12,14 +12,9 @@ import ActivityIndicator from "../components/ActivityIndicator";
 import {FiPlusSquare} from "react-icons/fi";
 import {useModal} from "../hooks/useModal";
 import AlbumMenu from "../components/ContextMenus/AlbumMenu";
-import useAlbumStore from "../store/AlbumStore";
-import useTrackStore from "../store/TrackStore";
+import { useQuery } from 'react-query';
 
 const Start = () => {
-    const [isLoading, setIsLoading] = useState(true);
-    const [latestAlbums, setLatestAlbums] = useAlbumStore(state => [state.items, state.setItems]);
-    const [yourPlaylists, setYourPlaylists] = useState([])
-    const [typedItems, setTypedItems] = useTrackStore(state => [state.typedItems, state.setTypedItems])
     const [t] = useTranslation();
     const { onOpen: openAddPlaylist } = useModal('Playlist-Add');
 
@@ -27,6 +22,7 @@ const Start = () => {
     const ALBUM_MENU_ID = 'album-menu';
     const { show } = useContextMenu();
 
+    const { data: overview, isLoading } = useQuery('overview', PlayerAPI.getOverview);
     function displayMenu(e, data) {
         e.preventDefault();
         show({
@@ -45,22 +41,17 @@ const Start = () => {
         });
     }
 
-    useEffect(() => {
-        PlayerAPI.getOverview().then((res) => {
-            // response handling
-            setTypedItems(res.most_played, 'mostPlayed');
-            setTypedItems(res.last_played, 'lastPlayed');
-            setTypedItems(res.latest_tracks, 'latestTracks');
-
-            setLatestAlbums(res.latest_albums);
-            setYourPlaylists(res.playlists);
-            setIsLoading(false);
-        })
-    }, []);
-
     if (isLoading) {
         return <ActivityIndicator />;
     }
+
+    const {
+        most_played: mostPlayed = [],
+        last_played: lastPlayed = [],
+        latest_tracks: latestTracks = [],
+        latest_albums: latestAlbums = [],
+        playlists: yourPlaylists = []
+    } = overview || {};
 
     return (
         <>
@@ -74,29 +65,25 @@ const Start = () => {
                             <div>
                                 <h3 className="text-white">{t('start.last_played')}</h3>
                                 <div className="flex flex-wrap sm:justify-start justify-center gap-2">
-                                    {typedItems?.lastPlayed?.map((track, i) => (
+                                    {lastPlayed.map((track) => (
                                         <Bar
                                             key={track.id}
                                             track={track}
-                                            context={{
-                                                'type': 'lastPlayed'
-                                            }}
+                                            context={{ 'type': 'lastPlayed' }}
                                             displayMenu={displayMenu}
                                         />
                                     ))}
                                 </div>
                             </div>
-                            {typedItems?.mostPlayed?.length > 0 &&
+                            {mostPlayed.length > 0 &&
                                 <div>
                                     <h3 className="text-white">{t('start.most_played')}</h3>
                                     <div className="flex flex-wrap sm:justify-start justify-center gap-2">
-                                        {typedItems?.mostPlayed?.map((track, i) => (
+                                        {mostPlayed.map((track) => (
                                             <Bar
                                                 key={track.id}
                                                 track={track}
-                                                context={{
-                                                    'type': 'mostPlayed'
-                                                }}
+                                                context={{ 'type': 'mostPlayed' }}
                                                 displayMenu={displayMenu}
                                             />
                                         ))}
@@ -111,13 +98,11 @@ const Start = () => {
                             <div>
                                 <h3 className="text-white">{t('start.latest_tracks')}</h3>
                                 <div className="flex flex-wrap sm:justify-start justify-center gap-2">
-                                    {typedItems?.latestTracks?.map((track, i) => (
+                                    {latestTracks.map((track) => (
                                         <Bar
                                             key={track.id}
                                             track={track}
-                                            context={{
-                                                'type': 'latestTracks'
-                                            }}
+                                            context={{ 'type': 'latestTracks' }}
                                             displayMenu={displayMenu}
                                         />
                                     ))}
@@ -127,7 +112,7 @@ const Start = () => {
                             <div>
                                 <h3 className="text-white">{t('start.your_playlists')}</h3>
                                 <div className="flex flex-wrap gap-4">
-                                    {yourPlaylists?.map((playlist, i) => (
+                                    {yourPlaylists.map((playlist) => (
                                         <Tile playlist={playlist} key={playlist.id}/>
                                     ))}
                                     {yourPlaylists.length === 0 &&
@@ -146,7 +131,7 @@ const Start = () => {
                     <div className="mt-8">
                         <h3 className="text-white">{t('start.latest_albums')}</h3>
                         <div className="flex flex-wrap sm:justify-start justify-center gap-2">
-                            {latestAlbums?.map((album, i) => (
+                            {latestAlbums.map((album) => (
                                 <Card
                                     key={album.id}
                                     album={album}
@@ -161,5 +146,4 @@ const Start = () => {
         </>
     );
 };
-
 export default Start;

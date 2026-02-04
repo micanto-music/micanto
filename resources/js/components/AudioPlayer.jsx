@@ -21,8 +21,15 @@ import {useIsPlaying} from "../hooks/useIsPlaying";
 
 const AudioPlayer = () => {
     const [t] = useTranslation();
-    const [track,isShuffle,repeatMode,setRepeatMode, setShuffle] = usePlayer(useShallow(state => [state.currentTrack, state.shuffle, state.repeatMode, state.setRepeatMode, state.setShuffle]));
-    const { playing } = useIsPlaying();
+    const [track,isShuffle,repeatMode,setRepeatMode, setShuffle, playing] = usePlayer(useShallow(state => [
+        state.currentTrack, 
+        state.shuffle, 
+        state.repeatMode, 
+        state.setRepeatMode, 
+        state.setShuffle,
+        state.isPlaying
+    ]));
+
     const onSliderChange = async (position) => {
         await MicantoPlayer.seekTo(position)
     }
@@ -122,6 +129,7 @@ const AudioPlayer = () => {
                         <div className="grid grid-cols-2 gap-8 min-h-full">
                             <div className="flex justify-around items-center">
                                 <Controls
+                                    isPlaying={playing}
                                     repeatMode={repeatMode}
                                     shuffle={isShuffle}
                                     playHandler={onPlayHandler}

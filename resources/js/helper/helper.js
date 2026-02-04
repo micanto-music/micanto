@@ -107,19 +107,6 @@ export const getThumbnails = (items) => {
     return sampleCovers.slice(0, 4);
 }
 
-export const seekUpdate = ( position, max ) =>
-{
-    const min = 0;
-    const range = document.getElementById('seekbar');
-    const bubble = document.getElementById('bubble');
-    const newVal = Number(((position - min) * 100) / (max - min));
-    bubble.innerHTML = formatToHis(position);
-
-    // Sorta magic numbers based on size of the native UI thumb
-    bubble.style.left = `calc(${newVal}% + (${8 - newVal * 0.15}px))`;
-    range.style.backgroundSize = newVal + '% 100%'
-}
-
 export const reorderArr = (i, arr) =>
 {
     return [...arr.slice(i), ...arr.slice(0,i)];

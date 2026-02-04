@@ -5,12 +5,11 @@ import { TbRepeat, TbRepeatOff, TbRepeatOnce, TbArrowsShuffle } from "react-icon
 import {useIsPlaying} from "../../hooks/useIsPlaying";
 
 const Controls = ({ isPlaying, repeatMode, shuffle, playHandler,pauseHandler, nextSong, prevSong, repeatClickHandler, shuffleClickHandler }) => {
-    const { playing, bufferingDuringPlay } = useIsPlaying();
     return(
 
         <div className="flex items-center justify-around controls mx-4">
 
-            {playing ? (
+            {isPlaying ? (
                 <BsFillPauseCircleFill size={38} color="#ff69b4" onClick={pauseHandler} className="cursor-pointer" />
             ) : (
                 <BsFillPlayCircleFill size={38} color="#ff69b4" onClick={playHandler} className="cursor-pointer" />

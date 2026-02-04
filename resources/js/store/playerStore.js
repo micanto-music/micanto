@@ -1,267 +1,217 @@
 import { create } from 'zustand'
 import MicantoPlayer from "../services/MicantoPlayer";
-import {isEqual} from "lodash";
+import {isEqual, shuffle as lodashShuffle} from "lodash";
 import {PlayerAPI} from "../api/PlayerAPI";
 import { t } from "i18next";
+import {reorderArr} from "../helper/helper";
+import {RepeatMode} from "../assets/constants";
 
-function shuffleArr (array, currentTrack = null) {
-    const copy = array.slice();
-    let oldElement;
-    let currentTrackIndex;
-    if(currentTrack) {
-        currentTrackIndex = copy.findIndex(music => music.id === currentTrack.id);
-        if(currentTrackIndex === -1) currentTrackIndex = 0;
-        copy.splice(currentTrackIndex, 1);
+function shuffleQueue (array, currentTrackId = null) {
+    let copy = [...array];
+    if (currentTrackId) {
+        copy = copy.filter(track => track.id !== currentTrackId);
     }
-
-    for (let i = copy.length - 1; i > 0; i--) {
-        let rand = Math.floor(Math.random() * (i + 1));
-        oldElement = copy[i];
-        copy[i] = copy[rand];
-        copy[rand] = oldElement;
+    const shuffled = lodashShuffle(copy);
+    if (currentTrackId) {
+        const currentTrack = array.find(t => t.id === currentTrackId);
+        if (currentTrack) shuffled.unshift(currentTrack);
     }
-    if(currentTrack) {
-        copy.push(currentTrack);
-    }
-    return copy;
-}
-
-function reorderArr (i, arr) {
-    return [...arr.slice(i), ...arr.slice(0,i)];
+    return shuffled;
 }
 
 const usePlayer = create((set, get) => ({
-    audioPlayer: new Audio(),
     currentTrack: null,
     queue: [],
     untouchedQueue: [],
-    repeat: false,
-    repeatMode: 'queue',
+    repeatMode: RepeatMode.Queue,
     shuffle: false,
     currentTime: 0,
+    isPlaying: false,
     playlists: [],
     musicContext: {
         'type': null,
         'id' : null
     },
     lastPlayed: [],
-    setMusicContext: (musicContext) => {
-        set({
-            musicContext: musicContext
-        });
-    },
-    setQueue: (queue) => {
-        const shuffle = get().shuffle;
-        const currentTrack = get().currentTrack;
-        let currentTrackIndex = queue.findIndex(music => music.id === currentTrack.id) +1;
-        let unshuffledQueue = reorderArr(currentTrackIndex,queue);
 
-        if(shuffle === true) {
-            queue = shuffleArr(queue,currentTrack);
-        } else {
-            queue = unshuffledQueue;
+    setMusicContext: (musicContext) => set({ musicContext }),
+    setIsPlaying: (isPlaying) => set({ isPlaying }),
+    setCurrentTime: (time) => set({ currentTime: time }),
+    setRepeatMode: (repeatMode) => set({ repeatMode }),
+
+    setQueue: (queue) => {
+        const { shuffle, currentTrack } = get();
+        let displayQueue = [...queue];
+
+        if (shuffle) {
+            displayQueue = shuffleQueue(queue, currentTrack?.id);
         }
 
         set({
-            queue: queue,
-            untouchedQueue: unshuffledQueue
-        })
+            queue: displayQueue,
+            untouchedQueue: [...queue]
+        });
     },
-    setFromSession: async (data) => {
 
-        if(data?.session?.track !== null) {
-            let time = data.session.session?.current_time ? data.session.session?.current_time : 0;
-            MicantoPlayer.load(data?.session?.track, time);
-            let context = JSON.parse(data.session.session?.context);
+    setFromSession: async (data) => {
+        if (data?.session?.track) {
+            const time = data.session.session?.current_time || 0;
+            const context = JSON.parse(data.session.session?.context || '{}');
+
             set({
                 currentTrack: data.session.track,
-                currentTime: data.session.session?.current_time,
+                currentTime: time,
                 playlists: data.playlists,
                 queue: data.queue,
-                untouchedQueue: data.queue,
+                untouchedQueue: data.queue, // Assuming data.queue from session is already what we want
                 musicContext: context,
                 shuffle: context?.options?.shuffle === true
-            })
+            });
+
+            await MicantoPlayer.load(data.session.track, time);
         } else {
-            let currentTrack = {
-                title: t('sidebar.player.noSong'),
-                artists: null
-            }
-            if(data.queue.length !== 0) {
-                currentTrack = data.queue[0];
-                data.queue = reorderArr(1,data.queue);
-            }
+            const defaultTrack = data.queue.length > 0
+                ? data.queue[0]
+                : { title: t('sidebar.player.noSong'), artists: null };
+
+            const queue = data.queue.length > 0 ? reorderArr(1, data.queue) : [];
 
             set({
                 playlists: data.playlists,
-                currentTrack: currentTrack,
-                queue: data.queue,
+                currentTrack: defaultTrack,
+                queue: queue,
                 untouchedQueue: data.queue,
-            })
-        }
-    },
-    addPlaylist: (playlist) => {
-        let playlists = get().playlists;
-        playlists.push(playlist);
-        set({
-            playlists: playlists,
-        })
-    },
-    editPlaylist: (playlist) => {
-        let playlists = get().playlists;
-        let index = playlists.findIndex((element) => element.id == playlist.id);
-        if(index > -1) {
-            playlists[index] = playlist;
-            set({
-                playlists: playlists,
-            })
-        }
-    },
-    deletePlaylist: (playlist) => {
-        let playlists = get().playlists;
-        let index = playlists.findIndex((element) => element.id == playlist.id);
-        if(index > -1) {
-            playlists.splice(index, 1);
-            set({
-                playlists: playlists,
-            })
+            });
         }
     },
 
-    playContext: async (context, track, shuffled) => {
-        set({
-            currentTrack: null
-        });
+    playContext: async (context, track = null, forceShuffle = null) => {
+        let { shuffle, queue: currentQueue, musicContext: currentContext } = get();
 
-        let currentContext = get().musicContext;
-        let shuffle = get().shuffle;
-        let currentQueue = get().queue;
-        let currentTrack;
-        if(context && context.hasOwnProperty('type')) {
-            if(context.type !== 'queue' && !isEqual(currentContext, context)) {
-                const {data: queue} = await PlayerAPI.getQueue(context);
-                currentQueue = queue;
-                currentContext = context;
-            }
+        if (forceShuffle !== null) shuffle = forceShuffle;
+
+        // Fetch new queue if context changed
+        if (context && context.type !== 'queue' && !isEqual(currentContext, context)) {
+            const { data } = await PlayerAPI.getQueue(context);
+            currentQueue = data;
+            currentContext = context;
         }
 
-        if(track) {
-            let currentTrackIndex = currentQueue.findIndex(music => music.id === track.id) +1;
-            currentQueue = reorderArr(currentTrackIndex,currentQueue);
-            currentTrack = track;
-        }
+        let newUntouched = [...currentQueue];
+        let nextTrack = track || currentQueue[0];
+        let newQueue = [...currentQueue];
 
-        if(shuffled != shuffle) {
-            shuffle = shuffled;
-        }
-
-        if(shuffle === true) {
-            currentQueue = shuffleArr(currentQueue,track ? track : null);
-        }
-
-        if(!track) {
-            currentTrack = currentQueue[0];
-        }
-
-        set({
-            currentTrack: currentTrack,
-            currentTime: 0,
-            queue: currentQueue,
-            untouchedQueue: currentQueue,
-            shuffle: shuffle,
-            musicContext: currentContext
-        });
-
-        await MicantoPlayer.load(currentTrack);
-        await MicantoPlayer.play();
-
-    },
-    playQueue: (queue) => {
-        set({
-            currentTrack: queue[0],
-            currentTime: 0,
-            queue: queue,
-            untouchedQueue: queue
-        })
-    },
-    setCurrentTime: (time) => set(() => ({ currentTime: time })),
-    setRepeatMode: (repeatMode) => set(() => ({ repeatMode: repeatMode })),
-    setShuffle: (shuffleState) => {
-        let newState;
-        let newContext;
-        if(shuffleState) {
-            newState = shuffleState;
+        if (shuffle) {
+            newQueue = shuffleQueue(newUntouched, nextTrack?.id);
+        } else if (track) {
+            const trackIndex = newUntouched.findIndex(t => t.id === track.id);
+            newQueue = reorderArr(trackIndex + 1, newUntouched);
         } else {
-            newState = !get().shuffle;
-        }
-        const currentTrack = get().currentTrack;
-        const context = get().musicContext;
-        let queue = get().queue;
-        if(newState === true) {
-            queue = shuffleArr(queue, currentTrack);
-        } else {
-            queue = get().untouchedQueue;
+            newQueue = reorderArr(1, newUntouched);
         }
 
-        newContext = {...context};
-        if(!Object.hasOwn(newContext, 'options')) newContext.options = {};
-        newContext.options.shuffle = newState;
-
-        set((state) => ({
-            shuffle: newState,
-            queue:queue,
-            musicContext: newContext
-        }));
-
-    },
-    changeMusic: (type, auto) => {
-        const repeatMode = get().repeatMode;
-        const currentMusic = get().currentTrack;
-        if ( type === "next" && auto && repeatMode === "off" ) {
-            set(() => ({ isPlaying: false }))
-            return;
-        }
-        let nextTrack;
-
-        if ( type === "next" && auto && repeatMode === "track" ) {
-            nextTrack = currentMusic;
-            set(() => ({ isPlaying: false }))
-            setTimeout(() => {
-                set(() => ({ isPlaying: true }))
-            }, 300);
-        }
-
-        const playList = get().queue;
-        const playlistLength = playList.length;
-        let queue = playList;
-        let untouchedQueue = get().untouchedQueue;
-        let currentMusicIndex = playList.findIndex(music => music.id === currentMusic.id)
-        if ( repeatMode === "queue" ) {
-            if ( type === "next" ) {
-                if ( currentMusicIndex + 1 === playlistLength ) {
-                    currentMusicIndex = -1
-                }
-                currentMusicIndex += 1
-            }
-            if ( type === "prev" ) {
-                if ( currentMusicIndex === 0 ) {
-                    currentMusicIndex = playlistLength
-                }
-                currentMusicIndex -= 1
-            }
-
-            nextTrack = playList[currentMusicIndex];
-            queue = reorderArr(currentMusicIndex +1 , queue);
-            untouchedQueue = reorderArr(currentMusicIndex +1, untouchedQueue);
-        }
-
-        set(() => ({
+        set({
             currentTrack: nextTrack,
             currentTime: 0,
-            queue: queue,
-            untouchedQueue: untouchedQueue
-        }))
+            queue: newQueue,
+            untouchedQueue: newUntouched,
+            shuffle,
+            musicContext: currentContext,
+            isPlaying: true
+        });
+
+        await MicantoPlayer.load(nextTrack);
+        await MicantoPlayer.play();
     },
+
+    next: async (auto = false) => {
+        const { repeatMode, currentTrack, queue, untouchedQueue, shuffle } = get();
+
+        if (auto && repeatMode === RepeatMode.Off && queue.length === 0) {
+            set({ isPlaying: false });
+            return;
+        }
+
+        if (auto && repeatMode === RepeatMode.Track && currentTrack) {
+            await MicantoPlayer.seekTo(0);
+            await MicantoPlayer.play();
+            return;
+        }
+
+        if (queue.length === 0 && repeatMode !== RepeatMode.Queue) {
+            set({ isPlaying: false });
+            return;
+        }
+
+        // If queue is empty but repeat is on, we take from untouched
+        let workQueue = queue.length > 0 ? [...queue] : [...untouchedQueue];
+        const nextTrack = workQueue[0];
+        const remainingQueue = reorderArr(1, workQueue);
+
+        set({
+            currentTrack: nextTrack,
+            currentTime: 0,
+            queue: remainingQueue,
+        });
+
+        if (nextTrack) {
+            await MicantoPlayer.load(nextTrack);
+            await MicantoPlayer.play();
+        }
+    },
+
+    prev: async () => {
+        const { currentTrack, untouchedQueue, shuffle } = get();
+        if (!currentTrack) return;
+
+        // Simple prev logic: find current in untouched and take previous
+        const currentIndex = untouchedQueue.findIndex(t => t.id === currentTrack.id);
+        let prevIndex = currentIndex - 1;
+        if (prevIndex < 0) prevIndex = untouchedQueue.length - 1;
+
+        const prevTrack = untouchedQueue[prevIndex];
+        // Rebuild queue from prevTrack
+        const newQueue = reorderArr(prevIndex + 1, untouchedQueue);
+
+        set({
+            currentTrack: prevTrack,
+            currentTime: 0,
+            queue: newQueue
+        });
+
+        await MicantoPlayer.load(prevTrack);
+        await MicantoPlayer.play();
+    },
+
+    setShuffle: (state = null) => {
+        const { shuffle: currentShuffle, currentTrack, untouchedQueue, musicContext } = get();
+        const newState = state !== null ? state : !currentShuffle;
+
+        let newQueue;
+        if (newState) {
+            newQueue = shuffleQueue(untouchedQueue, currentTrack?.id);
+        } else {
+            const currentIndex = untouchedQueue.findIndex(t => t.id === currentTrack?.id);
+            newQueue = reorderArr(currentIndex + 1, untouchedQueue);
+        }
+
+        const newContext = { ...musicContext, options: { ...musicContext.options, shuffle: newState } };
+
+        set({
+            shuffle: newState,
+            queue: newQueue,
+            musicContext: newContext
+        });
+    },
+
+    // Playlist management
+    addPlaylist: (playlist) => set(state => ({ playlists: [...state.playlists, playlist] })),
+    editPlaylist: (playlist) => set(state => ({
+        playlists: state.playlists.map(p => p.id === playlist.id ? playlist : p)
+    })),
+    deletePlaylist: (playlist) => set(state => ({
+        playlists: state.playlists.filter(p => p.id !== playlist.id)
+    })),
 }));
 
 export default usePlayer;

@@ -34,7 +34,10 @@ class MusicSyncService
 
         foreach ($files as $file) {
             try {
-                $track = Track::where('path', $file->getRealPath())->first();
+                $absolutePath = $file->getRealPath();
+                $relativePath = str_replace(rtrim($musicPath, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR, '', $absolutePath);
+
+                $track = Track::where('path', $relativePath)->first();
                 if(!$force && $track) {
                     $results['skipped']++;
                     continue;
@@ -49,7 +52,7 @@ class MusicSyncService
                 // add track
                 $data = Arr::except($info, ['album', 'artist', 'albumartist', 'cover']);
                 $data['mtime'] = $this->getModifiedTime($file);
-                $track = Track::updateOrCreate(['path' => $file], $data);
+                $track = Track::updateOrCreate(['path' => $relativePath], $data);
 
                 // split artists
                 $artists = $this->multiexplode([',',' Feat. ',' feat. ', ' feat ',';',' ft. ', '&', '/'], $info['artist']);

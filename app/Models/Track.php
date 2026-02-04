@@ -11,13 +11,14 @@ use App\Builder\TrackBuilder;
 
 class Track extends Model
 {
-
     use Searchable;
 
     protected $hidden = ['pivot'];
     protected $guarded = [];
 
     protected $appends = ['fullUrl'];
+
+    private static ?string $musicFolder = null;
 
     public function artists(): BelongsToMany
     {
@@ -32,6 +33,22 @@ class Track extends Model
     public function newEloquentBuilder($query): TrackBuilder
     {
         return new TrackBuilder($query);
+    }
+
+    /**
+     * Get the absolute path to the track file.
+     * Accessor for $track->path
+     */
+    protected function path(): Attribute
+    {
+        return Attribute::get(function ($value) {
+            if (!self::$musicFolder) {
+                self::$musicFolder = Setting::first()?->music_folder ?? '';
+            }
+
+            // Ensure the path is joined correctly
+            return rtrim(self::$musicFolder, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . ltrim($value, DIRECTORY_SEPARATOR);
+        });
     }
 
     public function getFullUrlAttribute(): ?string
